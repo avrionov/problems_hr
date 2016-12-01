@@ -1059,6 +1059,8 @@ void making_anagrams() {
   
   cout << count;
 }
+
+
 //-----------------------------------------------------------------------------
 void sherlock_and_valid_string() {
   string st;
@@ -1115,9 +1117,46 @@ void sherlock_and_valid_string() {
   }
 }
 
+void game_of_thrones() {
+  
+  string st;
+
+  cin >> st;
+
+  int char_count[26] = { 0 };
+
+  for (auto ch : st)
+    if (ch >= 'a' && ch <= 'z')
+      char_count[ch - 'a']++;
+
+  if (st.length() % 2 == 1) {  // odd number of characters
+    int odd_count = 0;
+    for (int i = 0; i < 26; i++) {
+      if (char_count[i] % 2 == 1) {// odd number
+        odd_count++;
+        if (odd_count > 1) {
+          cout << "NO";
+          return;
+        }
+      }
+    }
+    cout << "YES";
+  } else {  // even number of charters
+ // all counts should be even
+    for (int i = 0; i < 26; i++) {
+      if (char_count[i])
+        if (char_count[i] % 2 == 1) {// odd number
+          cout << "NO";
+          return;
+        }
+    }
+    cout << "YES";
+  }
+}
+
 int main() {
 
-  making_anagrams();
+  game_of_thrones();
 
   getchar();
 }
