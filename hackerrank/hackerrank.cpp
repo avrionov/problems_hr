@@ -623,42 +623,9 @@ void fraudulent_activity() {
   cout << alerts;
 }
 
-//-----------------------------------------------------------------------------
 
-void mini_max_sum() {
-  vector <int> ar;
-
-  int n = 5;
-
-  for (int i = 0; i < n; i++) {
-    int b;
-    cin >> b;
-    ar.push_back(b);
-  }
-  
-
-  unsigned long long sum = 0;
-  for (const int& i : ar)
-    sum += i;
-
-  unsigned long long min = 18446744073709551615;
-  unsigned long long max = 0;
-
-  for (const int& i : ar) {
-      unsigned long long tmp = sum - i;
-
-      if (tmp < min)
-          min = tmp;
-
-      if (tmp > max)
-          max = tmp;
-  }
-   
-  cout << min << " " << max;
-}
 
 //-----------------------------------------------------------------------------
-
 void reduced_string() {
 
   string st;
@@ -691,8 +658,8 @@ void reduced_string() {
   else
     cout << st;
 }
-//-----------------------------------------------------------------------------
 
+//-----------------------------------------------------------------------------
 void camel_case() {
 
   string st;
@@ -735,7 +702,7 @@ bool check_word(string& st) {
 }
 
 
-
+//-----------------------------------------------------------------------------
 void two_characters() {
   string st;
 
@@ -807,7 +774,6 @@ void pangrams() {
 
 
 //-----------------------------------------------------------------------------
-
 void caesar_cipher() {
   int n, k;
   string st;
@@ -841,8 +807,8 @@ void caesar_cipher() {
 
   cout << nst;
 }
-//-----------------------------------------------------------------------------
 
+//-----------------------------------------------------------------------------
 void mars_exploration() {
 
   string st;
@@ -1026,19 +992,52 @@ void palindrome_index() {
       int start = 0;
       int end = len - 1;
       for (int i = 0; i < len / 2; i++) {
-          if (st[start] == st[end]) {
-              start++;
-              end--;
-          } else {
 
-          }
+          if (st[i] != st[len - 1 - i]) {
+
+              if ((st[i + 1] == st[len - 1 - i]) && (st[i + 2] == st[len - 1 - i - 1]))
+                  cout << i << endl;
+              else if ((st[i] == st[len - 1 - i - 1]) && (st[i + 1] == st[len - 1 - i - 2]))
+                  cout << len - 1 - i << endl;
+
+              goto skip;
+          }           
       }
-        
-
-      
+      cout << "-1" << endl;
+      skip:;
       k++;
     }
   }
+}
+
+void anagram() {
+    int n;
+
+    cin >> n;
+
+    for (int k = 0; k < n;) {
+        string st;
+        cin >> st;
+        if (st.length() % 2 == 1) {
+            cout << -1 << endl;
+            
+        } else {
+            int len = st.length();
+
+            multiset<char> char_set;
+            for (int i = 0; i < len / 2; i++)
+                char_set.insert(st[i]);
+
+            for (int i = len / 2; i < len; i++) {
+                multiset<char>::iterator it;
+                it = char_set.find(st[i]);
+                if (it != char_set.end())
+                    char_set.erase(it);
+            }
+            cout << char_set.size() << endl;
+        }        
+        k++;
+    }
 }
 
 //-----------------------------------------------------------------------------
@@ -1099,7 +1098,7 @@ void sherlock_and_valid_string() {
 
 int main() {
 
- palindrome_index();
+  anagram();
 
   getchar();
 }

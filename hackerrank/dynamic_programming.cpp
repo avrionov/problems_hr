@@ -70,8 +70,7 @@ void bigint::add(const bigint & num, int exp) {
 
   if (exp > _num.size()) {
     _num.append(exp - _num.size(), 0).append(num._num.begin(), num._num.end());
-  }
-  else {
+  } else {
     auto b1 = _num.begin() + exp, e1 = _num.end();
     auto b2 = num._num.begin(), e2 = num._num.end();
 
@@ -114,7 +113,7 @@ bigint operator+(bigint num1, const bigint & num2) {
 ostream & operator<<(ostream & outstream, const bigint & num) {
 
   string x(num._num.size() * 2, 0);
-  for (int i = 0; i < num._num.size(); ++i) {
+  for (size_t i = 0; i < num._num.size(); ++i) {
     auto d = num._num[i];
     x[2 * i] = toChar(d % 10);
     x[2 * i + 1] = toChar(d / 10);
@@ -145,8 +144,6 @@ void fibonachi_modified() {
 
   bigint lt1(t1);
   bigint lt2(t2);
-
-  unsigned long long add;
 
   for (int j = 2; j < n; j++) {
     lt1 += lt2* lt2;

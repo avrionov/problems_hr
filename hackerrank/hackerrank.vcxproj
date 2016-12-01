@@ -159,6 +159,7 @@
     <ClCompile Include="dynamic_programming.cpp" />
     <ClCompile Include="graphs.cpp" />
     <ClCompile Include="hackerrank.cpp" />
+    <ClCompile Include="implementation.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
