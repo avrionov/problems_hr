@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="test_files">
+      <UniqueIdentifier>{b51ea308-bc95-410f-9a13-c505420ebd2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test_files\warmup">
+      <UniqueIdentifier>{48889502-d0e2-4311-afbc-ebf3391e1ab7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test_files\algo-sorting">
+      <UniqueIdentifier>{93aedf22-146d-4bb6-9cf6-76cc8be0a367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test_files\implementation">
+      <UniqueIdentifier>{4d87adee-99c6-432e-8a0f-db25cb2132bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test_files\graphs">
+      <UniqueIdentifier>{9e7d39de-6096-4cbf-ad8c-987faa44eb82}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+    <Text Include="warmup\a-very-big-sum.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="warmup\circular-array-rotation.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="warmup\compare-the-triplets.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="warmup\diagonal-difference.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="warmup\plus-minus.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="warmup\ReadMe.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="warmup\simple-array-sum.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="warmup\staircase.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="warmup\time-conversion.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="algo-sorting\correctness-invariant.txt">
+      <Filter>test_files\algo-sorting</Filter>
+    </Text>
+    <Text Include="algo-sorting\insertionsort1.txt">
+      <Filter>test_files\algo-sorting</Filter>
+    </Text>
+    <Text Include="algo-sorting\insertionsort2.txt">
+      <Filter>test_files\algo-sorting</Filter>
+    </Text>
+    <Text Include="algo-sorting\tutorial-intro.txt">
+      <Filter>test_files\algo-sorting</Filter>
+    </Text>
+    <Text Include="graph\bfsshortreach.txt">
+      <Filter>test_files\graphs</Filter>
+    </Text>
+    <Text Include="algo-sorting\quicksort1.txt">
+      <Filter>test_files\algo-sorting</Filter>
+    </Text>
+    <Text Include="algo-sorting\runningtime.txt">
+      <Filter>test_files\algo-sorting</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hackerrank.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="warmup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_programming.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="graphs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
