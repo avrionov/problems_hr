@@ -28,6 +28,9 @@
     <Filter Include="test_files\graphs">
       <UniqueIdentifier>{9e7d39de-6096-4cbf-ad8c-987faa44eb82}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test_files\strings">
+      <UniqueIdentifier>{60815f2f-af54-4a3f-83de-64709f15e35f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -78,6 +81,72 @@
     </Text>
     <Text Include="algo-sorting\runningtime.txt">
       <Filter>test_files\algo-sorting</Filter>
+    </Text>
+    <Text Include="strings\alternating-characters.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\anagram.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\beautiful-binary-string.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\camelcase.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\ceasar-cipher.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\funny-string.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\game-of-thrones.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\game-of-thrones-1.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\gem-stones.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\making-anagrams.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\mars-exploration.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\palindrome-index.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\pangrams.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\reduced-string.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\sherlock-and-valid-string.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\sherlock-and-valid-string-.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\sherlock-and-valid-string-1.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\sherlock-and-valid-string-2.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\the-love-letter-mystery.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\two-characters.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\two-characters-1.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="strings\two-strings.txt">
+      <Filter>test_files\strings</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

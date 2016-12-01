@@ -1154,9 +1154,67 @@ void game_of_thrones() {
   }
 }
 
+//-----------------------------------------------------------------------------
+void two_strings() {
+  int q;
+  cin >> q;
+
+  while (q > 0) {
+    string s1;
+    string s2;
+
+    string pattern = "abcdefghijklmnopqrstuvwxyz";
+
+    cin >> s1;
+    cin >> s2;
+    bool bFlag = false;
+    for (auto ch : pattern) {
+      if (s1.find(ch) != string::npos && s2.find(ch) != string::npos) {
+        bFlag = true;
+        break;
+      }        
+    }
+    if (bFlag)
+      cout << "YES";
+    else
+      cout << "NO";
+
+    cout << endl;
+    q--;
+  }
+}
+
+//-----------------------------------------------------------------------------
+void string_construction() {
+  int q;
+  cin >> q;
+
+  while (q > 0) {
+    string st;
+    
+    cin >> st;
+
+    int char_count[26] = { 0 };
+
+    for (auto ch : st)
+      if (ch >= 'a' && ch <= 'z')
+        char_count[ch - 'a']++;
+
+    int count = 0;
+
+    for (int i = 0; i < 26; i++) {
+      if (char_count[i])
+        count++;
+    }
+
+    cout << count << endl;
+    q--;
+  }
+}
+
 int main() {
 
-  game_of_thrones();
+  string_construction();
 
   getchar();
 }
