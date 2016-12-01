@@ -1040,6 +1040,25 @@ void anagram() {
     }
 }
 
+void making_anagrams() {
+  string s1, s2;
+
+  cin >> s1 >> s2;
+
+  int ar[26] = { 0 };
+  
+  for (auto ch : s1)
+    ar[ch - 'a']++;
+
+  for (auto ch : s2)
+    ar[ch - 'a']--;
+
+  int count = 0;
+  for (int i = 0; i<26; i++) 
+    count += abs(ar[i]);
+  
+  cout << count;
+}
 //-----------------------------------------------------------------------------
 void sherlock_and_valid_string() {
   string st;
@@ -1098,7 +1117,7 @@ void sherlock_and_valid_string() {
 
 int main() {
 
-  anagram();
+  making_anagrams();
 
   getchar();
 }
