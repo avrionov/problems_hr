@@ -1212,11 +1212,171 @@ void string_construction() {
   }
 }
 
+void richie_rich() {
+    int n, k;
+
+    string st;
+
+    cin >> n >> k;
+
+    cin >> st;
+
+    int len = st.length();
+
+    int diffs = 0;
+    for (int i = 0; i < len / 2; i++)
+        if (st[i] != st[len - i - 1])
+            diffs++;
+
+    if (diffs > k) {
+        cout << -1;
+        return;
+    }
+
+    int save_k = k;
+
+    int i = 0;
+
+    while (save_k > diffs && i < len / 2) {
+
+        if ((save_k == diffs + 1) && (st[i] != 9) && (st[len - i - 1] != 9))
+            break;
+
+        if (st[i] != st[len - i - 1])
+            diffs--;
+
+        if (st[i] != '9') {
+            st[i] = '9';            
+            save_k--;
+        }
+
+         if (st[len - i - 1] != '9') {
+            st[len - i - 1] = '9';
+            save_k -= 1;        
+        }            
+        
+        i++;
+    }
+
+    for (; i < len / 2; i++) {
+        if (st[i] != st[len - i - 1]) {
+            if (save_k >= (diffs+1)) {
+                st[i] = '9';
+                st[len - i - 1] = '9';
+                save_k -= 2;
+                diffs--;                
+            } else {
+                int max_num = max(st[i], st[len - i - 1]);
+                st[i] = max_num;
+                st[len - i - 1] = max_num;
+                save_k--;
+                diffs--;
+            }
+
+        }
+    }
+    
+    i = 0; 
+    while (save_k >= 2 && i < len / 2) {
+        if (st[i] != '9') {
+            st[i] = '9';
+            st[len - i - 1] = '9';
+            save_k -= 2;
+        }        
+        i++;
+    }
+
+    if (save_k > 0) {
+        if (len % 2 == 1) {
+            st[len / 2 ] = '9';
+        }
+    }
+
+    cout << st;
+}
+
+
+bool check_anagram(string & s, int start1, int start2, int len)  {
+    int let[26] = { 0 };
+    bool result = true;
+    for (int n = 0; n < len; n++) {
+        let[s[start1 + n] - 'a']++;
+        let[s[start2 + n] - 'a']--;
+    }
+
+    for (int n = 0; n < 26; n++) {
+        if (let[n] != 0) {
+            result = false;
+            break;
+        }
+    }
+    return result;
+}
+
+void sherlock_and_the_anagrams() {
+
+    int q;
+    cin >> q;
+
+    while (q > 0) {
+        string st;
+        cin >> st;
+
+        int count = 0;
+        for (int len = 1; len < st.length(); len++) {
+            for (int i = 0; i < st.length() - len; i++) {                
+                for (int j = i + 1; j < st.length() - len + 1; j++) {                  
+                    if (check_anagram(st, i, j, len) == true) {
+                        count++;
+                    }
+                }
+            }        
+        }    
+        cout << count << endl;
+        q--;
+    }    
+}
+
+
+int lcs(string& x, string& y)
+{
+    const int arSize = 5000;
+    int m = x.length();
+    int n = y.length();
+
+    //int *l = new int [m + 1][n + 1];
+    auto l = new int[arSize + 1][arSize + 1];
+    int i, j;
+        
+    for (i = 0; i <= m; i++) {
+        for (j = 0; j <= n; j++) {
+
+            if (i == 0 || j == 0)
+                l[i][j] = 0;
+
+            else if (x[i - 1] == y[j - 1])
+                l[i][j] = l[i - 1][j - 1] + 1;
+            else
+                l[i][j] = max(l[i - 1][j], l[i][j - 1]);
+        }
+    }    
+    return l[m][n];
+}
+
+void common_child() {
+    string s1;
+    string s2;
+
+    cin >> s1 >> s2;
+
+    cout << lcs(s1, s2);
+}
+
 int main() {
 
-  string_construction();
+ common_child();
 
-  getchar();
+ getchar();
 }
 
 
