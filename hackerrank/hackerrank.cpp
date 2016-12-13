@@ -1323,9 +1323,9 @@ void sherlock_and_the_anagrams() {
         cin >> st;
 
         int count = 0;
-        for (int len = 1; len < st.length(); len++) {
-            for (int i = 0; i < st.length() - len; i++) {                
-                for (int j = i + 1; j < st.length() - len + 1; j++) {                  
+        for (size_t len = 1; len < st.length(); len++) {
+            for (size_t i = 0; i < st.length() - len; i++) {                
+                for (size_t j = i + 1; j < st.length() - len + 1; j++) {                  
                     if (check_anagram(st, i, j, len) == true) {
                         count++;
                     }
@@ -1338,8 +1338,8 @@ void sherlock_and_the_anagrams() {
 }
 
 
-int lcs(string& x, string& y)
-{
+int lcs(string& x, string& y) {
+
     const int arSize = 5000;
     int m = x.length();
     int n = y.length();
@@ -1360,7 +1360,7 @@ int lcs(string& x, string& y)
                 l[i][j] = max(l[i - 1][j], l[i][j - 1]);
         }
     }    
-    return l[m][n];
+    return l[m][n];    
 }
 
 void common_child() {
@@ -1372,11 +1372,167 @@ void common_child() {
     cout << lcs(s1, s2);
 }
 
+
+struct suffix {
+  int index; 
+  int rank[2]; 
+};
+
+
+int cmp(struct suffix& a, struct suffix& b) {
+  return (a.rank[0] == b.rank[0]) ? (a.rank[1] < b.rank[1] ? 1 : 0) :
+    (a.rank[0] < b.rank[0] ? 1 : 0);
+}
+
+
+void buildSuffixArray(const char *txt, int n, vector<int>& suffix_ar) {
+
+  vector<struct suffix> suffixes(n);
+
+  for (int i = 0; i < n; i++) {
+    suffixes[i].index = i;
+    suffixes[i].rank[0] = txt[i] - 'a';
+    suffixes[i].rank[1] = ((i + 1) < n) ? (txt[i + 1] - 'a') : -1;
+  }
+
+  sort(begin(suffixes), end(suffixes), cmp);
+    
+  vector<int> ind(n);
+
+  for (int k = 4; k < 2 * n; k = k * 2) {
+
+    int rank = 0;
+    int prev_rank = suffixes[0].rank[0];
+    suffixes[0].rank[0] = rank;
+    ind[suffixes[0].index] = 0;
+    
+    for (int i = 1; i < n; i++) {
+      if (suffixes[i].rank[0] == prev_rank && suffixes[i].rank[1] == suffixes[i - 1].rank[1]) {
+        prev_rank = suffixes[i].rank[0];
+        suffixes[i].rank[0] = rank;
+      } else {
+        prev_rank = suffixes[i].rank[0];
+        suffixes[i].rank[0] = ++rank;
+      }
+      ind[suffixes[i].index] = i;
+    }
+        
+    for (int i = 0; i < n; i++) {
+      int nextindex = suffixes[i].index + k / 2;
+      suffixes[i].rank[1] = (nextindex < n) ?
+        suffixes[ind[nextindex]].rank[0] : -1;
+    }
+    sort(begin(suffixes), end(suffixes), cmp);
+  }
+
+  suffix_ar.resize(n);
+  for (int i = 0; i < n; i++) {
+    suffix_ar[suffixes[i].index] = i;
+  }
+}
+
+
+bool select_from_first(string& A, int indexA, string& B, int indexB, vector<int>& ranks, int len_a) {
+  return (indexB == B.length()) || 
+    ((indexA < len_a) && ranks[indexA] < ranks[indexB + 1 + len_a]);
+}
+
+void morgan_and_a_string() {
+  int n;
+
+  cin >> n;
+
+  while (n > 0) {
+    string s1;
+    string s2;
+
+    cin >> s1 >> s2;
+
+    int len_s1 = s1.length();
+    int len_s2 = s2.length();
+
+    const char DIV = 'Z' + 1;
+    
+    int i_s1 = 0;
+    int i_s2 = 0;
+        
+    string combined_ar = s1 + DIV +  s2 + DIV;
+
+    vector<int> suf_ar;
+    buildSuffixArray(combined_ar.c_str(), combined_ar.length(), suf_ar);
+
+    string s;
+
+    for (int i = 0; i <len_s1 + len_s2; i++) {
+      if (select_from_first(s1, i_s1, s2, i_s2, suf_ar, len_s1)) {
+        s.push_back(s1[i_s1]);
+        i_s1++;
+      } else {
+        s.push_back(s2[i_s2]);
+        i_s2++;
+      }
+    }
+
+    cout << s << endl;  
+    n--;
+  }
+}
+
+
+bool validityCheck(map<char, int> dict, int limit) {
+  if (dict['A'] <= limit && dict['C'] <= limit && dict['G'] <= limit && dict['T'] <= limit) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+void bear_and_steady_gene() {
+
+  int n;
+  cin >> n;
+
+  string s1;
+  cin >> s1;
+
+  int maxIndex = 0, out = 999999;
+  map<char, int> dict;
+
+  int limit = n / 4;
+  for (int i = n - 1; i >= 0; i--) {
+    dict[s1[i]]++;
+    if (!validityCheck(dict, limit)) {
+      maxIndex = i + 1;
+      dict[s1[i]]--;
+      break;
+    }
+  }
+
+  for (int minIndex = -1; minIndex < n - 1 && maxIndex < n && minIndex < maxIndex; minIndex++) {
+    while (!validityCheck(dict, limit) && maxIndex < n) {
+      dict[s1[maxIndex]]--;
+      maxIndex++;
+    }
+
+    if (maxIndex > n || !validityCheck(dict, limit)) {
+      break;
+    }
+
+    int substringLength = max(0, maxIndex - minIndex - 1);
+    if (substringLength < out) {
+      out = substringLength;
+    }
+    dict[s1[minIndex + 1]]++;
+  }
+  cout << out << endl;
+}
+
 int main() {
 
- common_child();
+  bear_and_steady_gene();
 
- getchar();
+  getchar();
 }
 
 
