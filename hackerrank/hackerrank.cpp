@@ -12,620 +12,6 @@
 using namespace std;
 
 //-----------------------------------------------------------------------------
-void sorting_tutorial_intro() {
-  
-  int n, v;
-
-  cin >> v >> n;
-
-  vector <int> ar;
-
-  int i = 0;
-
-  while (std::cin && (i < n)) {
-    int b;
-    cin >> b;
-    ar.push_back(b);
-    i++;
-  }
-
-  vector <int>::iterator it = find(begin(ar), end(ar), v);
-
-  if (it != end(ar))
-    cout << it - begin(ar);
-
-}
-
-//-----------------------------------------------------------------------------
-
-void insert_one1(vector <int>& ar, int i) {
-    int j = i;
-    int val = ar[i];
-
-    while (j > 0 && ar[j - 1] > val) {
-        int tmp = ar[j];
-        ar[j] = ar[j - 1];
-        //ar[j - 1] = tmp;
-        j--;
-
-        // print the array
-        for (auto elem : ar)
-            cout << elem << " ";
-        cout << endl;
-    }
-
-    ar[j] = val;
-    // print the array
-    for (auto elem : ar)
-        cout << elem << " ";
-    cout << endl;
-}
-
-
-void insertionsort1() {
-
-    int n;
-
-    cin >> n;
-
-    vector <int> ar;
-
-    int i = 0;
-
-    while (std::cin && (i < n)) {
-        int b;
-        cin >> b;
-        ar.push_back(b);
-        i++;
-    }
-    
-    insert_one1(ar, ar.size() - 1);
-}
-
-//-----------------------------------------------------------------------------
-
-void insert_one(vector <int>& ar, int i) {
-    int j = i;
-    while (j > 0 && ar[j - 1] > ar[j]) {
-        int tmp = ar[j];
-        ar[j] = ar[j - 1];
-        ar[j - 1] = tmp;
-        j--;
-    }
-}
-
-void insertionsort2() {
-
-    int n;
-
-    cin >> n;
-
-    vector <int> ar;
-
-    int i = 0;
-
-    while (std::cin && (i < n)) {
-        int b;
-        cin >> b;
-        ar.push_back(b);
-        i++;
-    }
-
-    for (size_t i = 1; i < ar.size(); i++) {
-        
-        insert_one(ar, i);
-
-         // print the array
-        for (auto elem : ar)
-            cout << elem << " ";
-        cout << endl;
-    }
-
-}
-
-//-----------------------------------------------------------------------------
-void insertionSort(int N, int arr[]) {
-    int i, j;
-    int value;
-    for (i = 1; i<N; i++)
-    {
-        value = arr[i];
-        j = i - 1;
-        while (j>=0 && value<arr[j])
-        {
-            arr[j + 1] = arr[j];
-            j = j - 1;
-        }
-        arr[j + 1] = value;
-    }
-    for (j = 0; j<N; j++)
-    {
-        printf("%d", arr[j]);
-        printf(" ");
-    }
-}
-
-
-//-----------------------------------------------------------------------------
-
-int partition(vector<int>& ar, int left, int right)
-{
-  int pivot = ar[left];
-  while (left != right)
-  {
-    if (ar[left] > ar[right])
-    {
-      swap(ar[left], ar[right]);
-    }
-
-    if (pivot == ar[left])
-      right--;
-    else // Pivot == arr[right]
-      left++;
-  }
-  return left;
-}
-
-
-void partition_test() {
-
-  int n;
-
-  cin >> n;
-
-  vector <int> ar;
-
-  int i = 0;
-
-  while (std::cin && (i < n)) {
-    int b;
-    cin >> b;
-    ar.push_back(b);
-    i++;
-  }
-
-  partition(ar, 0, n - 1);
-
-  // print the array
-  for (auto elem : ar)
-    cout << elem << " ";
-  cout << endl;
-}
-
-
-int partition1(vector<int>& ar, int left, int right)
-{
-  vector <int> left_ar;
-  vector <int> right_ar;
-
-  int pivot = ar[left];
-  
-  for (int i = left+1; i <= right; ++i) {
-    if (ar[i] < pivot) {
-      left_ar.push_back(ar[i]);
-    }
-    else {
-      if (ar[i] > pivot)
-        right_ar.push_back(ar[i]);
-    }
-  }
-
-  int pos = left_ar.size() + left;
-
-  for (size_t i = 0; i < left_ar.size(); i++)
-    ar[i + left] = left_ar[i];
-
-  ar[pos] = pivot;
-
-  for (size_t i = 0; i < right_ar.size(); i++)
-    ar[i+pos+1] = right_ar[i];
-
-  return pos;
-}
-
-
-void quick_sort(vector<int>& ar, int left, int right) {
-
-  if (left >= right)
-    return;
-
-  int pos = partition1(ar, left, right);
-  
-
-  quick_sort(ar, left, pos - 1);
-  quick_sort(ar, pos + 1, right);
-
-  // print the array
-  for (int i = left; i <= right; i++)
-    cout << ar[i] << " ";
-  cout << endl;  
-}
-
-
-void quick_sort_test() {
-
-  int n;
-
-  cin >> n;
-
-  vector <int> ar;
-
-  int i = 0;
-
-  while (std::cin && (i < n)) {
-    int b;
-    cin >> b;
-    ar.push_back(b);
-    i++;
-  }
-
-  quick_sort(ar, 0, n-1);
-}
-
-
-//-----------------------------------------------------------------------------
-
-int partition3(vector<int>& ar, int left, int right) {
-  int pivot = ar[right];
-
-  int i = left;
-
-  for (int j = left; j <= (right - 1); j++) {
-    if (ar[j] <= pivot) {
-      swap(ar[i], ar[j]);
-      i++;
-    }
-  }
-  
-  swap(ar[i], ar[right]);
-
-  return i;
-}
-
-void quick_sort3(vector<int>& ar, int left, int right) {
-
-  if (left >= right)
-    return;
-
-  int pos = partition3(ar, left, right);
-  // print the array
-  for (auto elem : ar)
-    cout << elem << " ";
-  cout << endl;
-
-  quick_sort3(ar, left, pos - 1);
-  quick_sort3(ar, pos + 1, right);
-  
-}
-
-void quick_sort_test3() {
-
-  int n;
-
-  cin >> n;
-
-  vector <int> ar;
-
-  int i = 0;
-
-  while (std::cin && (i < n)) {
-    int b;
-    cin >> b;
-    ar.push_back(b);
-    i++;
-  }
-
-  quick_sort3(ar, 0, n - 1);
-}
-//-----------------------------------------------------------------------------
-
-void counting_sort1() {
-  
-  int n;
-
-  cin >> n;
-
-  vector <int> ar;
-
-  int i = 0;
-
-  while (std::cin && (i < n)) {
-    int b;
-    cin >> b;
-    ar.push_back(b);
-    i++;
-  }
-
-  vector<int> field(100, 0);
-
-  for (auto i : ar) {
-    if (i >= 0 && i < 100)
-      field[i]++;
-  }
-
-  // print the array
-  for (auto elem : field)
-    cout << elem << " ";
-}
-
-
-void counting_sort2() {
-
-  int n;
-
-  cin >> n;
-
-  vector <int> ar;
-
-  int i = 0;
-
-  while (std::cin && (i < n)) {
-    int b;
-    cin >> b;
-    ar.push_back(b);
-    i++;
-  }
-
-  vector<int> field(100, 0);
-
-  for (auto i : ar) {
-    if (i >= 0 && i < 100)
-      field[i]++;
-  }
-
-  // print the array
-  for (int k = 0; k < 100; k++ ) {
-    for (int i = 0; i < field[k]; i++)
-      cout << k << " ";
-  }    
-}
-
-
-void counting_sort3() {
-
-  int n;
-
-  cin >> n;
-
-  vector <int> ar;
-
-  int i = 0;
-
-  while (std::cin && (i < n)) {
-    int b;
-    cin >> b;
-
-    // string
-    string tmp;
-    cin >> tmp;
-
-    ar.push_back(b);
-    i++;
-  }
-
-  vector<int> field(100, 0);
-
-  for (auto i : ar) {
-    if (i >= 0 && i < 100)
-      field[i]++;
-  }
-
-  int sum = 0;
-  for (auto elem : field) {
-    sum += elem;
-    cout << sum << " ";
-  }
-    
-}
-
-void counting_sort4() {
-
-  int n;
-
-  cin >> n;
-
-  vector <int> ar;
-  vector <string> strs (100, "");
-
-  int i = 0;
-
-  while (std::cin && (i < n)) {
-    int b;
-    cin >> b;
-
-
-    // string
-    string tmp;
-    cin >> tmp;
-
-    if (i < n / 2)
-      tmp = "-";
-    
-    if (strs[b].empty())
-      strs[b] = tmp;
-    else {      
-      strs[b].append(" ");
-      strs[b].append(tmp);
-    }
-    i++;
-  }
-
-  for (auto elem : strs) {
-    if (!elem.empty())
-      cout << elem << " ";
-  }
-}
-
-
-void closest_numbers() {
-
-  int n;
-
-  cin >> n;
-
-  vector <int> ar;
-
-  int i = 0;
-
-  while (std::cin && (i < n)) {
-    int b;
-    cin >> b;
-
-    ar.push_back(b);
-    i++;
-  }
-
-  sort(begin(ar), end(ar));
-  
-  list < pair <int, int>> closest;
-
-  int smallest = 2147483647; 
-
-  for (int i = 1; i < n; i++) {
-    int dif = ar[i] - ar[i - 1];
-
-    if (dif < smallest) {
-      closest.clear();
-      closest.push_back(make_pair(ar[i - 1], ar[i]));
-      smallest = dif;
-    } else {
-      if (dif == smallest)
-        closest.push_back(make_pair(ar[i - 1], ar[i]));
-    }
-  }
-  
-  for (auto i : closest) {
-    cout << i.first << " " << i.second << " ";
-  }
-}
-
-void find_median() {
-
-  int n;
-
-  cin >> n;
-
-  vector <int> ar;
-
-  int i = 0;
-
-  while (std::cin && (i < n)) {
-    int b;
-    cin >> b;
-
-    ar.push_back(b);
-    i++;
-  }
-
-  std::nth_element(ar.begin(), ar.begin() + ar.size() / 2, ar.end());
-
-  cout << ar[ar.size() / 2];
-
-}
-
-//-----------------------------------------------------------------------------
-void insert_one_counting(vector <int>& ar, int i, int& count) {
-  int j = i;
-  int val = ar[i];
-
-  while (j > 0 && ar[j - 1] > val) {
-    int tmp = ar[j];
-    ar[j] = ar[j - 1];
-    count++;
-    j--;
-  }
-
-  ar[j] = val;
-}
-
-void insertionsort_counting() {
-
-  int q;
-
-  cin >> q;
-
-  vector <int> ar;
-
-  ar.resize(10000001);
-
-  for (int k = 0; k < q; k++) {
-  
-    ar.clear();
-    int n;
-
-    cin >> n;
-
-    int i = 0;
-
-    while (std::cin && (i < n)) {
-      int b;
-      cin >> b;
-      ar.push_back(b);
-      i++;
-    }
-
-    int count = 0;
-    for (size_t i = 1; i < ar.size(); i++) {
-      insert_one_counting(ar, i, count);
-    }
-
-    cout << count;
-    cout << endl;
-  }
-}
-//-----------------------------------------------------------------------------
-
-double proper_median(std::vector<int> &v) {
-  size_t n = v.size() / 2;
-  std::nth_element(v.begin(), v.begin() + n, v.end());
-  int vn = v[n];
-  if (v.size() % 2 == 1) {
-    return vn;
-  } else {
-    std::nth_element(v.begin(), v.begin() + n - 1, v.end());
-    return (vn + v[n - 1]) / 2.0;
-  }
-}
-
-void fraudulent_activity() {
-  
-  int n, d;
-
-  cin >> n >> d; // prior days to calculate activity
-
-  vector <int> ar;
-
-  int i = 0;
-
-  while (std::cin && (i < n)) {
-    int b;
-    cin >> b;
-
-    ar.push_back(b);
-    i++;
-  }
-
-  //std::nth_element(ar.begin(), ar.begin() + ar.size() / 2, ar.end());
-
-  vector<int>::iterator it = ar.begin();
-
-  int alerts = 0;
-  for (size_t i = d; i < ar.size(); i++) {
-    std::vector<int> sub(it, it + d);
-    double median = proper_median(sub);
-
-    if (ar[i] >= 2 * median)
-      alerts++;
-
-    it++;
-  }
-
-  cout << alerts;
-}
-
-
-
-//-----------------------------------------------------------------------------
 void reduced_string() {
 
   string st;
@@ -1212,6 +598,7 @@ void string_construction() {
   }
 }
 
+//-----------------------------------------------------------------------------
 void richie_rich() {
     int n, k;
 
@@ -1295,7 +682,7 @@ void richie_rich() {
     cout << st;
 }
 
-
+//-----------------------------------------------------------------------------
 bool check_anagram(string & s, int start1, int start2, int len)  {
     int let[26] = { 0 };
     bool result = true;
@@ -1337,7 +724,7 @@ void sherlock_and_the_anagrams() {
     }    
 }
 
-
+//-----------------------------------------------------------------------------
 int lcs(string& x, string& y) {
 
     const int arSize = 5000;
@@ -1372,7 +759,7 @@ void common_child() {
     cout << lcs(s1, s2);
 }
 
-
+//-----------------------------------------------------------------------------
 struct suffix {
   int index; 
   int rank[2]; 
@@ -1478,8 +865,8 @@ void morgan_and_a_string() {
   }
 }
 
-
-bool validityCheck(map<char, int> dict, int limit) {
+//-----------------------------------------------------------------------------
+bool is_valid(map<char, int>& dict, int limit) {
   if (dict['A'] <= limit && dict['C'] <= limit && dict['G'] <= limit && dict['T'] <= limit) {
     return true;
   }
@@ -1496,41 +883,139 @@ void bear_and_steady_gene() {
   string s1;
   cin >> s1;
 
-  int maxIndex = 0, out = 999999;
+  int max_index = 0, out = 999999;
   map<char, int> dict;
 
   int limit = n / 4;
+
   for (int i = n - 1; i >= 0; i--) {
     dict[s1[i]]++;
-    if (!validityCheck(dict, limit)) {
-      maxIndex = i + 1;
+    if (!is_valid(dict, limit)) {
+      max_index = i + 1;
       dict[s1[i]]--;
       break;
     }
   }
 
-  for (int minIndex = -1; minIndex < n - 1 && maxIndex < n && minIndex < maxIndex; minIndex++) {
-    while (!validityCheck(dict, limit) && maxIndex < n) {
-      dict[s1[maxIndex]]--;
-      maxIndex++;
+  for (int min_index = -1; (min_index < n - 1) && (max_index < n) && (min_index < max_index); min_index++) {
+    while (!is_valid(dict, limit) && max_index < n) {
+      dict[s1[max_index]]--;
+      max_index++;
     }
 
-    if (maxIndex > n || !validityCheck(dict, limit)) {
+    if (max_index > n || !is_valid(dict, limit)) {
       break;
     }
 
-    int substringLength = max(0, maxIndex - minIndex - 1);
+    int substringLength = max(0, max_index - min_index - 1);
     if (substringLength < out) {
       out = substringLength;
     }
-    dict[s1[minIndex + 1]]++;
+    dict[s1[min_index + 1]]++;
   }
   cout << out << endl;
 }
 
+//-----------------------------------------------------------------------------
+int manchester_algoritm(const char* text, int len, int* LPS, int len2) {
+  
+  int N = len;
+  
+  N = 2 * N + 1; 
+    
+  LPS[0] = 0;
+  LPS[1] = 1;
+  int center_position = 1; 
+  int center_right_position = 2;   
+  int current_left_pos; 
+  int max_length = 0;
+      
+  for (register int current_right_pos = 2; current_right_pos < N; current_right_pos++) {
+ 
+    current_left_pos = 2 * center_position - current_right_pos;
+
+    int& cpr = LPS[current_right_pos];
+        
+    cpr = 0;
+    int diff = center_right_position - current_right_pos;
+  
+    if (diff > 0)
+      cpr = min(LPS[current_left_pos], diff);
+    
+    while (        
+        ((current_right_pos + cpr) < N && (current_right_pos - cpr) > 0) &&
+        (
+          ((current_right_pos + cpr + 1) % 2 == 0) || 
+          (text[(current_right_pos + cpr + 1) >> 1] == text[(current_right_pos - cpr - 1) >> 1])
+        )
+      ) {
+      cpr++;
+    }
+
+    if ((cpr > max_length) && (cpr <= len)) {
+      max_length = cpr;  
+    }
+
+    if (current_right_pos + cpr > center_right_position) {
+      center_position = current_right_pos;
+      center_right_position = current_right_pos + cpr;
+    }   
+  }
+
+  //cout << max_length << endl;  
+  //printf("%d\n", max_length);
+  return max_length;
+}
+
+void circular_palindromes() {
+
+  int k;
+  cin >> k;
+
+  string s;
+  cin >> s;
+
+  int len = s.length();
+  int *LPS = new int[len * 2 + 1];
+
+  string s2 = s + s;
+  char* s_start = const_cast <char*>( s2.c_str());
+  int len2 = len;
+
+  int *res = new int[k];
+  for (int i = 0; i < k; i++) {    
+    char tmp = s_start[len];
+    s_start[len] = 0;    
+    res[i] = manchester_algoritm(s_start, len, LPS, len);
+    s_start[len] = tmp;
+  
+    s_start++;
+  }
+  
+  for (int i = 0; i < k; i++) {
+    printf("%d\n", res[i]);
+  }
+  
+    delete[] LPS;
+}
+
+
+void ashton_and_string() {
+  int t, k;
+  string s;
+
+  cin >> t;
+  cin >> s;
+  cin >> k;
+
+  vector<int> suf_ar;
+  buildSuffixArray(s.c_str(), s.length(), suf_ar);
+}
+
+
 int main() {
 
-  bear_and_steady_gene();
+  circular_palindromes();
 
   getchar();
 }
