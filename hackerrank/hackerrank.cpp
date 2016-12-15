@@ -1,3 +1,4 @@
+
 #include <cmath>
 #include <cstdio>
 #include <vector>
@@ -8,6 +9,8 @@
 #include <list>
 #include <set>
 #include <map>
+
+#include <fstream>
 
 using namespace std;
 
@@ -1015,9 +1018,19 @@ void ashton_and_string() {
 
 int main() {
 
+#ifdef __APPLE__
+    ifstream arq;
+    
+    if (getenv("INPUTQ")) {
+        string s = getenv("INPUTQ");
+        arq.open (s);
+        cin.rdbuf(arq.rdbuf());
+    }
+#endif
+    
   circular_palindromes();
-
-  getchar();
+    
+ // getchar();
 }
 
 

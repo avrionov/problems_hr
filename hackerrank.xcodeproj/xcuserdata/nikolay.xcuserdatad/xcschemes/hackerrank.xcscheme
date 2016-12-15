@@ -61,6 +61,19 @@
             ReferencedContainer = "container:hackerrank.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "&lt; /Users/nikolay/dev/problems_hr/problems_hr/hackerrank/test_data/strings/circular-palindromes.txt"
+            isEnabled = "NO">
+         </CommandLineArgument>
+      </CommandLineArguments>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "INPUTQ"
+            value = "/Users/nikolay/dev/problems_hr/problems_hr/hackerrank/test_data/strings/circular-palindromes.txt"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
