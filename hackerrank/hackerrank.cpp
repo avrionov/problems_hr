@@ -1002,7 +1002,7 @@ void circular_palindromes() {
     delete[] LPS;
 }
 
-
+//-----------------------------------------------------------------------------
 void ashton_and_string() {
   int t, k;
   string s;
@@ -1015,6 +1015,251 @@ void ashton_and_string() {
   buildSuffixArray(s.c_str(), s.length(), suf_ar);
 }
 
+//-----------------------------------------------------------------------------
+void lonely_integer() {
+  int n;
+
+  cin >> n;
+
+  int accum = 0; 
+  for (int i = 0; i < n; i++) {
+    int a;
+    cin >> a;
+    accum ^= a;
+  }
+
+  cout << accum;
+}
+
+//-----------------------------------------------------------------------------
+void maximum_xor() {
+  int l, r;
+
+  cin >> l >> r;
+
+  int max = 0;
+  int cnt = 0;
+  for (int xorRes = l^r; xorRes; xorRes >>= 1) {
+    max |= (1 << cnt++);
+  }
+
+  cout << max << endl;  
+}
+
+//-----------------------------------------------------------------------------
+typedef unsigned long long uint64;
+
+bool is_power_of_2(uint64 n) {
+  return !(n == 0) && !(n & (n - 1));
+}
+
+void counter_game() {
+
+  int t;
+  uint64 n;
+
+  cin >> t;
+  
+  for (int i = 0; i < t; i++) {
+    cin >> n;
+    int who = 1;
+    if (n == 1) {
+      cout << "Richard";
+    }
+    else {
+      while (n != 1) {
+        if (is_power_of_2(n))
+          n /= 2;
+        else
+
+
+          who++;
+      }
+
+    }
+  }
+}
+
+//-----------------------------------------------------------------------------
+void designer_pdf_viewer() {
+  int heights[26] = { 0 };
+
+  for (int i = 0; i < 26; i++)
+    cin >> heights[i];
+
+  string word;
+  cin >> word;
+
+  int max_height = 0;
+
+  for (int i = 0; i < word.length(); i++) {
+    int index = word[i] - 'a';
+    int height = heights[index];
+    if (height > max_height)
+      max_height = height;
+  }
+   
+  cout << max_height * word.length();
+}
+
+//-----------------------------------------------------------------------------
+int count_fruits(int count, int s, int t, int tree_pos) {
+  int fruits = 0;
+  for (int i = 0; i < count; i++) {
+    int d;
+    cin >> d;
+    int pos = tree_pos + d;
+
+    if (pos >= s && pos <= t)
+      fruits++;
+  }
+
+  return fruits;
+}
+
+void apple_and_orange() {
+
+  int s, t; // house coordinates
+
+  cin >> s >> t;
+
+  int a, b; // a - apple tree position, b - orange tree position
+  cin >> a >> b;
+
+  int m, n; // m - apples count, n - oranges count
+  cin >> m >> n;
+
+  int apples = count_fruits(m, s, t, a);
+  int oranges = count_fruits(n, s, t, b);;
+  
+  cout << apples << endl;
+  cout << oranges << endl;
+}
+
+//-----------------------------------------------------------------------------
+void kangaroo() {
+  int x1, v1, x2, v2;
+
+  cin >> x1 >> v1 >> x2 >> v2;
+
+  if (v1 > v2 && ((x2 - x1) % (v1 - v2) == 0))
+    cout << "YES";
+  else
+    cout << "NO";
+}
+
+
+//-----------------------------------------------------------------------------
+void strange_code() {
+  uint64  t;
+
+  cin >> t;
+
+  t += 2;
+  uint64  k;
+  k = floor(log2(t / 3));
+
+  //t += 2;
+  uint64 ret = 3 * ((uint64) 2 << k) - t;
+
+  cout << ret;
+
+}
+
+//-----------------------------------------------------------------------------
+void cavity_map() {
+  
+  int n;
+  cin >> n;
+  
+  int a[100][100];
+
+  for (int i = 0; i<n; i++)  
+    for (int j = 0; j < n; j++) {
+      char c;
+      cin >> c;
+      a[i][j] = c - '0';
+    }
+  
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      if ((i >= 1) && (i<n - 1) && (j >= 1) && (j < n - 1)) {
+        if ((a[i][j] > a[i - 1][j]) && (a[i][j] > a[i][j + 1])
+          && (a[i][j] > a[i + 1][j]) && (a[i][j] > a[i][j - 1]))
+          cout << "X";
+        else
+          cout << a[i][j];
+      } else {
+        cout << a[i][j];
+      }
+    }
+    cout << endl;
+  }
+}
+
+//-----------------------------------------------------------------------------
+void angry_professor() {
+  int t; // number of test cases
+
+  cin >> t;
+
+  for (int i = 0; i < t; i++) {
+    int n, k; // number of students, cancelation threshold
+    cin >> n >> k;
+
+    int on_time = 0;
+
+    for (int j = 0; j < n; j++) {
+      int st_time;
+      cin >> st_time;
+      if (st_time <= 0)
+        on_time++;
+    }
+
+    if (on_time >= k)
+      cout << "NO" << endl;
+    else
+      cout << "YES" << endl;
+  }
+}
+
+//-----------------------------------------------------------------------------
+void utopian_tree() {
+  int t; // number of test cases
+
+  cin >> t;
+  for (int i = 0; i < t; i++) {
+    int n; // number of students, cancelation threshold
+    cin >> n;
+    int ret = ~(~1 << (n >> 1)) << (n & 1);
+    cout << ret << endl;
+  }  
+}
+
+//-----------------------------------------------------------------------------
+void find_digits() {
+  int t; // number of test cases
+
+  cin >> t;
+  for (int i = 0; i < t; i++) {
+    int n; // number of students, cancelation threshold
+    cin >> n;
+    int tmp = n;
+    int count = 0;
+
+    while (tmp) {
+      int digit = tmp % 10;
+
+      if (digit)
+        if (n % digit == 0)
+          count++;
+
+      tmp = tmp / 10;
+    }
+
+    cout << count << endl;
+  }
+}
 
 int main() {
 
@@ -1027,10 +1272,10 @@ int main() {
         cin.rdbuf(arq.rdbuf());
     }
 #endif
+        
+  find_digits();
     
-  circular_palindromes();
-    
- // getchar();
+  getchar();
 }
 
 

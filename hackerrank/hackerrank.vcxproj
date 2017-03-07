@@ -164,15 +164,15 @@
     <Text Include="strings\two-characters-1.txt" />
     <Text Include="strings\two-characters.txt" />
     <Text Include="strings\two-strings.txt" />
-    <Text Include="warmup\a-very-big-sum.txt" />
-    <Text Include="warmup\circular-array-rotation.txt" />
-    <Text Include="warmup\compare-the-triplets.txt" />
-    <Text Include="warmup\diagonal-difference.txt" />
-    <Text Include="warmup\plus-minus.txt" />
-    <Text Include="warmup\ReadMe.txt" />
-    <Text Include="warmup\simple-array-sum.txt" />
-    <Text Include="warmup\staircase.txt" />
-    <Text Include="warmup\time-conversion.txt" />
+    <Text Include="test_data\warmup\a-very-big-sum.txt" />
+    <Text Include="test_data\warmup\circular-array-rotation.txt" />
+    <Text Include="test_data\warmup\compare-the-triplets.txt" />
+    <Text Include="test_data\warmup\diagonal-difference.txt" />
+    <Text Include="test_data\warmup\plus-minus.txt" />
+    <Text Include="test_data\warmup\ReadMe.txt" />
+    <Text Include="test_data\warmup\simple-array-sum.txt" />
+    <Text Include="test_data\warmup\staircase.txt" />
+    <Text Include="test_data\warmup\time-conversion.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />

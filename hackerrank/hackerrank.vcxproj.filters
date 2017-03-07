@@ -34,33 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
-    <Text Include="warmup\a-very-big-sum.txt">
-      <Filter>test_files\warmup</Filter>
-    </Text>
-    <Text Include="warmup\circular-array-rotation.txt">
-      <Filter>test_files\warmup</Filter>
-    </Text>
-    <Text Include="warmup\compare-the-triplets.txt">
-      <Filter>test_files\warmup</Filter>
-    </Text>
-    <Text Include="warmup\diagonal-difference.txt">
-      <Filter>test_files\warmup</Filter>
-    </Text>
-    <Text Include="warmup\plus-minus.txt">
-      <Filter>test_files\warmup</Filter>
-    </Text>
-    <Text Include="warmup\ReadMe.txt">
-      <Filter>test_files\warmup</Filter>
-    </Text>
-    <Text Include="warmup\simple-array-sum.txt">
-      <Filter>test_files\warmup</Filter>
-    </Text>
-    <Text Include="warmup\staircase.txt">
-      <Filter>test_files\warmup</Filter>
-    </Text>
-    <Text Include="warmup\time-conversion.txt">
-      <Filter>test_files\warmup</Filter>
-    </Text>
     <Text Include="algo-sorting\correctness-invariant.txt">
       <Filter>test_files\algo-sorting</Filter>
     </Text>
@@ -147,6 +120,33 @@
     </Text>
     <Text Include="strings\two-strings.txt">
       <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\warmup\a-very-big-sum.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="test_data\warmup\circular-array-rotation.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="test_data\warmup\compare-the-triplets.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="test_data\warmup\diagonal-difference.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="test_data\warmup\plus-minus.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="test_data\warmup\ReadMe.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="test_data\warmup\simple-array-sum.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="test_data\warmup\staircase.txt">
+      <Filter>test_files\warmup</Filter>
+    </Text>
+    <Text Include="test_data\warmup\time-conversion.txt">
+      <Filter>test_files\warmup</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
