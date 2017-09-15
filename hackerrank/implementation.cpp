@@ -28,7 +28,7 @@ void mini_max_sum() {
     for (const int& i : ar)
         sum += i;
 
-    unsigned long long min = 18446744073709551615;
+    unsigned long long min = 1844674407370955165;
     unsigned long long max = 0;
 
     for (const int& i : ar) {

@@ -37,12 +37,12 @@ void sorting_tutorial_intro() {
 }
 
 //-----------------------------------------------------------------------------
-void insert_one1(vector <int>& ar, int i) {
-  int j = i;
+void insert_one1(vector <int>& ar, size_t i) {
+  auto j = i;
   int val = ar[i];
 
   while (j > 0 && ar[j - 1] > val) {
-    int tmp = ar[j];
+   
     ar[j] = ar[j - 1];
     //ar[j - 1] = tmp;
     j--;
@@ -83,8 +83,8 @@ void insertionsort1() {
 
 //-----------------------------------------------------------------------------
 
-void insert_one(vector <int>& ar, int i) {
-  int j = i;
+void insert_one(vector <int>& ar, size_t i) {
+  auto j = i;
   while (j > 0 && ar[j - 1] > ar[j]) {
     int tmp = ar[j];
     ar[j] = ar[j - 1];
@@ -192,14 +192,14 @@ void partition_test() {
 }
 
 
-int partition1(vector<int>& ar, int left, int right)
+size_t partition1(vector<int>& ar, size_t left, size_t right)
 {
   vector <int> left_ar;
   vector <int> right_ar;
 
   int pivot = ar[left];
 
-  for (int i = left + 1; i <= right; ++i) {
+  for (auto i = left + 1; i <= right; ++i) {
     if (ar[i] < pivot) {
       left_ar.push_back(ar[i]);
     }
@@ -209,7 +209,7 @@ int partition1(vector<int>& ar, int left, int right)
     }
   }
 
-  int pos = left_ar.size() + left;
+  auto pos = left_ar.size() + left;
 
   for (size_t i = 0; i < left_ar.size(); i++)
     ar[i + left] = left_ar[i];
@@ -228,7 +228,7 @@ void quick_sort(vector<int>& ar, int left, int right) {
   if (left >= right)
     return;
 
-  int pos = partition1(ar, left, right);
+  auto pos = partition1(ar, left, right);
 
 
   quick_sort(ar, left, pos - 1);
@@ -530,7 +530,7 @@ void insert_one_counting(vector <int>& ar, int i, int& count) {
   int val = ar[i];
 
   while (j > 0 && ar[j - 1] > val) {
-    int tmp = ar[j];
+   
     ar[j] = ar[j - 1];
     count++;
     j--;
