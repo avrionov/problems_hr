@@ -1257,6 +1257,9 @@ void find_digits() {
   }
 }
 
+
+void matrix_layer_rotation();
+
 int main() {
 
 #ifdef __APPLE__
@@ -1269,7 +1272,7 @@ int main() {
     }
 #endif
         
-  find_digits();
+  matrix_layer_rotation();
     
   getchar();
 }
