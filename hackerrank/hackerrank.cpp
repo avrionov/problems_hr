@@ -1261,6 +1261,8 @@ void find_digits() {
   }
 }
 
+void birthday_cake_candles();
+
 int main() {
 
 #ifdef __APPLE__
@@ -1273,7 +1275,7 @@ int main() {
     }
 #endif
         
-  find_digits();
+  birthday_cake_candles();
     
   getchar();
 }

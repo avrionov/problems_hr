@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <string>
 #include <iomanip>
+#include <map>
 
 using namespace std;
 
@@ -215,4 +216,35 @@ void circular_array_rotation() {
 
     i++;
   }
+}
+
+//-----------------------------------------------------------------------------
+void birthday_cake_candles() {
+  int n;
+
+  cin >> n;
+
+  vector <int> ar;
+  map <int, int> candles;
+
+  int i = 0;
+  int max = 0;
+
+  while (std::cin && (i < n)) {
+    int b;
+    cin >> b;
+    if (b > max)
+      max = b;
+
+    map <int, int>::iterator it = candles.find(b);
+
+    if (it == candles.end())
+      candles.insert(make_pair(b, 1));
+    else
+      it->second++;
+
+    i++;
+  }
+
+  cout << candles[max];
 }
