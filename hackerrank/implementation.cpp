@@ -55,9 +55,14 @@ void matrix_layer_rotation () {
     int rot; // rotations
     cin >> rot;
     
-    int array[n][m];
-    int out_array[n][m];
+    const int arsize = 300; // fix for Visual Studio 2015
+
+    //int array[n][m];
+    //int out_array[n][m];
     
+    int array[arsize][arsize];
+    int out_array[arsize][arsize];
+
     // read the matrix
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
