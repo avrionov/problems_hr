@@ -200,6 +200,7 @@ void migratory_birds() {
     }      
 }
 
+//-----------------------------------------------------------------------------
 void day_of_the_programmer() {
   int year;
 
@@ -221,6 +222,68 @@ void day_of_the_programmer() {
 
     cout << ".09." << year;
   }
+}
+
+//-----------------------------------------------------------------------------
+void bon_appetit() {
+
+  int n, k;
+
+  cin >> n;
+  cin >> k;
+
+  vector<int> a;
+
+  int sum = 0;
+  for (int i = 0; i < n; i++) {
+    int tmp;
+    cin >> tmp;
+    a.push_back(tmp);
+    sum += tmp;
+  }
+
+  int b;
+  cin >> b;
+
+  int shared_sum = sum - a[k];
+
+  int half = shared_sum / 2;
+
+  if (half  == b) {
+    cout << "Bon Appetit";
+  } else {
+    cout << b - half;
+  }
+
+}
+
+//-----------------------------------------------------------------------------
+void sock_merchant() {
+
+  int n;
+  cin >> n;
+
+  map<int, int> socks;
+
+  int sum = 0;
+  for (int i = 0; i < n; i++) {
+    int tmp;
+    cin >> tmp;
+    map<int, int>::iterator it = socks.find(tmp);
+    if (it == socks.end())
+      socks[tmp] = 1;
+    else
+      socks[tmp] ++;
+  }
+  
+  int count = 0;
+  map<int, int>::iterator it = socks.begin();
+  while (it != socks.end()) {
+    count += it->second % 2;
+    it++;
+  }
+
+  cout << count;
 }
 
 //-----------------------------------------------------------------------------

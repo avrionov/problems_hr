@@ -1265,6 +1265,8 @@ void almost_sorted();
 void divisible_sum_pairs();
 void migratory_birds();
 void day_of_the_programmer();
+void bob_appetit();
+void sock_merchant();
 
 int main() {
 
@@ -1279,7 +1281,7 @@ int main() {
 #endif
         
   
-  day_of_the_programmer();
+  sock_merchant();
     
   getchar();
 }
