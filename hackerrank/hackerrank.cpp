@@ -1260,7 +1260,11 @@ void find_digits() {
 
 void birthday_cake_candles();
 void matrix_layer_rotation();
-
+void birthday_chocolate();
+void almost_sorted();
+void divisible_sum_pairs();
+void migratory_birds();
+void day_of_the_programmer();
 
 int main() {
 
@@ -1274,9 +1278,8 @@ int main() {
     }
 #endif
         
-
-
-  matrix_layer_rotation();
+  
+  day_of_the_programmer();
     
   getchar();
 }

@@ -164,6 +164,16 @@
     <Text Include="strings\two-characters-1.txt" />
     <Text Include="strings\two-characters.txt" />
     <Text Include="strings\two-strings.txt" />
+    <Text Include="test_data\implementation\angry-professor.txt" />
+    <Text Include="test_data\implementation\apple-and-orange.txt" />
+    <Text Include="test_data\implementation\cavity-map.txt" />
+    <Text Include="test_data\implementation\designer-pdf-viewer.txt" />
+    <Text Include="test_data\implementation\find-digits.txt" />
+    <Text Include="test_data\implementation\kangaroo.txt" />
+    <Text Include="test_data\implementation\matrix_layer_rotation.txt" />
+    <Text Include="test_data\implementation\mini-max-sum.txt" />
+    <Text Include="test_data\implementation\strange-code.txt" />
+    <Text Include="test_data\implementation\utopian-tree.txt" />
     <Text Include="test_data\warmup\a-very-big-sum.txt" />
     <Text Include="test_data\warmup\circular-array-rotation.txt" />
     <Text Include="test_data\warmup\compare-the-triplets.txt" />

@@ -148,6 +148,36 @@
     <Text Include="test_data\warmup\time-conversion.txt">
       <Filter>test_files\warmup</Filter>
     </Text>
+    <Text Include="test_data\implementation\angry-professor.txt">
+      <Filter>test_files\implementation</Filter>
+    </Text>
+    <Text Include="test_data\implementation\apple-and-orange.txt">
+      <Filter>test_files\implementation</Filter>
+    </Text>
+    <Text Include="test_data\implementation\cavity-map.txt">
+      <Filter>test_files\implementation</Filter>
+    </Text>
+    <Text Include="test_data\implementation\designer-pdf-viewer.txt">
+      <Filter>test_files\implementation</Filter>
+    </Text>
+    <Text Include="test_data\implementation\find-digits.txt">
+      <Filter>test_files\implementation</Filter>
+    </Text>
+    <Text Include="test_data\implementation\kangaroo.txt">
+      <Filter>test_files\implementation</Filter>
+    </Text>
+    <Text Include="test_data\implementation\matrix_layer_rotation.txt">
+      <Filter>test_files\implementation</Filter>
+    </Text>
+    <Text Include="test_data\implementation\mini-max-sum.txt">
+      <Filter>test_files\implementation</Filter>
+    </Text>
+    <Text Include="test_data\implementation\strange-code.txt">
+      <Filter>test_files\implementation</Filter>
+    </Text>
+    <Text Include="test_data\implementation\utopian-tree.txt">
+      <Filter>test_files\implementation</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

@@ -112,5 +112,172 @@ void matrix_layer_rotation () {
     
 }
 
+//-----------------------------------------------------------------------------
+void birthday_chocolate() {
+  
+  int n;
+
+  int squares[100];
+
+  cin >> n;
+
+  for (int i = 0; i < n; i++)
+    cin >> squares[i];
+
+  int m, d;
+
+  cin >> d;
+  cin >> m;
+  
+  int sum[200]; // big number for padding
+  int count = 0;
+  sum[0] = 0;
+
+  for (int i = 0; i < n; i++) 
+    sum[i + 1] = sum[i] + squares[i];
+
+  for (int i = 0; i <= (n - m); i++) {
+    if ( (sum[i + m] - sum[i]) == d) {
+      count++;
+    }
+  }
+
+  cout << count;
+
+}
 
 //-----------------------------------------------------------------------------
+void divisible_sum_pairs() {
+  int n, k;
+
+  cin >> n;
+  cin >> k;
+
+  vector<int> a;
+
+  for (int i = 0; i < n; i++) {
+    int tmp;
+    cin >> tmp;
+    a.push_back(tmp);
+  }
+
+  int pairs = 0;
+
+  for (int i = 0; i < n - 1; i++)
+    for (int j = i + 1; j < n; j++)
+      if ((a[i] + a[j]) % k == 0)
+        pairs++;
+
+  cout << pairs;
+}
+
+//-----------------------------------------------------------------------------
+void migratory_birds() {
+  int n;
+
+  cin >> n;
+  
+  vector<int> a;
+
+  long int max = 0;
+
+  long int counts[6] = { 0 };
+
+  for (int i = 0; i < n; i++) {
+    int tmp;
+    cin >> tmp;
+     
+    counts[tmp]++;
+
+    if (counts[tmp] > max)
+      max = counts[tmp];      
+  }
+
+  for (int i = 1; i <= 5; i++)
+    if (counts[i] == max) {
+      cout << i;
+      return;
+    }      
+}
+
+void day_of_the_programmer() {
+  int year;
+
+  cin >> year;
+
+  if (year == 1918) {
+    cout << "26.09.1918";
+  } else {
+    bool leap = false;
+    if (year <= 1917)
+      leap = (year % 4) == 0;
+    else
+      leap = ((year % 400) == 0) || ( ((year % 4) == 0) && ((year % 100) != 0));
+      
+    if (leap)
+      cout << "12";
+    else
+      cout << "13";
+
+    cout << ".09." << year;
+  }
+}
+
+//-----------------------------------------------------------------------------
+void almost_sorted() {
+  int n;
+
+  vector<int> d;
+
+  cin >> n;
+
+  bool not_ordered = 0;
+  bool index = -1;
+
+  for (int i = 0; i < n; i++) {
+    int tmp;
+    cin >> tmp;        
+    d.push_back(tmp);
+  }
+
+  vector<int> sorted(begin(d), end(d));
+  sort(begin(sorted), end(sorted));
+  
+  int diffs = 0;
+  int start = -1;
+  int end = -1;
+  for (int i = 0; i < n; i++) {
+    if (d[i] != sorted[i]) {
+      diffs++;
+
+      if (start == -1)
+        start = i;
+      else
+        end = i;
+    }      
+  } 
+  
+
+  if (diffs == 0) {
+    cout << "yes";
+    return;
+  }
+
+  if (diffs == 2) {
+    cout << "yes" << endl;
+    cout << "swap " << start + 1 << " " << end + 1;
+  }
+
+  if (diffs > 2) {
+    // check if it is reversed
+    for (int i = start, j = end; i <= end; i++, j--) {
+      if (d[i] != sorted[j]) {
+        cout << "no";
+        return;
+      }
+    }
+          
+    cout << "yes" << endl;
+    cout << "reverse " << start + 1 << " " << end + 1;      
+  }  
+}
