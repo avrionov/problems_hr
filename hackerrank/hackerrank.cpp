@@ -73,7 +73,6 @@ bool check_word(string& st) {
   if (st.length() <= 1)
     return false;
 
-  bool b = true;
   char t1 = st[0];
   char t2 = st[1];
   for (size_t i = 2; i < st.length(); i++) {
@@ -106,7 +105,7 @@ void two_characters() {
   for (char& ch : st)
     chars.insert(ch);
 
-  int max = 0;
+  size_t max = 0;
 
   for (auto c : chars) {
     for (auto d : chars) {
@@ -119,7 +118,7 @@ void two_characters() {
 
 
         if (check_word(st1)) {
-          int len = st1.length();
+          auto len = st1.length();
           if (len > max) {
             cout << len << " " << st1 << endl;
             max = len;
@@ -230,11 +229,11 @@ void funny_string() {
     // check if we read something
     if (st.length() > 0) {
 
-      int len = st.length();
+      auto len = st.length();
 
       bool funny = true;
       for (int i = 1; i < len; i++) {
-        int rev_i = len - i - 1;
+        auto rev_i = len - i - 1;
 
         if (abs(st[i] - st[i - 1]) != abs(st[rev_i] - st[rev_i + 1])) {
           funny = false;
@@ -294,8 +293,7 @@ void alternating_characters() {
 
   cin >> n;
 
-  int gem_count[26] = { 0 };
-
+  
   for (int k = 0; k < n;) {
     string st;
     getline(cin, st);
@@ -328,7 +326,7 @@ void beautiful_binary_string() {
 
   string pattern = "010";
 
-  int pos = st.find(pattern);
+  auto pos = st.find(pattern);
 
   while (pos != string::npos) {
     count++;
@@ -353,7 +351,7 @@ void the_love_letter_mystery() {
     if (st.length() > 0) {
      
       int count = 0;
-      int len = st.length();
+      auto len = st.length();
       for (int i = 0; i < len / 2; i++)
         count += abs(st[i] - st[len - i - 1]);
 
@@ -376,10 +374,8 @@ void palindrome_index() {
     // check if we read something
     if (st.length() > 0) {
 
-      int count = 0;
-      int len = st.length();
-      int start = 0;
-      int end = len - 1;
+      auto len = st.length();
+     
       for (int i = 0; i < len / 2; i++) {
 
           if (st[i] != st[len - 1 - i]) {
@@ -411,13 +407,13 @@ void anagram() {
             cout << -1 << endl;
             
         } else {
-            int len = st.length();
+            auto len = st.length();
 
             multiset<char> char_set;
             for (int i = 0; i < len / 2; i++)
                 char_set.insert(st[i]);
 
-            for (int i = len / 2; i < len; i++) {
+            for (auto i = len / 2; i < len; i++) {
                 multiset<char>::iterator it;
                 it = char_set.find(st[i]);
                 if (it != char_set.end())
@@ -611,7 +607,7 @@ void richie_rich() {
 
     cin >> st;
 
-    int len = st.length();
+    auto len = st.length();
 
     int diffs = 0;
     for (int i = 0; i < len / 2; i++)
@@ -686,7 +682,7 @@ void richie_rich() {
 }
 
 //-----------------------------------------------------------------------------
-bool check_anagram(string & s, int start1, int start2, int len)  {
+bool check_anagram(string & s, int start1, int start2, size_t len)  {
     int let[26] = { 0 };
     bool result = true;
     for (int n = 0; n < len; n++) {
@@ -731,8 +727,8 @@ void sherlock_and_the_anagrams() {
 int lcs(string& x, string& y) {
 
     const int arSize = 5000;
-    int m = x.length();
-    int n = y.length();
+    auto m = x.length();
+    auto n = y.length();
 
     //int *l = new int [m + 1][n + 1];
     auto l = new int[arSize + 1][arSize + 1];
@@ -775,7 +771,7 @@ int cmp(struct suffix& a, struct suffix& b) {
 }
 
 
-void buildSuffixArray(const char *txt, int n, vector<int>& suffix_ar) {
+void buildSuffixArray(const char *txt, size_t n, vector<int>& suffix_ar) {
 
   vector<struct suffix> suffixes(n);
 
@@ -838,8 +834,8 @@ void morgan_and_a_string() {
 
     cin >> s1 >> s2;
 
-    int len_s1 = s1.length();
-    int len_s2 = s2.length();
+    auto len_s1 = s1.length();
+    auto len_s2 = s2.length();
 
     const char DIV = 'Z' + 1;
     
@@ -933,7 +929,7 @@ int manchester_algoritm(const char* text, int len, int* LPS, int len2) {
   int current_left_pos; 
   int max_length = 0;
       
-  for (register int current_right_pos = 2; current_right_pos < N; current_right_pos++) {
+  for (int current_right_pos = 2; current_right_pos < N; current_right_pos++) {
  
     current_left_pos = 2 * center_position - current_right_pos;
 
@@ -978,12 +974,12 @@ void circular_palindromes() {
   string s;
   cin >> s;
 
-  int len = s.length();
+  auto len = s.length();
   int *LPS = new int[len * 2 + 1];
 
   string s2 = s + s;
   char* s_start = const_cast <char*>( s2.c_str());
-  int len2 = len;
+  auto len2 = len;
 
   int *res = new int[k];
   for (int i = 0; i < k; i++) {    
@@ -1261,7 +1257,10 @@ void find_digits() {
   }
 }
 
+
 void birthday_cake_candles();
+void matrix_layer_rotation();
+
 
 int main() {
 
@@ -1275,7 +1274,9 @@ int main() {
     }
 #endif
         
-  birthday_cake_candles();
+
+
+  matrix_layer_rotation();
     
   getchar();
 }
