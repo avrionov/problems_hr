@@ -1267,6 +1267,7 @@ void migratory_birds();
 void day_of_the_programmer();
 void bob_appetit();
 void sock_merchant();
+void drawing_book();
 
 int main() {
 
@@ -1281,7 +1282,7 @@ int main() {
 #endif
         
   
-  sock_merchant();
+  drawing_book();
     
   getchar();
 }

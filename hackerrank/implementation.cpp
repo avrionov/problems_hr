@@ -279,11 +279,26 @@ void sock_merchant() {
   int count = 0;
   map<int, int>::iterator it = socks.begin();
   while (it != socks.end()) {
-    count += it->second % 2;
+    count += it->second / 2;
     it++;
   }
 
   cout << count;
+}
+
+//-----------------------------------------------------------------------------
+void drawing_book() {
+
+  int n, p;
+  cin >> n;
+  cin >> p;
+
+  int front_page = p / 2;
+  int last_page = n / 2 - p / 2;
+  
+  int pages = min(front_page, last_page);
+
+  cout << pages;
 }
 
 //-----------------------------------------------------------------------------
@@ -320,7 +335,6 @@ void almost_sorted() {
     }      
   } 
   
-
   if (diffs == 0) {
     cout << "yes";
     return;
