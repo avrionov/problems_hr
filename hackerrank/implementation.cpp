@@ -8,7 +8,11 @@
 #include <list>
 #include <set>
 #include <map>
+#include <stack>
 #include <functional>
+#include <cstdlib>
+#include <cmath>
+
 
 using namespace std;
 
@@ -542,6 +546,167 @@ void electronics_shop() {
   }
 
   cout << max;
+}
+
+//-----------------------------------------------------------------------------
+void cats_and_mouse() {
+  int n;
+  cin >> n;
+
+  for (int i = 0; i < n; i++) {
+    int cat_a;
+    int cat_b;
+    int mouse;
+
+    cin >> cat_a >> cat_b >> mouse;
+
+    int d1 = abs(cat_a - mouse);
+    int d2 = abs(cat_b - mouse);
+
+    if (d1 < d2) {
+      cout << "Cat A" << endl;
+    } else {
+      if (d1 > d2)
+        cout << "Cat B" << endl;
+      else
+        cout << "Mouse C" << endl;
+    }
+  }
+}
+
+//-----------------------------------------------------------------------------
+void magic_square() {
+
+  int all_magic[8][3][3] = {
+    { { 8, 1, 6 },{ 3, 5, 7 },{ 4, 9, 2 } },
+    { { 6, 1, 8 },{ 7, 5, 3 },{ 2, 9, 4 } },
+    { { 4, 9, 2 },{ 3, 5, 7 },{ 8, 1, 6 } },
+    { { 2, 9, 4 },{ 7, 5, 3 },{ 6, 1, 8 } },
+    { { 8, 3, 4 },{ 1, 5, 9 },{ 6, 7, 2 } },
+    { { 4, 3, 8 },{ 9, 5, 1 },{ 2, 7, 6 } },
+    { { 6, 7, 2 },{ 1, 5, 9 },{ 8, 3, 4 } },
+    { { 2, 7, 6 },{ 9, 5, 1 },{ 4, 3, 8 } },
+  };
+
+  int mat[3][3];
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++)
+      cin >>  mat[i][j];
+  }
+
+  int min_cost = 81;
+  for (int k = 0; k < 8; k++) {
+    int cost = 0;
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++)
+        cost += abs(mat[i][j] - all_magic[k][i][j]);
+    }
+    if (cost < min_cost)
+      min_cost = cost;
+  }
+
+  cout << min_cost;
+}
+
+//-----------------------------------------------------------------------------
+void picking_numbers() {
+
+  int n; 
+  cin >> n ;
+
+  int counts[101] = { 0 };
+  for (int i = 0; i < n; i++) {
+    int tmp;
+    cin >> tmp;
+    counts[tmp]++;
+  }
+
+  int max = 0;
+  for (int i = 0; i < 99; i++) {
+    int count = counts[i] + counts[i + 1];
+    if (count > max)
+      max = count;
+  }
+
+  cout << max;
+   
+}
+
+//-----------------------------------------------------------------------------
+void climbing_the_leaderboard() {
+  int n;
+  cin >> n;
+  
+  stack<int> leaderboard;
+  for (int i = 0; i < n; i++) {
+    int tmp;
+    cin >> tmp;
+    if (i == 0) {
+      leaderboard.push(tmp);
+    } else {
+      if (leaderboard.top() != tmp)
+        leaderboard.push(tmp);
+    }
+  }
+
+  int m;
+  cin >> m;
+
+  vector<int> alice;
+  read_array(alice, m);
+
+  for (int i = 0; i < m; i++) {
+    while (!leaderboard.empty() && (alice[i] >= leaderboard.top()))
+      leaderboard.pop();
+    cout << leaderboard.size() + 1 << endl;
+  }
+}
+
+//-----------------------------------------------------------------------------
+void number_race() {
+  int n, k;
+  cin >> n >> k;
+
+  int count = 0;
+  int current_jump = k;
+  for (int i = 0; i < n; i++) {
+    int tmp;
+    cin >> tmp;
+
+    if (current_jump < tmp) {
+      int diff = tmp - current_jump;
+      count += diff;
+      current_jump = tmp;
+    }
+  }
+
+  cout << count;
+}
+
+//-----------------------------------------------------------------------------
+void days_at_the_movies() {
+  int i, j, k;
+
+  cin >> i >> j >> k;
+
+  int count = 0;
+  for (int x = i; x <= j; x++) {
+
+    int tmp = x;
+    int y = 0;
+    while (tmp > 0) {
+      int digit = tmp % 10;
+      y = y * 10 + digit;
+      tmp /= 10;
+    }
+
+    int diff = abs(x - y);
+
+    if ((diff % k) == 0)
+      count++;
+  }
+
+  cout << count;
 }
 
 //-----------------------------------------------------------------------------

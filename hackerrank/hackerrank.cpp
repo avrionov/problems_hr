@@ -1152,6 +1152,12 @@ void sock_merchant();
 void drawing_book();
 void counting_valleys();
 void electronics_shop();
+void cats_and_mouse();
+void magic_square();
+void picking_numbers();
+void climbing_the_leaderboard();
+void number_race();
+void days_at_the_movies();
 
 int main() {
 
@@ -1166,7 +1172,7 @@ int main() {
 #endif
         
   
-  electronics_shop();
+  days_at_the_movies();
     
   getchar();
 }
