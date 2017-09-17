@@ -1147,7 +1147,7 @@ void almost_sorted();
 void divisible_sum_pairs();
 void migratory_birds();
 void day_of_the_programmer();
-void bob_appetit();
+void bon_appetit();
 void sock_merchant();
 void drawing_book();
 void counting_valleys();
@@ -1158,6 +1158,8 @@ void picking_numbers();
 void climbing_the_leaderboard();
 void number_race();
 void days_at_the_movies();
+void sequence_equation();
+void jumping_on_clouds();
 
 int main() {
 
@@ -1172,7 +1174,7 @@ int main() {
 #endif
         
   
-  days_at_the_movies();
+  jumping_on_clouds();
     
   getchar();
 }

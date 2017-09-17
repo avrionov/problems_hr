@@ -710,6 +710,77 @@ void days_at_the_movies() {
 }
 
 //-----------------------------------------------------------------------------
+void viral_advestising() {
+  int n;
+  cin >> n;
+
+  int total_viewers = 0;
+  int shared = 5;
+  int viewers = 0;
+  for (int i = 0; i < n; i++) {
+    viewers = shared / 2;
+    total_viewers += viewers;
+    shared = viewers * 3;
+  }
+
+  cout << total_viewers;
+}
+
+//-----------------------------------------------------------------------------
+void save_the_prisoner() {
+  int t; // number of test cases
+  cin >> t;
+
+  for (int i = 0; i < t; i++) {
+    int n, m, s;
+    cin >> n >> m >> s;
+    if ( (m + s - 1) % n == 0)
+      cout << n << endl;
+    else
+      cout << (m + s - 1) % n << endl;
+  }
+}
+
+//-----------------------------------------------------------------------------
+void sequence_equation() {
+  int n;
+  cin >> n;
+
+  vector<int> ar;
+  read_array(ar, n);
+
+  vector<int> p;
+  p.resize(n, 0);
+
+  for (int i = 0; i < n; i++)
+    p[ar[i] - 1] = i + 1;
+
+  for (int i = 0; i < n; i++)
+    cout << p[p[i] - 1] << endl;
+
+}
+
+//-----------------------------------------------------------------------------
+void jumping_on_clouds() {
+  int n, k;
+  cin >> n >> k;
+
+  vector<int> ar;
+  read_array(ar, n);
+
+  int pos = 0;
+  int energy = 100;
+  do {
+    pos = (pos + k) % n;
+    energy--;
+    if (ar[pos] == 1)
+      energy -= 2;
+  } while (pos != 0);
+
+   cout << energy;
+}
+
+//-----------------------------------------------------------------------------
 void circular_array_rotation() {
 
   int n, k, q;
