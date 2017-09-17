@@ -1077,75 +1077,6 @@ void counter_game() {
 }
 
 //-----------------------------------------------------------------------------
-void designer_pdf_viewer() {
-  int heights[26] = { 0 };
-
-  for (int i = 0; i < 26; i++)
-    cin >> heights[i];
-
-  string word;
-  cin >> word;
-
-  int max_height = 0;
-
-  for (int i = 0; i < word.length(); i++) {
-    int index = word[i] - 'a';
-    int height = heights[index];
-    if (height > max_height)
-      max_height = height;
-  }
-   
-  cout << max_height * word.length();
-}
-
-//-----------------------------------------------------------------------------
-int count_fruits(int count, int s, int t, int tree_pos) {
-  int fruits = 0;
-  for (int i = 0; i < count; i++) {
-    int d;
-    cin >> d;
-    int pos = tree_pos + d;
-
-    if (pos >= s && pos <= t)
-      fruits++;
-  }
-
-  return fruits;
-}
-
-void apple_and_orange() {
-
-  int s, t; // house coordinates
-
-  cin >> s >> t;
-
-  int a, b; // a - apple tree position, b - orange tree position
-  cin >> a >> b;
-
-  int m, n; // m - apples count, n - oranges count
-  cin >> m >> n;
-
-  int apples = count_fruits(m, s, t, a);
-  int oranges = count_fruits(n, s, t, b);;
-  
-  cout << apples << endl;
-  cout << oranges << endl;
-}
-
-//-----------------------------------------------------------------------------
-void kangaroo() {
-  int x1, v1, x2, v2;
-
-  cin >> x1 >> v1 >> x2 >> v2;
-
-  if (v1 > v2 && ((x2 - x1) % (v1 - v2) == 0))
-    cout << "YES";
-  else
-    cout << "NO";
-}
-
-
-//-----------------------------------------------------------------------------
 void strange_code() {
   uint64  t;
 
@@ -1193,31 +1124,7 @@ void cavity_map() {
   }
 }
 
-//-----------------------------------------------------------------------------
-void angry_professor() {
-  int t; // number of test cases
 
-  cin >> t;
-
-  for (int i = 0; i < t; i++) {
-    int n, k; // number of students, cancelation threshold
-    cin >> n >> k;
-
-    int on_time = 0;
-
-    for (int j = 0; j < n; j++) {
-      int st_time;
-      cin >> st_time;
-      if (st_time <= 0)
-        on_time++;
-    }
-
-    if (on_time >= k)
-      cout << "NO" << endl;
-    else
-      cout << "YES" << endl;
-  }
-}
 
 //-----------------------------------------------------------------------------
 void utopian_tree() {
@@ -1232,31 +1139,6 @@ void utopian_tree() {
   }  
 }
 
-//-----------------------------------------------------------------------------
-void find_digits() {
-  int t; // number of test cases
-
-  cin >> t;
-  for (int i = 0; i < t; i++) {
-    int n; // number of students, cancelation threshold
-    cin >> n;
-    int tmp = n;
-    int count = 0;
-
-    while (tmp) {
-      int digit = tmp % 10;
-
-      if (digit)
-        if (n % digit == 0)
-          count++;
-
-      tmp = tmp / 10;
-    }
-
-    cout << count << endl;
-  }
-}
-
 
 void birthday_cake_candles();
 void matrix_layer_rotation();
@@ -1268,6 +1150,8 @@ void day_of_the_programmer();
 void bob_appetit();
 void sock_merchant();
 void drawing_book();
+void counting_valleys();
+void electronics_shop();
 
 int main() {
 
@@ -1282,7 +1166,7 @@ int main() {
 #endif
         
   
-  drawing_book();
+  electronics_shop();
     
   getchar();
 }

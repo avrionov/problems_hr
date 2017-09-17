@@ -183,42 +183,6 @@ void time_conversion() {
 }
 
 //-----------------------------------------------------------------------------
-void circular_array_rotation() {
-
-  int n, k, q;
-
-  cin >> n >> k >> q;
-
-  vector <int> ar;
-
-  int i = 0;
-
-  while (std::cin && (i < n)) {
-    int b;
-    cin >> b;
-    ar.push_back(b);
-    i++;
-  }
-
-  // rotations
-  for (int i = 0; i < k; i++)
-    rotate(ar.begin(), ar.end() - 1, ar.end());
-
-  i = 0;
-
-  while (std::cin && (i < q)) {
-    size_t b;
-    cin >> b;
-
-    if (b < ar.size()) {
-      cout << ar[b] << endl;
-    }
-
-    i++;
-  }
-}
-
-//-----------------------------------------------------------------------------
 void birthday_cake_candles() {
   int n;
 

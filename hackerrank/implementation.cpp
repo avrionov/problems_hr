@@ -8,8 +8,174 @@
 #include <list>
 #include <set>
 #include <map>
+#include <functional>
 
 using namespace std;
+
+//-----------------------------------------------------------------------------
+void grading_students() {
+
+  int n, temp;
+
+  const int failing_grade = 38;
+
+  cin >> temp;
+
+
+  while (cin >> n) {
+
+    if (n < failing_grade) {
+      cout << n;
+    }
+    else {
+      int mod = n % 5;
+
+      if (mod >= 3)
+        cout << n + (5 - mod);
+      else
+        cout << n;
+    }
+
+    cout << endl;
+  }
+}
+
+//-----------------------------------------------------------------------------
+int count_fruits(int count, int s, int t, int tree_pos) {
+  int fruits = 0;
+  for (int i = 0; i < count; i++) {
+    int d;
+    cin >> d;
+    int pos = tree_pos + d;
+
+    if (pos >= s && pos <= t)
+      fruits++;
+  }
+
+  return fruits;
+}
+
+//-----------------------------------------------------------------------------
+void apple_and_orange() {
+
+  int s, t; // house coordinates
+
+  cin >> s >> t;
+
+  int a, b; // a - apple tree position, b - orange tree position
+  cin >> a >> b;
+
+  int m, n; // m - apples count, n - oranges count
+  cin >> m >> n;
+
+  int apples = count_fruits(m, s, t, a);
+  int oranges = count_fruits(n, s, t, b);;
+
+  cout << apples << endl;
+  cout << oranges << endl;
+}
+
+//-----------------------------------------------------------------------------
+void kangaroo() {
+  int x1, v1, x2, v2;
+
+  cin >> x1 >> v1 >> x2 >> v2;
+
+  if (v1 > v2 && ((x2 - x1) % (v1 - v2) == 0))
+    cout << "YES";
+  else
+    cout << "NO";
+}
+
+//-----------------------------------------------------------------------------
+void between_two_sets() {
+  int n, m;
+
+  cin >> n;
+  cin >> m;
+
+  vector<int> a;
+  vector<int> b;
+
+  for (int i = 0; i < n; i++) {
+    int tmp;
+    cin >> tmp;
+    a.push_back(tmp);
+  }
+
+  for (int i = 0; i < m; i++) {
+    int tmp;
+    cin >> tmp;
+    b.push_back(tmp);
+  }
+
+  sort(begin(a), end(a));
+  sort(begin(b), end(b));
+
+  int lower = a[n - 1];
+  int upper = b[0];
+
+  int count = 0;
+  for (int i = lower; i <= upper; i++) {
+    bool found = true;
+    for (int j = 0; j < n; j++)
+      if (i % a[j] != 0) {
+        found = false;
+        break;
+      }
+
+    if (found) {
+      for (int j = 0; j < m; j++)
+        if (b[j] % i != 0) {
+          found = false;
+          break;
+        }
+    }
+
+    if (found) count++;
+  }
+
+  cout << count << endl;
+}
+
+//-----------------------------------------------------------------------------
+void breaking_the_records() {
+
+  int n;
+
+  cin >> n;
+
+  int count = 0;
+
+  int break_high = 0;
+  int break_low = 0;
+
+  int tmp;
+
+  cin >> tmp;
+  count++;
+
+  int low = tmp;
+  int high = tmp;
+
+  while (count < n) {
+    cin >> tmp;
+
+    if (tmp > high) {
+      break_high++;
+      high = tmp;
+    }
+
+    if (tmp < low) {
+      break_low++;
+      low = tmp;
+    }
+    count++;
+  }
+
+  cout << break_high << " " << break_low << endl;
+}
+
 
 //-----------------------------------------------------------------------------
 void mini_max_sum() {
@@ -299,6 +465,192 @@ void drawing_book() {
   int pages = min(front_page, last_page);
 
   cout << pages;
+}
+
+//-----------------------------------------------------------------------------
+void counting_valleys() {
+ 
+  int n;
+  cin >> n;
+
+  string record;
+  cin >> record;
+
+  int level = 0;
+  int prev = 0;
+
+  int valleys = 0;
+
+  for (int i = 0; i < n; i++) {
+
+    if (record[i] == 'U')
+      level++;
+
+    if (record[i] == 'D')
+      level--;
+
+    if (level < 0) {// find a valley {
+      if (prev == 0)
+        valleys++;
+    }
+
+    prev = level;
+  }
+  
+  cout << valleys;
+
+}
+//-----------------------------------------------------------------------------
+
+void read_array(vector<int>& ar, int n) {
+  for (int i = 0; i < n; i++) {
+    int tmp;
+    cin >> tmp;
+    ar.push_back(tmp);    
+  }
+}
+
+//-----------------------------------------------------------------------------
+void electronics_shop() {
+
+  int s, n, m; // s- money, n - keyboards, m - usb devices
+  cin >> s >> n >> m;
+
+  vector<int> keyboards;
+  vector<int> usb;
+  read_array(keyboards, n);
+  read_array(usb, m);
+
+  sort(begin(keyboards), end(keyboards), greater<>());
+  sort(begin(usb), end(usb));
+  
+  int max = -1;
+
+  int i = 0, j = 0;
+
+  while (i < n) {
+    while (j < m) {
+      int sum = keyboards[i] + usb[j];
+      if (sum > s)
+        break;
+
+      if (sum > max)
+        max = sum;
+      j++;
+    }
+    i++;
+  }
+
+  cout << max;
+}
+
+//-----------------------------------------------------------------------------
+void circular_array_rotation() {
+
+  int n, k, q;
+
+  cin >> n >> k >> q;
+
+  vector <int> ar;
+
+  int i = 0;
+
+  while (std::cin && (i < n)) {
+    int b;
+    cin >> b;
+    ar.push_back(b);
+    i++;
+  }
+
+  // rotations
+  for (int i = 0; i < k; i++)
+    rotate(ar.begin(), ar.end() - 1, ar.end());
+
+  i = 0;
+
+  while (std::cin && (i < q)) {
+    size_t b;
+    cin >> b;
+
+    if (b < ar.size()) {
+      cout << ar[b] << endl;
+    }
+
+    i++;
+  }
+}
+
+//-----------------------------------------------------------------------------
+void find_digits() {
+  int t; // number of test cases
+
+  cin >> t;
+  for (int i = 0; i < t; i++) {
+    int n; // number of students, cancelation threshold
+    cin >> n;
+    int tmp = n;
+    int count = 0;
+
+    while (tmp) {
+      int digit = tmp % 10;
+
+      if (digit)
+        if (n % digit == 0)
+          count++;
+
+      tmp = tmp / 10;
+    }
+
+    cout << count << endl;
+  }
+}
+
+//-----------------------------------------------------------------------------
+void angry_professor() {
+  int t; // number of test cases
+
+  cin >> t;
+
+  for (int i = 0; i < t; i++) {
+    int n, k; // number of students, cancelation threshold
+    cin >> n >> k;
+
+    int on_time = 0;
+
+    for (int j = 0; j < n; j++) {
+      int st_time;
+      cin >> st_time;
+      if (st_time <= 0)
+        on_time++;
+    }
+
+    if (on_time >= k)
+      cout << "NO" << endl;
+    else
+      cout << "YES" << endl;
+  }
+}
+
+//-----------------------------------------------------------------------------
+void designer_pdf_viewer() {
+  int heights[26] = { 0 };
+
+  for (int i = 0; i < 26; i++)
+    cin >> heights[i];
+
+  string word;
+  cin >> word;
+
+  int max_height = 0;
+
+  for (int i = 0; i < word.length(); i++) {
+    int index = word[i] - 'a';
+    int height = heights[index];
+    if (height > max_height)
+      max_height = height;
+  }
+
+  cout << max_height * word.length();
 }
 
 //-----------------------------------------------------------------------------
