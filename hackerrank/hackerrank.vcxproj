@@ -134,12 +134,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="algo-sorting\correctness-invariant.txt" />
-    <Text Include="algo-sorting\insertionsort1.txt" />
-    <Text Include="algo-sorting\insertionsort2.txt" />
-    <Text Include="algo-sorting\quicksort1.txt" />
-    <Text Include="algo-sorting\runningtime.txt" />
-    <Text Include="algo-sorting\tutorial-intro.txt" />
     <Text Include="graph\bfsshortreach.txt" />
     <Text Include="ReadMe.txt" />
     <Text Include="strings\alternating-characters.txt" />
@@ -174,6 +168,22 @@
     <Text Include="test_data\implementation\mini-max-sum.txt" />
     <Text Include="test_data\implementation\strange-code.txt" />
     <Text Include="test_data\implementation\utopian-tree.txt" />
+    <Text Include="test_data\sorting\closest-numbers.txt" />
+    <Text Include="test_data\sorting\correctness-invariant.txt" />
+    <Text Include="test_data\sorting\countingsort1.txt" />
+    <Text Include="test_data\sorting\countingsort2.txt" />
+    <Text Include="test_data\sorting\countingsort3.txt" />
+    <Text Include="test_data\sorting\countingsort4.txt" />
+    <Text Include="test_data\sorting\find-the-median.txt" />
+    <Text Include="test_data\sorting\fraudulent-activity-notifications.txt" />
+    <Text Include="test_data\sorting\insertion-sort.txt" />
+    <Text Include="test_data\sorting\insertionsort1.txt" />
+    <Text Include="test_data\sorting\insertionsort2.txt" />
+    <Text Include="test_data\sorting\quicksort1.txt" />
+    <Text Include="test_data\sorting\quicksort2.txt" />
+    <Text Include="test_data\sorting\quicksort3.txt" />
+    <Text Include="test_data\sorting\runningtime.txt" />
+    <Text Include="test_data\sorting\tutorial-intro.txt" />
     <Text Include="test_data\warmup\a-very-big-sum.txt" />
     <Text Include="test_data\warmup\circular-array-rotation.txt" />
     <Text Include="test_data\warmup\compare-the-triplets.txt" />
@@ -185,10 +195,12 @@
     <Text Include="test_data\warmup\time-conversion.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bigint.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bigint.cpp" />
     <ClCompile Include="dynamic_programming.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>

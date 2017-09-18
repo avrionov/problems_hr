@@ -13,6 +13,8 @@
 #include <cstdlib>
 #include <cmath>
 
+#include "bigint.h"
+
 
 using namespace std;
 
@@ -778,6 +780,116 @@ void jumping_on_clouds() {
   } while (pos != 0);
 
    cout << energy;
+}
+
+//-----------------------------------------------------------------------------
+void append_and_delete() {
+
+  string s, t; 
+  int k;
+  cin >> s >> t >> k;
+
+
+  int diff, i = 0;
+  
+  while (s[i] == t[i]) 
+    i++;
+
+  diff = s.size() + t.size() - i * 2;
+
+  cout << ((diff <= k && diff % 2 == k % 2) || s.size() + t.size() < k ? "Yes" : "No");
+}
+
+//-----------------------------------------------------------------------------
+void extra_long_factorials() {
+
+  int n;
+  cin >> n;
+
+  bigint factorial(1);
+
+  for (int i = 2; i <= n; i++) {
+      bigint t(i);
+      bigint t2 = t * factorial;
+      factorial.swap(t2);
+  }
+
+  cout << factorial;
+}
+
+//-----------------------------------------------------------------------------
+void sherlock_and_squares() {
+  int t;
+  cin >> t;
+
+  for (int i = 0; i < t; i++) {
+    int a, b;
+    cin >> a >> b;
+    cout << floor(sqrt(b) - ceil(sqrt(a)) + 1) << endl;
+  }
+}
+
+//-----------------------------------------------------------------------------
+void library_fine() {
+
+  int d1, m1, y1;  // actual return date
+  cin >> d1 >> m1 >> y1;
+
+  int d2, m2, y2;  // expected return date
+  cin >> d2 >> m2 >> y2;
+
+  if (y1 != y2) {
+    cout << ((y1 - y2)  < 0 ? 0 : (y1 - y2) * 10000);
+    return;
+  }
+  
+  if (m2 != m1) {
+    cout << ((m1 - m2) < 0 ? 0 :(m1 - m2) * 500);
+    return;
+  }
+
+  cout << ((d1 - d2) < 0 ?  0: (d1 - d2) * 15);
+}
+
+//-----------------------------------------------------------------------------
+void cut_the_sticks() {
+  int n;
+  cin >> n;
+
+  vector<int> ar;
+  
+  int min = 1001;
+
+  for (int i = 0; i < n; i++) {
+    int tmp;
+    cin >> tmp;
+
+    if (tmp < min)
+      min = tmp;
+
+    ar.push_back(tmp);
+  }
+
+  while (ar.size()) {
+    cout << ar.size() << endl;
+
+    vector<int> tmp_ar;
+    int new_min = 1001;
+
+    for(auto i:ar) {
+      int tmp = i - min;
+
+      if (tmp > 0) {
+        tmp_ar.push_back(tmp);
+
+        if (tmp < new_min)
+          new_min = tmp;
+      }        
+     }
+
+    min = new_min;
+    ar.assign(begin(tmp_ar), end(tmp_ar));
+  }
 }
 
 //-----------------------------------------------------------------------------

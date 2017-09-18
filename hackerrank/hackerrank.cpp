@@ -1160,6 +1160,10 @@ void number_race();
 void days_at_the_movies();
 void sequence_equation();
 void jumping_on_clouds();
+void extra_long_factorials();
+void library_fine();
+void cut_the_sticks();
+void big_sorting();
 
 int main() {
 
@@ -1174,7 +1178,7 @@ int main() {
 #endif
         
   
-  jumping_on_clouds();
+  big_sorting();
     
   getchar();
 }

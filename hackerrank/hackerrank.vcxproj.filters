@@ -19,9 +19,6 @@
     <Filter Include="test_files\warmup">
       <UniqueIdentifier>{48889502-d0e2-4311-afbc-ebf3391e1ab7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="test_files\algo-sorting">
-      <UniqueIdentifier>{93aedf22-146d-4bb6-9cf6-76cc8be0a367}</UniqueIdentifier>
-    </Filter>
     <Filter Include="test_files\implementation">
       <UniqueIdentifier>{4d87adee-99c6-432e-8a0f-db25cb2132bc}</UniqueIdentifier>
     </Filter>
@@ -31,29 +28,14 @@
     <Filter Include="test_files\strings">
       <UniqueIdentifier>{60815f2f-af54-4a3f-83de-64709f15e35f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test_files\sorting">
+      <UniqueIdentifier>{93aedf22-146d-4bb6-9cf6-76cc8be0a367}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
-    <Text Include="algo-sorting\correctness-invariant.txt">
-      <Filter>test_files\algo-sorting</Filter>
-    </Text>
-    <Text Include="algo-sorting\insertionsort1.txt">
-      <Filter>test_files\algo-sorting</Filter>
-    </Text>
-    <Text Include="algo-sorting\insertionsort2.txt">
-      <Filter>test_files\algo-sorting</Filter>
-    </Text>
-    <Text Include="algo-sorting\tutorial-intro.txt">
-      <Filter>test_files\algo-sorting</Filter>
-    </Text>
     <Text Include="graph\bfsshortreach.txt">
       <Filter>test_files\graphs</Filter>
-    </Text>
-    <Text Include="algo-sorting\quicksort1.txt">
-      <Filter>test_files\algo-sorting</Filter>
-    </Text>
-    <Text Include="algo-sorting\runningtime.txt">
-      <Filter>test_files\algo-sorting</Filter>
     </Text>
     <Text Include="strings\alternating-characters.txt">
       <Filter>test_files\strings</Filter>
@@ -178,6 +160,54 @@
     <Text Include="test_data\implementation\utopian-tree.txt">
       <Filter>test_files\implementation</Filter>
     </Text>
+    <Text Include="test_data\sorting\closest-numbers.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\correctness-invariant.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\countingsort1.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\countingsort2.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\countingsort3.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\countingsort4.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\find-the-median.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\fraudulent-activity-notifications.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\insertion-sort.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\insertionsort1.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\insertionsort2.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\quicksort1.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\quicksort2.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\quicksort3.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\runningtime.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
+    <Text Include="test_data\sorting\tutorial-intro.txt">
+      <Filter>test_files\sorting</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -185,6 +215,9 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bigint.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +240,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sorting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bigint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

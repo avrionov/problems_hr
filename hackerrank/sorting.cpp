@@ -10,6 +10,32 @@
 #include <map>
 
 using namespace std;
+//-----------------------------------------------------------------------------
+void big_sorting() {
+  int n;
+  cin >> n;
+
+  vector<string> ar;
+
+  for (int i = 0; i < n; i++) {
+    string tmp;
+    cin >> tmp;
+    ar.push_back(tmp);
+  }
+
+  sort(begin(ar), end(ar), [](string& a, string& b) {
+    int x = a.size();
+    int y = b.size();
+    if (x == y)
+      return a < b;
+
+    return x < y;
+  });
+
+    for (auto a : ar) {
+      std::cout << a << endl;
+    }
+}
 
 //-----------------------------------------------------------------------------
 void sorting_tutorial_intro() {
