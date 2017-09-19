@@ -31,6 +31,9 @@
     <Filter Include="test_files\sorting">
       <UniqueIdentifier>{93aedf22-146d-4bb6-9cf6-76cc8be0a367}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test_files\bit_manipulation">
+      <UniqueIdentifier>{4a225e1b-666b-426a-a4ee-1319463244ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -208,6 +211,9 @@
     <Text Include="test_data\sorting\tutorial-intro.txt">
       <Filter>test_files\sorting</Filter>
     </Text>
+    <Text Include="test_data\bit_manipulation\maximizing-xor.txt">
+      <Filter>test_files\bit_manipulation</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -243,6 +249,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bigint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bit_manipulation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

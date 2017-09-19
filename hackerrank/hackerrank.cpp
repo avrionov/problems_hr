@@ -14,6 +14,8 @@
 
 using namespace std;
 
+typedef unsigned long long int uint64;
+
 //-----------------------------------------------------------------------------
 void reduced_string() {
 
@@ -1012,71 +1014,6 @@ void ashton_and_string() {
 }
 
 //-----------------------------------------------------------------------------
-void lonely_integer() {
-  int n;
-
-  cin >> n;
-
-  int accum = 0; 
-  for (int i = 0; i < n; i++) {
-    int a;
-    cin >> a;
-    accum ^= a;
-  }
-
-  cout << accum;
-}
-
-//-----------------------------------------------------------------------------
-void maximum_xor() {
-  int l, r;
-
-  cin >> l >> r;
-
-  int max = 0;
-  int cnt = 0;
-  for (int xorRes = l^r; xorRes; xorRes >>= 1) {
-    max |= (1 << cnt++);
-  }
-
-  cout << max << endl;  
-}
-
-//-----------------------------------------------------------------------------
-typedef unsigned long long uint64;
-
-bool is_power_of_2(uint64 n) {
-  return !(n == 0) && !(n & (n - 1));
-}
-
-void counter_game() {
-
-  int t;
-  uint64 n;
-
-  cin >> t;
-  
-  for (int i = 0; i < t; i++) {
-    cin >> n;
-    int who = 1;
-    if (n == 1) {
-      cout << "Richard";
-    }
-    else {
-      while (n != 1) {
-        if (is_power_of_2(n))
-          n /= 2;
-        else
-
-
-          who++;
-      }
-
-    }
-  }
-}
-
-//-----------------------------------------------------------------------------
 void strange_code() {
   uint64  t;
 
@@ -1167,6 +1104,8 @@ void big_sorting();
 void repeated_string();
 void jumping_on_the_clouds();
 void equalize_the_array();
+void counter_game();
+void xor_sequence();
 
 int main() {
 
@@ -1181,7 +1120,7 @@ int main() {
 #endif
         
   
-  equalize_the_array();
+  xor_sequence();
     
   getchar();
 }
