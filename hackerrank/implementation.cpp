@@ -1081,6 +1081,13 @@ void equalize_the_array() {
   cout << (n - max);
 }
 
+void queens_attack_2() {
+  int n; // n - the side lenght of the board
+  int k; // number of obstacles
+
+  int r, c; // queens possition;
+}
+
 //-----------------------------------------------------------------------------
 void almost_sorted() {
   int n;
