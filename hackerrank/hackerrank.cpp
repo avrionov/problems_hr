@@ -1164,6 +1164,9 @@ void extra_long_factorials();
 void library_fine();
 void cut_the_sticks();
 void big_sorting();
+void repeated_string();
+void jumping_on_the_clouds();
+void equalize_the_array();
 
 int main() {
 
@@ -1178,7 +1181,7 @@ int main() {
 #endif
         
   
-  big_sorting();
+  equalize_the_array();
     
   getchar();
 }

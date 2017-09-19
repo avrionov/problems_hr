@@ -893,6 +893,57 @@ void cut_the_sticks() {
 }
 
 //-----------------------------------------------------------------------------
+void repeated_string() {
+  string s;
+  cin >> s;
+
+  long long int n;
+  cin >> n;
+
+  int len = s.length();
+
+  long long a_count = 0;
+  for (auto c : s) {
+    if (c == 'a')
+      a_count++;
+  }
+
+  long long full_strings = n / len;
+  long long total_a = full_strings * a_count;
+
+  for (long long i = 0; i < n % len; i++)
+    if (s[i] == 'a')
+      total_a++;
+
+  cout << total_a;
+}
+
+//-----------------------------------------------------------------------------
+void jumping_on_the_clouds() {
+  int n;
+  cin >> n;
+
+  vector<int> clouds;
+  read_array(clouds, n);
+
+  int count = 0;
+  int i;
+  for (i = 0; i < n - 2; i++ ) {
+    if (clouds[i + 2] == 0) {
+      i++;
+      count++;
+    } else {
+      count++;
+    }
+  }
+
+  if (i < n - 1)
+    count++;
+
+  cout << count;
+}
+
+//-----------------------------------------------------------------------------
 void circular_array_rotation() {
 
   int n, k, q;
@@ -999,6 +1050,35 @@ void designer_pdf_viewer() {
   }
 
   cout << max_height * word.length();
+}
+
+//-----------------------------------------------------------------------------
+void equalize_the_array() {
+
+  int n;
+  cin >> n;
+
+  map<int, int> numbers;
+
+  int sum = 0;
+  for (int i = 0; i < n; i++) {
+    int tmp;
+    cin >> tmp;
+    auto it = numbers.find(tmp);
+    if (it == numbers.end())
+      numbers[tmp] = 1;
+    else
+      numbers[tmp] ++;
+  }
+
+  int max = 0;
+  
+  for (auto it : numbers) {
+    if (it.second > max)
+      max = it.second;    
+  }
+
+  cout << (n - max);
 }
 
 //-----------------------------------------------------------------------------
