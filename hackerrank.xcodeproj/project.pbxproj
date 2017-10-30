@@ -13,7 +13,10 @@
 		951D859C1E0209C7004389A3 /* insertion_sort_counting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 951D85961E0209C7004389A3 /* insertion_sort_counting.cpp */; };
 		951D859D1E0209C7004389A3 /* sorting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 951D85971E0209C7004389A3 /* sorting.cpp */; };
 		951D859E1E0209C7004389A3 /* warmup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 951D85981E0209C7004389A3 /* warmup.cpp */; };
+		957357A21F8D842D002E3EFF /* strings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 957357A01F8D842D002E3EFF /* strings.cpp */; };
 		959854131E02062600849D08 /* hackerrank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 959854121E02062600849D08 /* hackerrank.cpp */; };
+		95B263FC1F7A181300769BDC /* bigint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B263F91F7A181300769BDC /* bigint.cpp */; };
+		95B263FD1F7A181300769BDC /* bit_manipulation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B263FB1F7A181300769BDC /* bit_manipulation.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,8 +43,14 @@
 		951D85C71E020ED0004389A3 /* implementation */ = {isa = PBXFileReference; lastKnownFileType = folder; name = implementation; path = hackerrank/test_data/implementation; sourceTree = "<group>"; };
 		951D85C81E020F09004389A3 /* algo-sorting */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "algo-sorting"; path = "hackerrank/test_data/algo-sorting"; sourceTree = "<group>"; };
 		951D85C91E020F25004389A3 /* strings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = strings; path = hackerrank/test_data/strings; sourceTree = "<group>"; };
+		9573579F1F8D819D002E3EFF /* suffixtree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = suffixtree.h; sourceTree = "<group>"; };
+		957357A01F8D842D002E3EFF /* strings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = strings.cpp; sourceTree = "<group>"; };
+		957357A11F8D842D002E3EFF /* strings.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = strings.hpp; sourceTree = "<group>"; };
 		9598540F1E02062600849D08 /* hackerrank */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hackerrank; sourceTree = BUILT_PRODUCTS_DIR; };
 		959854121E02062600849D08 /* hackerrank.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hackerrank.cpp; sourceTree = "<group>"; };
+		95B263F91F7A181300769BDC /* bigint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bigint.cpp; sourceTree = "<group>"; };
+		95B263FA1F7A181300769BDC /* bigint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bigint.h; sourceTree = "<group>"; };
+		95B263FB1F7A181300769BDC /* bit_manipulation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bit_manipulation.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +96,9 @@
 		959854111E02062600849D08 /* hackerrank */ = {
 			isa = PBXGroup;
 			children = (
+				95B263F91F7A181300769BDC /* bigint.cpp */,
+				95B263FA1F7A181300769BDC /* bigint.h */,
+				95B263FB1F7A181300769BDC /* bit_manipulation.cpp */,
 				951D85931E0209C7004389A3 /* dynamic_programming.cpp */,
 				951D85941E0209C7004389A3 /* graphs.cpp */,
 				951D85951E0209C7004389A3 /* implementation.cpp */,
@@ -94,6 +106,9 @@
 				951D85971E0209C7004389A3 /* sorting.cpp */,
 				951D85981E0209C7004389A3 /* warmup.cpp */,
 				959854121E02062600849D08 /* hackerrank.cpp */,
+				9573579F1F8D819D002E3EFF /* suffixtree.h */,
+				957357A01F8D842D002E3EFF /* strings.cpp */,
+				957357A11F8D842D002E3EFF /* strings.hpp */,
 			);
 			path = hackerrank;
 			sourceTree = "<group>";
@@ -155,8 +170,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95B263FC1F7A181300769BDC /* bigint.cpp in Sources */,
+				95B263FD1F7A181300769BDC /* bit_manipulation.cpp in Sources */,
 				951D859D1E0209C7004389A3 /* sorting.cpp in Sources */,
 				959854131E02062600849D08 /* hackerrank.cpp in Sources */,
+				957357A21F8D842D002E3EFF /* strings.cpp in Sources */,
 				951D859B1E0209C7004389A3 /* implementation.cpp in Sources */,
 				951D859C1E0209C7004389A3 /* insertion_sort_counting.cpp in Sources */,
 				951D859A1E0209C7004389A3 /* graphs.cpp in Sources */,

@@ -527,7 +527,7 @@ void electronics_shop() {
   read_array(keyboards, n);
   read_array(usb, m);
 
-  sort(begin(keyboards), end(keyboards), greater<>());
+  sort(begin(keyboards), end(keyboards), greater<int>());
   sort(begin(usb), end(usb));
   
   int max = -1;
