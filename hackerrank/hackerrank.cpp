@@ -1106,6 +1106,8 @@ void jumping_on_the_clouds();
 void equalize_the_array();
 void counter_game();
 void xor_sequence();
+void absolute_permutation();
+void bomberman_game();
 
 int main() {
 
@@ -1120,7 +1122,7 @@ int main() {
 #endif
         
   
-  xor_sequence();
+  bomberman_game();
     
   getchar();
 }

@@ -1145,3 +1145,185 @@ void almost_sorted() {
     cout << "reverse " << start + 1 << " " << end + 1;      
   }  
 }
+
+//-----------------------------------------------------------------------------
+void absolute_permutation() {
+  int t; // number of tests
+
+  cin >> t;
+
+  for (int tests = 0; tests < t; tests++) {
+    int n, k;
+
+    cin >> n >> k;
+    int temp = k;
+
+    if (k == 0) {
+      for (int i = 1; i <= n; i++) {
+        cout << i << " ";
+      }
+      cout << endl;
+      continue;
+    }
+    
+   if ((n % (2 * k)) != 0) {
+        cout << -1 << endl;
+        continue;
+   }
+
+    for (int i = 1; i <= n; i++) {
+        cout << i + temp << " ";
+        if (i % k == 0) {
+          temp = temp * -1;
+      }
+    }
+    cout << endl;
+  } 
+}
+
+//-----------------------------------------------------------------------------
+const int grid_max = 200;
+typedef char grid_type[grid_max+2][grid_max+2];
+
+const char empty_cell = '.';
+const char bomb3_cell = 'O';
+const char bomb0_cell = bomb3_cell - 3;
+
+void print_grid(grid_type& grid, int r, int c) {
+
+  for (int i = 0; i < r; i++) {
+    for (int j = 0; j < c; j++)
+      if (grid[i][j] == empty_cell)
+        cout << empty_cell;
+      else
+        cout << bomb3_cell;
+      
+    cout << endl;
+  }
+}
+
+void decrease_bomb_counters(grid_type& grid, int r, int c) {
+  for (int i = 0; i < r; i++) {
+    for (int j = 0; j < c; j++)
+      if (grid[i][j] != empty_cell)
+        grid[i][j] --;
+  }
+}
+void copy_grid(grid_type& source, grid_type& dest, int r, int c) {
+
+  for (int i = 0; i < r; i++) 
+    for (int j = 0; j < c; j++)
+      dest[i][j] = source[i][j];
+}
+
+void plant_bombs(grid_type& grid, int r, int c) {
+  for (int i = 0; i < r; i++)
+    for (int j = 0; j < c; j++)
+      if (grid[i][j] == empty_cell)
+        grid[i][j] = bomb3_cell;
+}
+
+void detonate_bombs(grid_type& grid, int r, int c) {
+  
+  grid_type tmp;
+  // copy
+  copy_grid(grid, tmp, r, c);
+
+  for (int i = 0; i < r; i++) {
+    for (int j = 0; j < c; j++)
+      if (grid[i][j] == bomb0_cell) {
+        tmp[i][j] = empty_cell;
+
+        if (i != 0) {
+          tmp[i - 1][j] = empty_cell;
+        }
+
+        tmp[i + 1][j] = empty_cell;
+
+        if (j != 0) {
+          tmp[i][j - 1] = empty_cell;
+        }
+
+        tmp[i][j + 1] = empty_cell;
+      }
+  }
+
+  copy_grid(tmp, grid, r, c);
+}
+
+void bomberman_game() {
+
+  grid_type grid;
+
+  int r, c, n;
+
+  cin >> r >> c >> n;
+
+
+  for (int i = 0; i < r; i++) {
+    string row;
+    cin >> row;
+    for (int j = 0; j < c; j++)
+      grid[i][j] = row[j];
+  }
+
+  //cout << "1. inital state" << endl;
+  //print_grid(grid, r, c);
+  grid_type n0;
+  copy_grid(grid, n0, r, c);
+  
+  //cout << "2 . second 1" << endl;
+    
+  decrease_bomb_counters(grid, r, c);
+  //print_grid(grid, r, c);
+  grid_type n1;
+  copy_grid(grid, n1, r, c);
+
+  //cout << "3 . second 2" << endl;
+  decrease_bomb_counters(grid, r, c);
+  plant_bombs(grid, r, c);
+  //print_grid(grid, r, c);
+  grid_type n2;
+  copy_grid(grid, n2, r, c);
+   
+
+   //cout << "4 . second 3" << endl;
+   decrease_bomb_counters(grid, r, c);
+   detonate_bombs(grid, r, c);    
+   //print_grid(grid, r, c);
+
+   grid_type n3;
+   copy_grid(grid, n3, r, c);
+
+
+   //cout << "5 . second 4" << endl;
+   decrease_bomb_counters(grid, r, c);
+   plant_bombs(grid, r, c);
+   //print_grid(grid, r, c);
+   grid_type n4;
+   copy_grid(grid, n4, r, c);
+
+   //cout << "6 . second 5" << endl;
+   decrease_bomb_counters(grid, r, c);
+   detonate_bombs(grid, r, c);
+   //print_grid(grid, r, c);
+
+   grid_type n5;
+   copy_grid(grid, n5, r, c);
+
+
+   if (!(n % 2)) {
+     print_grid(n2, r, c);
+     return;
+   }
+
+   if (n == 1) {
+     print_grid(n0, r, c);
+     return;
+   }
+
+   if (n %4  == 3)
+     print_grid(n3, r, c);
+   else 
+     print_grid(n5, r, c);
+}
