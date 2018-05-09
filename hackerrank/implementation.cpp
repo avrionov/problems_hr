@@ -1327,3 +1327,77 @@ void bomberman_game() {
    else 
      print_grid(n5, r, c);
 }
+
+//-----------------------------------------------------------------------------
+void non_divisible_subset() {
+
+	int n, k;
+		
+	cin >> n >> k;
+
+	vector<int> s;
+	read_array(s, n);
+
+	vector<int> divs;
+	
+	divs.resize(k, 0);
+
+	for (auto i : s) {
+		divs[i % k] ++;
+	}
+
+	int total = min(divs[0], 1);
+
+	int k2 = k / 2;
+	if (k2 * 2 == k) k2 -= 1; 
+
+	for (int i = 1; i <= k2; ++i) 
+		total += max(divs[i], divs[k - i]);
+
+	if (k % 2 == 0) 
+		total += divs[k / 2] > 0;
+	cout << total << endl;
+
+}
+
+//-----------------------------------------------------------------------------
+void queens_attack_ii() {
+
+	int n, k;
+
+	cin >> n >> k;
+
+
+}
+
+//-----------------------------------------------------------------------------
+void larrys_array() {
+
+	int t; // number of tests
+
+	cin >> t;
+
+	for (int t1 = 0; t1 < t; t1++) {
+
+		int n;
+
+		cin >> n;
+
+		vector<int> arr;
+		read_array(arr, n);
+
+		int inversions = 0;
+
+		for (int i = 0; i < n - 1; i++) {
+			for (int j = i + 1; j < n; j++)
+				if (arr[i] > arr[j])
+					inversions++;
+		}
+
+		if (inversions % 2 == 0)
+			cout << "YES" << endl;
+		else
+			cout << "NO" << endl;
+	}
+	
+}

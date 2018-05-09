@@ -1108,6 +1108,8 @@ void counter_game();
 void xor_sequence();
 void absolute_permutation();
 void bomberman_game();
+void non_divisible_subset();
+void larrys_array();
 
 int main() {
 
@@ -1122,7 +1124,7 @@ int main() {
 #endif
         
   
-  bomberman_game();
+  larrys_array();
     
   getchar();
 }
