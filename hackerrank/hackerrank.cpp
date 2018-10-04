@@ -1110,6 +1110,8 @@ void absolute_permutation();
 void bomberman_game();
 void non_divisible_subset();
 void larrys_array();
+void find_absent_students();
+void dynamic_tree();
 
 int main() {
 
@@ -1124,7 +1126,7 @@ int main() {
 #endif
         
   
-  larrys_array();
+	dynamic_tree();
     
   getchar();
 }

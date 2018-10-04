@@ -203,6 +203,7 @@
   <ItemGroup>
     <ClCompile Include="bigint.cpp" />
     <ClCompile Include="bit_manipulation.cpp" />
+    <ClCompile Include="codesprint.cpp" />
     <ClCompile Include="dynamic_programming.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>

@@ -1388,6 +1388,7 @@ void larrys_array() {
 
 		int inversions = 0;
 
+		// count number of inversions
 		for (int i = 0; i < n - 1; i++) {
 			for (int j = i + 1; j < n; j++)
 				if (arr[i] > arr[j])
