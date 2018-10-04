@@ -1113,6 +1113,11 @@ void larrys_array();
 void find_absent_students();
 void dynamic_tree();
 
+
+// c++ problems
+
+void input_output();
+
 int main() {
 
 #ifdef __APPLE__
@@ -1124,11 +1129,10 @@ int main() {
         cin.rdbuf(arq.rdbuf());
     }
 #endif
-        
-  
-	dynamic_tree();
-    
-  getchar();
+
+ input_output();
+   
+ getchar();
 }
 
 
