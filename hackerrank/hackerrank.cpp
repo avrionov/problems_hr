@@ -1111,6 +1111,11 @@ void bomberman_game();
 void non_divisible_subset();
 void larrys_array();
 
+
+// c++ problems
+
+void input_output();
+
 int main() {
 
 #ifdef __APPLE__
@@ -1124,7 +1129,7 @@ int main() {
 #endif
         
   
-  larrys_array();
+  input_output();
     
   getchar();
 }
