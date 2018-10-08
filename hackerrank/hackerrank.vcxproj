@@ -22,7 +22,7 @@
     <ProjectGuid>{532744BD-0001-41AA-9380-C61A6A0A11AC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>hackerrank</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -159,6 +159,7 @@
     <Text Include="strings\two-characters.txt" />
     <Text Include="strings\two-strings.txt" />
     <Text Include="test_data\bit_manipulation\maximizing-xor.txt" />
+    <Text Include="test_data\cpp\input_output.txt" />
     <Text Include="test_data\implementation\angry-professor.txt" />
     <Text Include="test_data\implementation\apple-and-orange.txt" />
     <Text Include="test_data\implementation\cavity-map.txt" />
@@ -204,6 +205,7 @@
     <ClCompile Include="bigint.cpp" />
     <ClCompile Include="bit_manipulation.cpp" />
     <ClCompile Include="codesprint.cpp" />
+    <ClCompile Include="cpp_problems.cpp" />
     <ClCompile Include="dynamic_programming.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>

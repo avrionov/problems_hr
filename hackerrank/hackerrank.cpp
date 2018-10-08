@@ -9,6 +9,7 @@
 #include <list>
 #include <set>
 #include <map>
+#include <sstream>
 
 #include <fstream>
 
@@ -234,7 +235,7 @@ void funny_string() {
       auto len = st.length();
 
       bool funny = true;
-      for (int i = 1; i < len; i++) {
+      for (size_t  i = 1; i < len; i++) {
         auto rev_i = len - i - 1;
 
         if (abs(st[i] - st[i - 1]) != abs(st[rev_i] - st[rev_i + 1])) {
@@ -354,7 +355,7 @@ void the_love_letter_mystery() {
      
       int count = 0;
       auto len = st.length();
-      for (int i = 0; i < len / 2; i++)
+      for (size_t i = 0; i < len / 2; i++)
         count += abs(st[i] - st[len - i - 1]);
 
       cout << count << endl;
@@ -378,7 +379,7 @@ void palindrome_index() {
 
       auto len = st.length();
      
-      for (int i = 0; i < len / 2; i++) {
+      for (size_t i = 0; i < len / 2; i++) {
 
           if (st[i] != st[len - 1 - i]) {
 
@@ -412,7 +413,7 @@ void anagram() {
             auto len = st.length();
 
             multiset<char> char_set;
-            for (int i = 0; i < len / 2; i++)
+            for (size_t i = 0; i < len / 2; i++)
                 char_set.insert(st[i]);
 
             for (auto i = len / 2; i < len; i++) {
@@ -612,7 +613,7 @@ void richie_rich() {
     auto len = st.length();
 
     int diffs = 0;
-    for (int i = 0; i < len / 2; i++)
+    for (size_t i = 0; i < len / 2; i++)
         if (st[i] != st[len - i - 1])
             diffs++;
 
@@ -623,7 +624,7 @@ void richie_rich() {
 
     int save_k = k;
 
-    int i = 0;
+    size_t i = 0;
 
     while (save_k > diffs && i < len / 2) {
 
@@ -687,7 +688,7 @@ void richie_rich() {
 bool check_anagram(string & s, int start1, int start2, size_t len)  {
     int let[26] = { 0 };
     bool result = true;
-    for (int n = 0; n < len; n++) {
+    for (size_t n = 0; n < len; n++) {
         let[s[start1 + n] - 'a']++;
         let[s[start2 + n] - 'a']--;
     }
@@ -734,7 +735,7 @@ int lcs(string& x, string& y) {
 
     //int *l = new int [m + 1][n + 1];
     auto l = new int[arSize + 1][arSize + 1];
-    int i, j;
+    size_t i, j;
         
     for (i = 0; i <= m; i++) {
         for (j = 0; j <= n; j++) {
@@ -777,7 +778,7 @@ void buildSuffixArray(const char *txt, size_t n, vector<int>& suffix_ar) {
 
   vector<struct suffix> suffixes(n);
 
-  for (int i = 0; i < n; i++) {
+  for (size_t i = 0; i < n; i++) {
     suffixes[i].index = i;
     suffixes[i].rank[0] = txt[i] - 'a';
     suffixes[i].rank[1] = ((i + 1) < n) ? (txt[i + 1] - 'a') : -1;
@@ -787,14 +788,14 @@ void buildSuffixArray(const char *txt, size_t n, vector<int>& suffix_ar) {
     
   vector<int> ind(n);
 
-  for (int k = 4; k < 2 * n; k = k * 2) {
+  for (size_t k = 4; k < 2 * n; k = k * 2) {
 
-    int rank = 0;
+    size_t rank = 0;
     int prev_rank = suffixes[0].rank[0];
     suffixes[0].rank[0] = rank;
     ind[suffixes[0].index] = 0;
     
-    for (int i = 1; i < n; i++) {
+    for (size_t i = 1; i < n; i++) {
       if (suffixes[i].rank[0] == prev_rank && suffixes[i].rank[1] == suffixes[i - 1].rank[1]) {
         prev_rank = suffixes[i].rank[0];
         suffixes[i].rank[0] = rank;
@@ -805,8 +806,8 @@ void buildSuffixArray(const char *txt, size_t n, vector<int>& suffix_ar) {
       ind[suffixes[i].index] = i;
     }
         
-    for (int i = 0; i < n; i++) {
-      int nextindex = suffixes[i].index + k / 2;
+    for (size_t i = 0; i < n; i++) {
+      size_t nextindex = suffixes[i].index + k / 2;
       suffixes[i].rank[1] = (nextindex < n) ?
         suffixes[ind[nextindex]].rank[0] : -1;
     }
@@ -814,7 +815,7 @@ void buildSuffixArray(const char *txt, size_t n, vector<int>& suffix_ar) {
   }
 
   suffix_ar.resize(n);
-  for (int i = 0; i < n; i++) {
+  for (size_t i = 0; i < n; i++) {
     suffix_ar[suffixes[i].index] = i;
   }
 }
@@ -851,7 +852,7 @@ void morgan_and_a_string() {
 
     string s;
 
-    for (int i = 0; i <len_s1 + len_s2; i++) {
+    for (size_t i = 0; i <len_s1 + len_s2; i++) {
       if (select_from_first(s1, i_s1, s2, i_s2, suf_ar, len_s1)) {
         s.push_back(s1[i_s1]);
         i_s1++;
@@ -1117,6 +1118,12 @@ void dynamic_tree();
 // c++ problems
 
 void input_output();
+void basic_data_types();
+void conditional_statements();
+void for_loop();
+void functions();
+void variable_size_arrays();
+
 
 int main() {
 
@@ -1129,10 +1136,13 @@ int main() {
         cin.rdbuf(arq.rdbuf());
     }
 #endif
+	string str = "23,4,56";
 
- input_output();
+	vector<int> integers = parseInts(str);
+
+	//variable_size_arrays();
    
- getchar();
+	getchar();
 }
 
 

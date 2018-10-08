@@ -34,6 +34,9 @@
     <Filter Include="test_files\bit_manipulation">
       <UniqueIdentifier>{4a225e1b-666b-426a-a4ee-1319463244ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test_files\cpp">
+      <UniqueIdentifier>{79700dd2-3ab4-4385-af79-2b3dcdf39c5e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -213,6 +216,9 @@
     </Text>
     <Text Include="test_data\bit_manipulation\maximizing-xor.txt">
       <Filter>test_files\bit_manipulation</Filter>
+    </Text>
+    <Text Include="test_data\cpp\input_output.txt">
+      <Filter>test_files\cpp</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
