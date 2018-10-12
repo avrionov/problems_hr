@@ -1123,7 +1123,10 @@ void conditional_statements();
 void for_loop();
 void functions();
 void variable_size_arrays();
+void maps_stl();
 
+void classes_and_objects();
+void attribute_parser();
 
 int main() {
 
@@ -1136,11 +1139,8 @@ int main() {
         cin.rdbuf(arq.rdbuf());
     }
 #endif
-	string str = "23,4,56";
-
-	vector<int> integers = parseInts(str);
-
-	//variable_size_arrays();
+	
+	attribute_parser();
    
 	getchar();
 }
