@@ -1127,6 +1127,7 @@ void maps_stl();
 
 void classes_and_objects();
 void attribute_parser();
+void message_order();
 
 int main() {
 
@@ -1140,7 +1141,7 @@ int main() {
     }
 #endif
 	
-	attribute_parser();
+	message_order();
    
 	getchar();
 }

@@ -14,6 +14,8 @@
 		951D859D1E0209C7004389A3 /* sorting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 951D85971E0209C7004389A3 /* sorting.cpp */; };
 		951D859E1E0209C7004389A3 /* warmup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 951D85981E0209C7004389A3 /* warmup.cpp */; };
 		957357A21F8D842D002E3EFF /* strings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 957357A01F8D842D002E3EFF /* strings.cpp */; };
+		957BA682216BD276002E64B4 /* cpp_problems.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 957BA681216BD276002E64B4 /* cpp_problems.cpp */; };
+		957BA684216BD285002E64B4 /* codesprint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 957BA683216BD285002E64B4 /* codesprint.cpp */; };
 		959854131E02062600849D08 /* hackerrank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 959854121E02062600849D08 /* hackerrank.cpp */; };
 		95B263FC1F7A181300769BDC /* bigint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B263F91F7A181300769BDC /* bigint.cpp */; };
 		95B263FD1F7A181300769BDC /* bit_manipulation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95B263FB1F7A181300769BDC /* bit_manipulation.cpp */; };
@@ -46,6 +48,19 @@
 		9573579F1F8D819D002E3EFF /* suffixtree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = suffixtree.h; sourceTree = "<group>"; };
 		957357A01F8D842D002E3EFF /* strings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = strings.cpp; sourceTree = "<group>"; };
 		957357A11F8D842D002E3EFF /* strings.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = strings.hpp; sourceTree = "<group>"; };
+		957BA681216BD276002E64B4 /* cpp_problems.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cpp_problems.cpp; sourceTree = "<group>"; };
+		957BA683216BD285002E64B4 /* codesprint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = codesprint.cpp; sourceTree = "<group>"; };
+		957BA686217508D6002E64B4 /* classes_and_objects.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = classes_and_objects.txt; path = hackerrank/test_data/cpp/classes_and_objects.txt; sourceTree = "<group>"; };
+		957BA687217508D6002E64B4 /* conditional_statements.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = conditional_statements.txt; path = hackerrank/test_data/cpp/conditional_statements.txt; sourceTree = "<group>"; };
+		957BA688217508D6002E64B4 /* attribute_parser.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = attribute_parser.txt; path = hackerrank/test_data/cpp/attribute_parser.txt; sourceTree = "<group>"; };
+		957BA689217508D6002E64B4 /* basic_data_types.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = basic_data_types.txt; path = hackerrank/test_data/cpp/basic_data_types.txt; sourceTree = "<group>"; };
+		957BA68A217508D6002E64B4 /* attribute_parser1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = attribute_parser1.txt; path = hackerrank/test_data/cpp/attribute_parser1.txt; sourceTree = "<group>"; };
+		957BA68B217508D6002E64B4 /* maps_stl.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = maps_stl.txt; path = hackerrank/test_data/cpp/maps_stl.txt; sourceTree = "<group>"; };
+		957BA68C217508D6002E64B4 /* for_loop.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = for_loop.txt; path = hackerrank/test_data/cpp/for_loop.txt; sourceTree = "<group>"; };
+		957BA68D217508D6002E64B4 /* input_output.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = input_output.txt; path = hackerrank/test_data/cpp/input_output.txt; sourceTree = "<group>"; };
+		957BA68E217508D6002E64B4 /* functions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = functions.txt; path = hackerrank/test_data/cpp/functions.txt; sourceTree = "<group>"; };
+		957BA68F217508D6002E64B4 /* variable_size_arrays.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = variable_size_arrays.txt; path = hackerrank/test_data/cpp/variable_size_arrays.txt; sourceTree = "<group>"; };
+		957BA69021750905002E64B4 /* message_order.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = message_order.txt; path = hackerrank/test_data/cpp/message_order.txt; sourceTree = "<group>"; };
 		9598540F1E02062600849D08 /* hackerrank */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hackerrank; sourceTree = BUILT_PRODUCTS_DIR; };
 		959854121E02062600849D08 /* hackerrank.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hackerrank.cpp; sourceTree = "<group>"; };
 		95B263F91F7A181300769BDC /* bigint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bigint.cpp; sourceTree = "<group>"; };
@@ -67,6 +82,7 @@
 		951D85A11E020D9E004389A3 /* test_data */ = {
 			isa = PBXGroup;
 			children = (
+				957BA685217508AD002E64B4 /* cpp_problems */,
 				951D85C91E020F25004389A3 /* strings */,
 				951D85C81E020F09004389A3 /* algo-sorting */,
 				951D85C71E020ED0004389A3 /* implementation */,
@@ -74,6 +90,24 @@
 				951D85C51E020E60004389A3 /* warmup */,
 			);
 			name = test_data;
+			sourceTree = "<group>";
+		};
+		957BA685217508AD002E64B4 /* cpp_problems */ = {
+			isa = PBXGroup;
+			children = (
+				957BA688217508D6002E64B4 /* attribute_parser.txt */,
+				957BA68A217508D6002E64B4 /* attribute_parser1.txt */,
+				957BA689217508D6002E64B4 /* basic_data_types.txt */,
+				957BA686217508D6002E64B4 /* classes_and_objects.txt */,
+				957BA687217508D6002E64B4 /* conditional_statements.txt */,
+				957BA68C217508D6002E64B4 /* for_loop.txt */,
+				957BA68E217508D6002E64B4 /* functions.txt */,
+				957BA68D217508D6002E64B4 /* input_output.txt */,
+				957BA68B217508D6002E64B4 /* maps_stl.txt */,
+				957BA69021750905002E64B4 /* message_order.txt */,
+				957BA68F217508D6002E64B4 /* variable_size_arrays.txt */,
+			);
+			name = cpp_problems;
 			sourceTree = "<group>";
 		};
 		959854061E02062600849D08 = {
@@ -96,6 +130,8 @@
 		959854111E02062600849D08 /* hackerrank */ = {
 			isa = PBXGroup;
 			children = (
+				957BA683216BD285002E64B4 /* codesprint.cpp */,
+				957BA681216BD276002E64B4 /* cpp_problems.cpp */,
 				95B263F91F7A181300769BDC /* bigint.cpp */,
 				95B263FA1F7A181300769BDC /* bigint.h */,
 				95B263FB1F7A181300769BDC /* bit_manipulation.cpp */,
@@ -139,7 +175,7 @@
 		959854071E02062600849D08 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = NA;
 				TargetAttributes = {
 					9598540E1E02062600849D08 = {
@@ -177,8 +213,10 @@
 				957357A21F8D842D002E3EFF /* strings.cpp in Sources */,
 				951D859B1E0209C7004389A3 /* implementation.cpp in Sources */,
 				951D859C1E0209C7004389A3 /* insertion_sort_counting.cpp in Sources */,
+				957BA682216BD276002E64B4 /* cpp_problems.cpp in Sources */,
 				951D859A1E0209C7004389A3 /* graphs.cpp in Sources */,
 				951D85991E0209C7004389A3 /* dynamic_programming.cpp in Sources */,
+				957BA684216BD285002E64B4 /* codesprint.cpp in Sources */,
 				951D859E1E0209C7004389A3 /* warmup.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,15 +233,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -243,15 +289,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;

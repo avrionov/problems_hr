@@ -7,11 +7,11 @@
 //
 
 #include "strings.hpp"
-#include "suffixtree.h"
+//#include "suffixtree.h"
 
 void test_suffix_tree () {
     
-    typedef std::vector<char> ctnr;
+  //  typedef std::vector<char> ctnr;
     
     
 }
