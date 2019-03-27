@@ -1129,6 +1129,11 @@ void classes_and_objects();
 void attribute_parser();
 void message_order();
 int virtual_function_main();
+int attending_workshops_main();
+int deque_main();
+int polymorphism_main();
+int wizard_main();
+void bit_array_start();
 
 int main() {
 
@@ -1142,7 +1147,7 @@ int main() {
     }
 #endif
 	
-	virtual_function_main();
+	bit_array_start();
    
 	getchar();
 }

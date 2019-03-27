@@ -1,0 +1,9 @@
+8 4
+set 4 2
+set 2 7
+get 2
+set 1 8
+set 5 9
+set 6 15
+get 4
+get 5

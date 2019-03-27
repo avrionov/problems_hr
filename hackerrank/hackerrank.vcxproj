@@ -159,7 +159,25 @@
     <Text Include="strings\two-characters.txt" />
     <Text Include="strings\two-strings.txt" />
     <Text Include="test_data\bit_manipulation\maximizing-xor.txt" />
+    <Text Include="test_data\cpp\attending-workshops.txt" />
+    <Text Include="test_data\cpp\attending-workshops1.txt" />
+    <Text Include="test_data\cpp\attribute_parser.txt" />
+    <Text Include="test_data\cpp\attribute_parser1.txt" />
+    <Text Include="test_data\cpp\basic_data_types.txt" />
+    <Text Include="test_data\cpp\classes_and_objects.txt" />
+    <Text Include="test_data\cpp\conditional_statements.txt" />
+    <Text Include="test_data\cpp\deque-stl.txt" />
+    <Text Include="test_data\cpp\for_loop.txt" />
+    <Text Include="test_data\cpp\functions.txt" />
     <Text Include="test_data\cpp\input_output.txt" />
+    <Text Include="test_data\cpp\maps_stl.txt" />
+    <Text Include="test_data\cpp\message_order.txt" />
+    <Text Include="test_data\cpp\polymorphism.txt" />
+    <Text Include="test_data\cpp\polymorphism1.txt" />
+    <Text Include="test_data\cpp\polymorphism2.txt" />
+    <Text Include="test_data\cpp\polymorphism2_output.txt" />
+    <Text Include="test_data\cpp\variable_size_arrays.txt" />
+    <Text Include="test_data\cpp\virtual_functions.txt" />
     <Text Include="test_data\implementation\angry-professor.txt" />
     <Text Include="test_data\implementation\apple-and-orange.txt" />
     <Text Include="test_data\implementation\cavity-map.txt" />
@@ -202,10 +220,18 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bigint.cpp" />
-    <ClCompile Include="bit_manipulation.cpp" />
-    <ClCompile Include="codesprint.cpp" />
-    <ClCompile Include="cpp_problems.cpp" />
+    <ClCompile Include="bigint.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="bit_manipulation.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="codesprint.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cpp_problems.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="dynamic_programming.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>

@@ -220,6 +220,60 @@
     <Text Include="test_data\cpp\input_output.txt">
       <Filter>test_files\cpp</Filter>
     </Text>
+    <Text Include="test_data\cpp\attribute_parser.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\attribute_parser1.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\basic_data_types.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\classes_and_objects.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\conditional_statements.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\for_loop.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\functions.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\maps_stl.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\message_order.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\variable_size_arrays.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\virtual_functions.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\attending-workshops.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\attending-workshops1.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\deque-stl.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\polymorphism.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\polymorphism1.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\polymorphism2.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
+    <Text Include="test_data\cpp\polymorphism2_output.txt">
+      <Filter>test_files\cpp</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
