@@ -1401,4 +1401,277 @@ void larrys_array() {
 			cout << "NO" << endl;
 	}
 	
+}//-----------------------------------------------------------------------------
+int calc_topics(string& s1, string& s2, int m) {
+	int count = 0;
+
+	for (int i = 0; i < m; i++) {
+
+		if (s1[i] == '1' || s2[i] == '1')
+			count++;
+		
+	}
+
+	return count;
+}
+void acm_icpc_team() {
+	int n, m;
+
+	cin >> n >> m;
+
+	vector <string> skills;
+	for (int i = 0; i < n; i++) {
+		string t;
+		cin >> t;
+		skills.push_back(t);
+		
+	}
+	int max_topics = 0;
+	int teams = 0;
+
+	for (int i = 0; i < n; i++)
+		for (int j = i + 1; j < n; j++) {
+			int topics = calc_topics(skills[i], skills[j], m);
+			if (topics > max_topics) {
+				max_topics = topics;
+				teams = 1;
+			}
+			else {
+				if (topics == max_topics) {
+					teams++;
+				}
+			}
+		}
+
+	cout << max_topics << endl;
+	cout << teams << endl;
+}
+
+//-----------------------------------------------------------------------------
+void taumBday() {
+	int t;
+	long long b, w;
+	long long bc, wc, z;
+
+	cin >> t;
+
+	for (int i = 0; i < t; i++) {
+		cin >> b >> w;
+		cin >> bc >> wc >> z;
+
+		
+		if (bc > wc + z) {
+			long long cost;
+			cost = wc * (b + w);
+			cost += b * z;
+			cout << cost << endl;
+			continue;
+		}
+
+		if (wc > bc + z) {
+			long long cost;
+			cost = bc * (b + w);
+			cost += w * z;
+			cout << cost << endl;
+			continue;
+		}
+				
+		cout << b * bc + w * wc << endl;
+	}	
+}
+
+//-----------------------------------------------------------------------------
+void kaprekarNumbers(int p, int q) {
+
+	bool bFound = false;
+	for (long long i = p; i <= q; i++) {
+		long long sq = i * i;
+		int digits = log10(i)+1;
+
+		
+		string str = to_string(sq);
+		int len = str.length();
+		string right_str = str.substr(len / 2, digits);
+		string left_str = str.substr(0, len / 2);
+				
+		long long left = left_str.empty() ? 0:  stol(left_str);
+		long long right = right_str.empty() ? 0 : stol(right_str);
+
+		if ((left + right) == i) {
+			cout << i << " ";
+			bFound = true;
+		}
+	}
+
+	if (!bFound) {
+		cout << "INVALID RANGE";
+	}
+
+}
+
+void karpekar_number_main() {
+	int p;
+	cin >> p;
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+	int q;
+	cin >> q;
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+	kaprekarNumbers(p, q);
+}
+
+//-----------------------------------------------------------------------------
+void beautiful_triplets() {
+	int n, d;
+
+	cin >> n >> d;
+
+	vector <int> ar;
+	multiset <int> st;
+	for (int i = 0; i < n; i++) {
+		int tmp;
+		cin >> tmp;
+		ar.push_back(tmp);
+		st.insert(tmp);
+	}
+
+	int count = 0;
+
+	for (auto i = st.begin(); i != st.end(); i++) {
+		if (st.find(*i + d) != st.end())
+			if (st.find(*i + 2 * d) != st.end())
+				count++;
+	}
+
+	int count1 = 0;;
+	for (int i = 0; i < n; i++)
+		for (int j = i + 1; j < n; j++)
+			for (int k = j + 1; k < n; k++)
+				if ((ar[j] - ar[i] == d) && (ar[k] - ar[j] == d))
+					count1++;
+
+	cout << count1 << endl;
+	cout << count;
+}
+
+//-----------------------------------------------------------------------------
+void minimumDistances() {
+	int n;
+
+	cin >> n;
+
+	vector <int> ar;	
+	for (int i = 0; i < n; i++) {
+		int tmp;
+		cin >> tmp;
+		ar.push_back(tmp);
+	}
+
+	int min_distance = n + 1;
+
+	for (int i = 0; i < n; i++)
+		for (int j = i + 1; j < n; j++)
+			if (ar[i] == ar[j]) {
+				int dist = j - i;
+
+				if (dist < min_distance)
+					min_distance = dist;
+			}
+
+	if (min_distance == n + 1)
+		cout << -1;
+	else
+		cout << min_distance;
+}
+
+//-----------------------------------------------------------------------------
+
+int howManyGames(int p, int d, int m, int s) {
+	// Return the number of games you can buy
+	int count = 0;
+
+	int current_game_price = p;
+	int sum = s;
+
+	while (true) {
+
+		if (current_game_price > sum)
+			break;
+
+		// bought one game
+		sum -= current_game_price;
+		count++;
+
+		// calculate the new game price
+
+		current_game_price -= d;
+		if (current_game_price < m)
+			current_game_price = m;
+	}
+
+	return count;
+}
+
+//-----------------------------------------------------------------------------
+void chocolate_feast() {
+
+	int t;
+
+	cin >> t;
+
+	for (int i = 0; i < t; i++) {
+		int n; // an integer representing Bobby's initial amount of money 
+		int c; // an integer representing the cost of a chocolate bar 
+		int m; // an integer representing the number of wrappers he can turn in for a free bar 
+
+		cin >> n >> c >> m;
+
+		int money_left = n;
+		int wrappers = 0;
+		int count = 0;
+
+		count = money_left / c;
+		wrappers = count;
+
+		while (wrappers >= m) {
+			int add = wrappers / m;
+			count += add;
+			
+			wrappers %= m;
+			wrappers += add;
+		}
+
+		cout << count << endl;
+	}
+}
+
+//-----------------------------------------------------------------------------
+void service_lane() {
+
+	int n, t;
+
+	cin >> n >> t;
+
+	vector <int> widths;
+	
+	for (int i = 0; i < n; i++) {
+		int tmp;
+		cin >> tmp;
+		widths.push_back(tmp);
+	}
+
+	for (int l = 0; l < t; l++) {
+		int i, j;
+		cin >> i >> j;
+
+		int max_w = widths[i];
+
+		for (int k = i+1; k < j; k++) {
+			max_w = min(max_w, widths[k]);
+		}
+
+		cout << max_w << endl;
+	}
+
 }

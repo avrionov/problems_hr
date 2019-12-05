@@ -1113,7 +1113,9 @@ void non_divisible_subset();
 void larrys_array();
 void find_absent_students();
 void dynamic_tree();
-
+void acm_icpc_team();
+void beautiful_triplets();
+void service_lane();
 
 // c++ problems
 
@@ -1134,6 +1136,8 @@ int deque_main();
 int polymorphism_main();
 int wizard_main();
 void bit_array_start();
+void taumBday();
+void kaprekarNumbers(int p, int q);
 
 int main() {
 
@@ -1147,7 +1151,7 @@ int main() {
     }
 #endif
 	
-	bit_array_start();
+	service_lane();
    
 	getchar();
 }
