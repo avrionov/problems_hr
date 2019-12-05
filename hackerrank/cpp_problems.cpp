@@ -946,9 +946,14 @@ struct Workshop {
 	int _end_time;
 	int _duraction;
 
-	bool operator<(Workshop& b) {
+	bool operator<( Workshop& b) const {
 		return _end_time < b._end_time;
 	}
+    
+    bool operator()(Workshop a, Workshop b) const
+    {
+        return a._end_time < b._end_time;;
+    }
 };
 
 
@@ -1507,31 +1512,6 @@ void bit_array(unsigned int n, unsigned int s, unsigned int p, unsigned int q) {
 
 	return;
 
-	fb.set(a);	
-
-	for (int i = 1; i < n; i++) {
-		a = (a *p + q) % max_int;
-		unsigned int mask = 1 << (a % 32);
-
-		unsigned int pos = a / 32;
-		unsigned int* aptr = fb._a + pos;
-
-		if (*aptr & mask)
-			break;
-
-		*aptr |= mask;
-		count++;
-
-		/*
-		if (!fb.test(a)) {
-			fb.set(a);
-			count++;
-		}  else {
-			break;
-		}*/
-	}
-		
-	cout << count << endl;
 }
 
 void bit_array_start() {
