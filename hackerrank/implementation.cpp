@@ -1675,3 +1675,192 @@ void service_lane() {
 	}
 
 }
+
+//-----------------------------------------------------------------------------
+void lisa_workbook() {
+
+	int n, k;
+
+	cin >> n >> k;
+
+	vector <int> ar;
+	for (int i = 0; i < n; i++) {
+		int tmp;
+		cin >> tmp;
+		ar.push_back(tmp);
+	}
+
+	int current_page = 0;
+	int count = 0;
+	for (int i = 0; i < n; i++) {
+		//int first_page = current_page + 1;
+		/*int last_page = first_page + ar[i] / k;
+		last_page += (ar[i] % k) != 0 ? 1 : 0;*/
+
+		int page = 0;
+		for (int j = 1; j <= ar[i]; j++) {
+			page = j / k;
+			page += (j % k) != 0 ? 1 : 0; 
+
+			if ((page + current_page) == j)
+				count++;
+		}
+		
+		current_page += page;
+	}
+
+	cout << count;
+}
+
+//-----------------------------------------------------------------------------
+void flatland_spacestations() {
+
+	int n, m;
+
+	cin >> n >> m;
+
+	set <int> stations;
+	vector <int> ar;
+	for (int i = 0; i < m; i++) {
+		int tmp;
+		cin >> tmp;
+		stations.insert(tmp);
+		ar.push_back(tmp);
+	}
+
+	int min_dist = 0;
+
+	for (int i = 0; i < n; i++) {
+		std::set<int>::iterator itlow, itup;
+		
+		int dist = n + 1;
+		for (auto j : ar) {
+			dist = min(dist, abs(j - i));
+		}
+		
+		min_dist = max(min_dist, dist);
+	}
+
+	cout << min_dist;
+}
+
+//-----------------------------------------------------------------------------
+void fair_rations() {
+
+	int n;
+
+	cin >> n ;
+		
+	vector <int> ar;
+	int sum = 0;
+	for (int i = 0; i < n; i++) {
+		int tmp;
+		cin >> tmp;		
+		ar.push_back(tmp);
+		sum += tmp;
+	}
+
+	if (sum % 2 == 1) {
+		cout << "NO";
+		return;
+	}
+
+	int count = 0;
+	for (int i = 0; i < n; i++) {
+		if (ar[i] % 2 == 1) {
+			ar[i] ++;
+			ar[i + 1]++;
+			count += 2;
+		}
+			
+	}
+
+	cout << count;
+}
+
+//-----------------------------------------------------------------------------
+void manasa_and_stones() {
+	int t;
+
+	cin >> t;
+	
+	for (int i = 0; i < t; i++) {
+		set<int> last_stone;
+		int n, a, b;
+		cin >> n >> a >> b;
+
+		int sum = 0;
+		int first = 0;
+
+		first = (n - 1) * min(a, b);
+		cout << first << " ";
+		while (sum + first < (n - 1) * max(a, b)) {
+			sum += abs(b - a);
+			cout << first + sum << " ";
+		}
+		
+		cout << endl;
+	}	
+}
+
+void happy_ladybugs() {
+
+	int g;
+
+	cin >> g;
+
+	for (int i = 0; i < g; i++) {
+		int n;
+		string str;
+		cin >> n;
+		cin >> str;
+
+		bool bSpace = 0;
+		int count[26] = { 0 };
+		int unhappy = 0;
+
+		for (int i = 0; i < n; i++) {
+			if (str[i] == '_')
+				bSpace = true;
+			else
+				count[str[i] - 'A'] ++;
+
+			bool bUnhappy = true;
+			if (i > 0)
+				if (str[i] == str[i - 1])
+					bUnhappy = false;
+
+			if (i < (n - 1))
+				if (str[i] == str[i + 1])
+					bUnhappy = false;
+
+			if (bUnhappy)
+				unhappy++;
+		}
+
+		if (unhappy == 0) {
+			cout << "YES" << endl;
+			continue;
+		}
+
+		if (!bSpace) {
+			cout << "NO" << endl;
+			continue;
+		}
+
+		// we have a space and some unhappy ladybugs
+		bool bOne = false;
+		for (int i = 0; i < 26; i++)
+			if (count[i] != 0)
+				if (count[i]  == 1) {
+					bOne = true;
+					break;
+				}
+
+		if (bOne) 
+			cout << "NO" << endl;
+		else
+			cout << "YES" << endl;
+
+	}
+}

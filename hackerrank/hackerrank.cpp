@@ -1116,6 +1116,10 @@ void dynamic_tree();
 void acm_icpc_team();
 void beautiful_triplets();
 void service_lane();
+void lisa_workbook();
+void flatland_spacestations();
+void manasa_and_stones();
+void happy_ladybugs();
 
 // c++ problems
 
@@ -1151,7 +1155,7 @@ int main() {
     }
 #endif
 	
-	service_lane();
+	happy_ladybugs();
    
 	getchar();
 }
