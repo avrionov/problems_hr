@@ -12,6 +12,8 @@
 
 using namespace std;
 
+void read_array(vector<int>& ar, int n);
+
 //-----------------------------------------------------------------------------
 string gridChallenge(vector<string> grid) {
 
@@ -244,4 +246,124 @@ int maximumToys(vector<int> prices, int k) {
 	}
 
 	return count;
+}
+
+
+void permuting_two_arrays() {
+
+	int t;
+
+	cin >> t;
+
+	for (int t1 = 0; t1 < t; t1++) {
+
+		int n, k;
+
+		cin >> n >> k;
+		
+		vector<int> a;
+		vector<int> b;
+		read_array(a, n);
+		read_array(b, n);
+
+		//int ac[1000] = { 0 };
+		//int bc[1000] = { 0 };
+
+		map<int, int> ac, bc;
+
+		for (int i = 0; i < n; i++) {
+			ac[a[i]]++;
+			bc[b[i]]++;
+		}
+
+		bool bPossible = true;
+
+		for (auto i: ac) {
+			int greater = k - i.first;
+
+			auto bc_start = bc.lower_bound(greater);
+
+			if (bc_start == bc.end()) {
+				bPossible = false;
+				break;
+			}
+
+			int count = 0;
+
+			while (count < i.second && bc_start != bc.end()) {
+				count += bc_start->second;
+				bc_start++;
+			}
+
+			if (count < i.second) {
+				bPossible = false;
+				break;
+			}			
+		}
+
+		if (bPossible)
+			for (auto i : bc) {
+				int greater = k - i.first;
+
+				auto ac_start = ac.lower_bound(greater);
+
+				if (ac_start == ac.end()) {
+					bPossible = false;
+					break;
+				}
+
+				int count = 0;
+
+				while (count < i.second && ac_start != ac.end()) {
+					count += ac_start->second;
+					ac_start++;
+				}
+
+				if (count < i.second) {
+					bPossible = false;
+					break;
+				}
+			}
+
+		if (bPossible)
+			cout << "YES" << endl;
+		else
+			cout << "NO" << endl;
+	}
+}
+
+void largest_permutation () {
+
+	int n, k;
+
+		cin >> n >> k;
+
+		vector<int> a;		
+		read_array(a, n);
+
+		map<int, int> ac;
+
+		for (int i = 0; i < n; i++) {
+			ac[a[i]] = i; // store the position
+		}
+
+		auto last = ac.rbegin();
+
+		int first = 0;
+
+		while (k > 0 && last != ac.rend())  {
+
+			if (a[first] == last->first) {
+				last++;
+			} else {
+				swap(a[first], a[last->second]);
+				last++;
+				first++;
+				k--;
+			}				
+		}
+
+		for (auto i : a) {
+			cout << i << " ";
+		}
 }

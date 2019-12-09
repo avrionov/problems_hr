@@ -1053,6 +1053,8 @@ void luck_balance();
 void jim_orders();
 void decentNumber(int n);
 int toys(vector<int> w);
+void permuting_two_arrays();
+void largest_permutation();
 
 //debug
 int main_lucky_dates();
@@ -1127,7 +1129,7 @@ int main() {
 	//vector<int> w = { 16, 18, 10, 13, 2, 9, 17, 17, 0, 19 };
 	//toys(w);
 
-	circular_palindromes();
+    largest_permutation();
 
 	getchar();
 }
