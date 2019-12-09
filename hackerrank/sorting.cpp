@@ -652,3 +652,4 @@ void fraudulent_activity() {
 
   cout << alerts;
 }
+

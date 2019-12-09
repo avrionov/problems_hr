@@ -117,6 +117,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -132,6 +133,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -205,6 +207,42 @@
     <Text Include="test_data\sorting\quicksort3.txt" />
     <Text Include="test_data\sorting\runningtime.txt" />
     <Text Include="test_data\sorting\tutorial-intro.txt" />
+    <Text Include="test_data\strings\alternating-characters.txt" />
+    <Text Include="test_data\strings\anagram.txt" />
+    <Text Include="test_data\strings\bear-and-steady-gene.txt" />
+    <Text Include="test_data\strings\beautiful-binary-string.txt" />
+    <Text Include="test_data\strings\camelcase.txt" />
+    <Text Include="test_data\strings\ceasar-cipher.txt" />
+    <Text Include="test_data\strings\circular-palindromes-1.txt" />
+    <Text Include="test_data\strings\circular-palindromes.txt" />
+    <Text Include="test_data\strings\common-child.txt" />
+    <Text Include="test_data\strings\funny-string.txt" />
+    <Text Include="test_data\strings\game-of-thrones-1.txt" />
+    <Text Include="test_data\strings\game-of-thrones.txt" />
+    <Text Include="test_data\strings\gem-stones.txt" />
+    <Text Include="test_data\strings\making-anagrams.txt" />
+    <Text Include="test_data\strings\mars-exploration.txt" />
+    <Text Include="test_data\strings\morgan-and-a-string.txt" />
+    <Text Include="test_data\strings\palindrome-index.txt" />
+    <Text Include="test_data\strings\pangrams.txt" />
+    <Text Include="test_data\strings\reduced-string.txt" />
+    <Text Include="test_data\strings\richie-rich-1.txt" />
+    <Text Include="test_data\strings\richie-rich-2.txt" />
+    <Text Include="test_data\strings\richie-rich-3.txt" />
+    <Text Include="test_data\strings\richie-rich.txt" />
+    <Text Include="test_data\strings\sherlock-and-anagrams.txt" />
+    <Text Include="test_data\strings\sherlock-and-valid-string-.txt" />
+    <Text Include="test_data\strings\sherlock-and-valid-string-1.txt" />
+    <Text Include="test_data\strings\sherlock-and-valid-string-2.txt" />
+    <Text Include="test_data\strings\sherlock-and-valid-string.txt" />
+    <Text Include="test_data\strings\string-construction.txt" />
+    <Text Include="test_data\strings\the-love-letter-mystery.txt" />
+    <Text Include="test_data\strings\two-characters-1.txt" />
+    <Text Include="test_data\strings\two-characters.txt" />
+    <Text Include="test_data\strings\two-strings.txt" />
+    <Text Include="test_data\strings\twotwo.txt" />
+    <Text Include="test_data\strings\twotwo1.txt" />
+    <Text Include="test_data\strings\twotwo2.txt" />
     <Text Include="test_data\warmup\a-very-big-sum.txt" />
     <Text Include="test_data\warmup\circular-array-rotation.txt" />
     <Text Include="test_data\warmup\compare-the-triplets.txt" />
@@ -233,16 +271,25 @@
     <ClCompile Include="cpp_problems.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="debug_cpp.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="dynamic_programming.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="graphs.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="greedy.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="hackerrank.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="implementation.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="search.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="sorting.cpp">
@@ -253,6 +300,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="strings.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="warmup.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>

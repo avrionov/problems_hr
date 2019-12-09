@@ -919,89 +919,6 @@ void bear_and_steady_gene() {
 }
 
 //-----------------------------------------------------------------------------
-int manchester_algoritm(const char* text, int len, int* LPS, int len2) {
-  
-  int N = len;
-  
-  N = 2 * N + 1; 
-    
-  LPS[0] = 0;
-  LPS[1] = 1;
-  int center_position = 1; 
-  int center_right_position = 2;   
-  int current_left_pos; 
-  int max_length = 0;
-      
-  for (int current_right_pos = 2; current_right_pos < N; current_right_pos++) {
- 
-    current_left_pos = 2 * center_position - current_right_pos;
-
-    int& cpr = LPS[current_right_pos];
-        
-    cpr = 0;
-    int diff = center_right_position - current_right_pos;
-  
-    if (diff > 0)
-      cpr = min(LPS[current_left_pos], diff);
-    
-    while (        
-        ((current_right_pos + cpr) < N && (current_right_pos - cpr) > 0) &&
-        (
-          ((current_right_pos + cpr + 1) % 2 == 0) || 
-          (text[(current_right_pos + cpr + 1) >> 1] == text[(current_right_pos - cpr - 1) >> 1])
-        )
-      ) {
-      cpr++;
-    }
-
-    if ((cpr > max_length) && (cpr <= len)) {
-      max_length = cpr;  
-    }
-
-    if (current_right_pos + cpr > center_right_position) {
-      center_position = current_right_pos;
-      center_right_position = current_right_pos + cpr;
-    }   
-  }
-
-  //cout << max_length << endl;  
-  //printf("%d\n", max_length);
-  return max_length;
-}
-
-void circular_palindromes() {
-
-  int k;
-  cin >> k;
-
-  string s;
-  cin >> s;
-
-  auto len = s.length();
-  int *LPS = new int[len * 2 + 1];
-
-  string s2 = s + s;
-  char* s_start = const_cast <char*>( s2.c_str());
-  auto len2 = len;
-
-  int *res = new int[k];
-  for (int i = 0; i < k; i++) {    
-    char tmp = s_start[len];
-    s_start[len] = 0;    
-    res[i] = manchester_algoritm(s_start, len, LPS, len);
-    s_start[len] = tmp;
-  
-    s_start++;
-  }
-  
-  for (int i = 0; i < k; i++) {
-    printf("%d\n", res[i]);
-  }
-  
-    delete[] LPS;
-}
-
-//-----------------------------------------------------------------------------
 void ashton_and_string() {
   int t, k;
   string s;
@@ -1121,6 +1038,25 @@ void flatland_spacestations();
 void manasa_and_stones();
 void happy_ladybugs();
 
+// strings
+int minimumNumber(int n, string password);
+void twotwo();
+void circular_palindromes();
+
+// search
+void ice_cream_parlor();
+void missing_numbers();
+void sherlock_and_array();
+
+//gready
+void luck_balance();
+void jim_orders();
+void decentNumber(int n);
+int toys(vector<int> w);
+
+//debug
+int main_lucky_dates();
+
 // c++ problems
 
 void input_output();
@@ -1143,6 +1079,39 @@ void bit_array_start();
 void taumBday();
 void kaprekarNumbers(int p, int q);
 
+
+bool is_smart_number(int num) {
+	int val = num;
+	int count = 1;
+
+	for (int i = 2; i <= val; i++)
+		if (num % i == 0)
+			count++;
+
+	if (count % 2 == 1)
+		return true;
+
+	return false;
+}
+
+
+unsigned long flippingBits(unsigned long n) {
+
+	int x = 31;
+
+	unsigned long ret = n;
+	// Inverting the bits one by one 
+	for (int i = 0; i <= 31; i++) {
+		unsigned long mask = (1 << i);
+		ret = (ret ^ mask);
+	}
+		
+
+	return ret;
+}
+
+
+
 int main() {
 
 #ifdef __APPLE__
@@ -1155,8 +1124,11 @@ int main() {
     }
 #endif
 	
-	happy_ladybugs();
-   
+	//vector<int> w = { 16, 18, 10, 13, 2, 9, 17, 17, 0, 19 };
+	//toys(w);
+
+	circular_palindromes();
+
 	getchar();
 }
 

@@ -92,18 +92,8 @@ bigint operator+(bigint num1, const bigint & num2) {
 }
 
 ostream & operator<<(ostream & outstream, const bigint & num) {
-
-  string x(num._num.size() * 2, 0);
-  for (size_t i = 0; i < num._num.size(); ++i) {
-    auto d = num._num[i];
-    x[2 * i] = toChar(d % 10);
-    x[2 * i + 1] = toChar(d / 10);
-  }
-  if (x.back() == '0') {
-    x.erase(x.size() - 1);
-  }
-  reverse(x.begin(), x.end());
-  return outstream << x;
+	  
+  return outstream << num.to_string();
 }
 
 bigint & bigint::operator=(bigint num) {
@@ -115,3 +105,41 @@ void bigint::swap(bigint & num)
 {
   _num.swap(num._num);
 }
+
+
+bigint power(const bigint& num, const int p) {
+
+	if (p == 0)
+		return 1;
+
+	if (p == 1)
+		return num;
+
+	bigint half_power = power(num, p / 2);
+	half_power = half_power * half_power;
+
+	if ((p % 2) == 0)
+		return half_power;
+	else
+		return num * half_power;
+}
+
+string bigint::to_string() const {
+
+	string x(_num.size() * 2, 0);
+	for (size_t i = 0; i < _num.size(); ++i) {
+		auto d = _num[i];
+		x[2 * i] = toChar(d % 10);
+		x[2 * i + 1] = toChar(d / 10);
+	}
+
+	if (x.back() == '0') {
+		x.erase(x.size() - 1);
+	}
+
+	reverse(x.begin(), x.end());
+
+	return x;
+}
+
+

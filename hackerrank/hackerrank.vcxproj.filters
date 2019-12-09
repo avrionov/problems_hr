@@ -274,6 +274,114 @@
     <Text Include="test_data\cpp\polymorphism2_output.txt">
       <Filter>test_files\cpp</Filter>
     </Text>
+    <Text Include="test_data\strings\twotwo.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\alternating-characters.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\anagram.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\bear-and-steady-gene.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\beautiful-binary-string.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\camelcase.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\ceasar-cipher.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\circular-palindromes.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\circular-palindromes-1.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\common-child.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\funny-string.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\game-of-thrones.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\game-of-thrones-1.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\gem-stones.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\making-anagrams.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\mars-exploration.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\morgan-and-a-string.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\palindrome-index.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\pangrams.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\reduced-string.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\richie-rich.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\richie-rich-1.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\richie-rich-2.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\richie-rich-3.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\sherlock-and-anagrams.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\sherlock-and-valid-string.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\sherlock-and-valid-string-.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\sherlock-and-valid-string-1.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\sherlock-and-valid-string-2.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\string-construction.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\the-love-letter-mystery.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\two-characters.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\two-characters-1.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\two-strings.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\twotwo1.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\twotwo2.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -318,6 +426,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cpp_problems.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="search.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug_cpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="greedy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

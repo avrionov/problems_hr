@@ -1803,6 +1803,7 @@ void manasa_and_stones() {
 	}	
 }
 
+//-----------------------------------------------------------------------------
 void happy_ladybugs() {
 
 	int g;
@@ -1863,4 +1864,25 @@ void happy_ladybugs() {
 			cout << "YES" << endl;
 
 	}
+}
+
+//-----------------------------------------------------------------------------
+string encryption(string s) {
+
+	return "";
+}
+
+//-----------------------------------------------------------------------------
+long marcsCakewalk(vector<int> calorie) {
+	
+	sort(begin(calorie), end(calorie), greater<int>());
+	
+	long factor = 1;
+	long  sum = 0;
+	for (auto i : calorie) {
+		sum += i * factor;
+		factor *= 2;
+	}
+
+	return sum;
 }

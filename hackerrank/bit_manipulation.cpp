@@ -103,6 +103,7 @@ void xor_sequence() {
   for (int i = 1; i < 100; i++) {
     cout << (i-1) << " : " << a << " "<< get_nt_xor(i-1) << " " << G(i-1) << endl;
     a = a ^ i;
+
   }
  
 
@@ -131,4 +132,19 @@ void xor_sequence() {
 
     cout << sum <<" "<< sum_g << endl;
   }
+}
+
+
+//-----------------------------------------------------------------------------
+long sumXor(long n) {
+
+	int count = 0;
+
+	while (n) {
+		if (n % 2 == 0)
+			count++;
+		n /= 2;
+	}
+
+	return pow(2, count);
 }
