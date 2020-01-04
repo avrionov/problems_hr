@@ -19,6 +19,8 @@
 #include <functional>
 
 
+ 
+ 
 using namespace std;
 using namespace std::chrono;
 
@@ -241,6 +243,7 @@ class Student1 {
   string _last_name;
 };
 
+
 //-----------------------------------------------------------------------------
 class Student2 {
  public:
@@ -294,6 +297,7 @@ struct Student3 {
   string last_name;
   int standard;
 };
+
 
 //-----------------------------------------------------------------------------
 void vector_sort() {
@@ -431,6 +435,7 @@ void lower_bound() {
     }
   }
 }
+
 
 //-----------------------------------------------------------------------------
 void sets_stl() {
@@ -984,6 +989,7 @@ Available_Workshops* initialize(int start_time[], int duration[], int n) {
 	return ptr;
 }
 
+
 // Greedy algorithm- Select the interval which ends first (but still not overlappingthe already chosen intervals)
 int CalculateMaxWorkshops(Available_Workshops* ptr) {
 	
@@ -992,7 +998,9 @@ int CalculateMaxWorkshops(Available_Workshops* ptr) {
 	// handle the corner case
 	if (n <= 1) return n;
 	
-	std::sort(begin(ptr->_workshops), end(ptr->_workshops));
+    // TODO fix this
+    // does not compile on mac os because compare operator
+	//std::sort(begin(ptr->_workshops), end(ptr->_workshops));
 
 	std::vector<Workshop> non_overlap;
 	Workshop last_int = ptr->_workshops[0];
@@ -1518,3 +1526,5 @@ void bit_array_start() {
 	unsigned int n = 100000000, s =923092883,  p =976061291, q =1205350525;
 	bit_array (n, s, p, q);   
 }
+
+

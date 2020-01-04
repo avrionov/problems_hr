@@ -1099,7 +1099,6 @@ bool is_smart_number(int num) {
 
 unsigned long flippingBits(unsigned long n) {
 
-	int x = 31;
 
 	unsigned long ret = n;
 	// Inverting the bits one by one 
@@ -1129,9 +1128,9 @@ int main() {
 	//vector<int> w = { 16, 18, 10, 13, 2, 9, 17, 17, 0, 19 };
 	//toys(w);
 
-    largest_permutation();
+   // largest_permutation();
 
-	getchar();
+	//getchar();
 }
 
 
