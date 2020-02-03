@@ -555,3 +555,66 @@ void circular_palindromes() {
 
 	delete[] LPS;
 }
+
+
+//-----------------------------------------------------------------------------
+char ashtonString(string s, int k) {
+    
+    vector<string> substrings;
+    int sum = 0;
+    k--;
+    
+    for (char ch = 'a'; ch <='z'; ch++) {
+        for (int i = 0; i < s.length(); i++) {
+            if (ch == s[i]) {
+                string sub = s.substr(i, s.length()-1);
+                substrings.push_back(sub);
+            }
+                
+               /* for (int j = 1; j < s.length() - i+1; j++) {
+                    string sub = s.substr(i, j);
+                    substrings.push_back(sub);
+                }*/
+        }
+        
+        sort (begin(substrings), end(substrings));
+        substrings.erase( unique( substrings.begin(), substrings.end() ), substrings.end() );
+        
+        for (auto str: substrings) {
+            auto len = str.length();
+            if ((sum + len) > k ) {
+                k -= sum;
+                return str[k];
+            }
+            sum += len;
+        }
+        
+        substrings.clear();
+    }
+    
+    /*
+    for (int i = 0; i < s.length(); i++) {
+        for (int j = 1; j < s.length() - i+1; j++) {
+            string sub = s.substr(i, j);
+            substrings.push_back(sub);
+        }
+    }
+
+    sort (begin(substrings), end(substrings));
+    substrings.erase( unique( substrings.begin(), substrings.end() ), substrings.end() );
+    
+    int sum = 0;
+    k--;
+    for (auto str: substrings) {
+        auto len = str.length();
+        if ((sum + len) > k ) {
+            k -= sum;
+            return str[k];
+        }
+        sum += len;
+    }
+    */
+    
+    
+    return ' ';
+}

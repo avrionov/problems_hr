@@ -1868,8 +1868,31 @@ void happy_ladybugs() {
 
 //-----------------------------------------------------------------------------
 string encryption(string s) {
-
-	return "";
+    string trimmed;
+    for (auto ch: s) {
+        if (ch != ' ')
+            trimmed += ch;
+    }
+    
+    auto len_trimmed = trimmed.length();
+    int rows = floor(sqrt(len_trimmed));
+    int columns = ceil(sqrt(len_trimmed));
+    
+    if ( (rows * columns) < len_trimmed)
+        rows++;
+      
+    string ret;
+    for (int i = 0; i < columns; i++) {
+        for (int j = 0; j < rows; j++) {
+            auto pos = j * columns + i;
+            if (pos < len_trimmed)
+                ret += trimmed[pos];
+        }
+        
+        ret += " ";
+    }
+    
+	return ret;
 }
 
 //-----------------------------------------------------------------------------
@@ -1885,4 +1908,28 @@ long marcsCakewalk(vector<int> calorie) {
 	}
 
 	return sum;
+}
+
+//-----------------------------------------------------------------------------
+string biggerIsGreater(string w) {
+    
+    auto last = w.length() - 1;
+    auto i = last;
+    
+    while (i > 0 && w[i - 1] >= w[i])
+        i--;
+    
+    if (i == 0)
+        return "no answer";
+    
+    auto j = last;
+ 
+    while (w[j] <= w[i-1])
+        j--;
+    
+    swap (w[i-1], w[j]);
+    
+    std::reverse(w.begin() +i, w.end());
+    
+    return w;
 }

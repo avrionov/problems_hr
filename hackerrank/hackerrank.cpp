@@ -1038,10 +1038,14 @@ void flatland_spacestations();
 void manasa_and_stones();
 void happy_ladybugs();
 
+//implementation
+string encryption(string s);
+    
 // strings
 int minimumNumber(int n, string password);
 void twotwo();
 void circular_palindromes();
+char ashtonString(string s, int k);
 
 // search
 void ice_cream_parlor();
@@ -1129,6 +1133,9 @@ int main() {
 	//toys(w);
 
    // largest_permutation();
+    
+    //encryption("chillout");
+    auto ch = ashtonString("dbac", 3);
 
 	//getchar();
 }
