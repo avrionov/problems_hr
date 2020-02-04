@@ -336,34 +336,34 @@ void largest_permutation () {
 
 	int n, k;
 
-		cin >> n >> k;
+    cin >> n >> k;
 
-		vector<int> a;		
-		read_array(a, n);
+    vector<int> a;
+    read_array(a, n);
 
-		map<int, int> ac;
+    map<int, int> ac;
 
-		for (int i = 0; i < n; i++) {
-			ac[a[i]] = i; // store the position
-		}
+    for (int i = 0; i < n; i++) {
+        ac[a[i]] = i; // store the position
+    }
 
-		auto last = ac.rbegin();
+    auto last = ac.rbegin();
 
-		int first = 0;
+    int first = 0;
 
-		while (k > 0 && last != ac.rend())  {
+    while (k > 0 && last != ac.rend())  {
 
-			if (a[first] == last->first) {
-				last++;
-			} else {
-				swap(a[first], a[last->second]);
-				last++;
-				first++;
-				k--;
-			}				
-		}
+        if (a[first] == last->first) {
+            last++;
+        } else {
+            swap(a[first], a[last->second]);
+            last++;
+            first++;
+            k--;
+        }
+    }
 
-		for (auto i : a) {
-			cout << i << " ";
-		}
+    for (auto i : a) {
+        cout << i << " ";
+    }
 }

@@ -1132,10 +1132,10 @@ int main() {
 	//vector<int> w = { 16, 18, 10, 13, 2, 9, 17, 17, 0, 19 };
 	//toys(w);
 
-   // largest_permutation();
+    largest_permutation();
     
     //encryption("chillout");
-    auto ch = ashtonString("dbac", 3);
+   // auto ch = ashtonString("dbac", 3);
 
 	//getchar();
 }
