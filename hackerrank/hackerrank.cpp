@@ -762,112 +762,6 @@ void common_child() {
 }
 
 //-----------------------------------------------------------------------------
-struct suffix {
-  int index; 
-  int rank[2]; 
-};
-
-
-int cmp(struct suffix& a, struct suffix& b) {
-  return (a.rank[0] == b.rank[0]) ? (a.rank[1] < b.rank[1] ? 1 : 0) :
-    (a.rank[0] < b.rank[0] ? 1 : 0);
-}
-
-
-void buildSuffixArray(const char *txt, size_t n, vector<int>& suffix_ar) {
-
-  vector<struct suffix> suffixes(n);
-
-  for (size_t i = 0; i < n; i++) {
-    suffixes[i].index = i;
-    suffixes[i].rank[0] = txt[i] - 'a';
-    suffixes[i].rank[1] = ((i + 1) < n) ? (txt[i + 1] - 'a') : -1;
-  }
-
-  sort(begin(suffixes), end(suffixes), cmp);
-    
-  vector<int> ind(n);
-
-  for (size_t k = 4; k < 2 * n; k = k * 2) {
-
-    size_t rank = 0;
-    int prev_rank = suffixes[0].rank[0];
-    suffixes[0].rank[0] = rank;
-    ind[suffixes[0].index] = 0;
-    
-    for (size_t i = 1; i < n; i++) {
-      if (suffixes[i].rank[0] == prev_rank && suffixes[i].rank[1] == suffixes[i - 1].rank[1]) {
-        prev_rank = suffixes[i].rank[0];
-        suffixes[i].rank[0] = rank;
-      } else {
-        prev_rank = suffixes[i].rank[0];
-        suffixes[i].rank[0] = ++rank;
-      }
-      ind[suffixes[i].index] = i;
-    }
-        
-    for (size_t i = 0; i < n; i++) {
-      size_t nextindex = suffixes[i].index + k / 2;
-      suffixes[i].rank[1] = (nextindex < n) ?
-        suffixes[ind[nextindex]].rank[0] : -1;
-    }
-    sort(begin(suffixes), end(suffixes), cmp);
-  }
-
-  suffix_ar.resize(n);
-  for (size_t i = 0; i < n; i++) {
-    suffix_ar[suffixes[i].index] = i;
-  }
-}
-
-
-bool select_from_first(string& A, int indexA, string& B, int indexB, vector<int>& ranks, int len_a) {
-  return (indexB == B.length()) || 
-    ((indexA < len_a) && ranks[indexA] < ranks[indexB + 1 + len_a]);
-}
-
-void morgan_and_a_string() {
-  int n;
-
-  cin >> n;
-
-  while (n > 0) {
-    string s1;
-    string s2;
-
-    cin >> s1 >> s2;
-
-    auto len_s1 = s1.length();
-    auto len_s2 = s2.length();
-
-    const char DIV = 'Z' + 1;
-    
-    int i_s1 = 0;
-    int i_s2 = 0;
-        
-    string combined_ar = s1 + DIV +  s2 + DIV;
-
-    vector<int> suf_ar;
-    buildSuffixArray(combined_ar.c_str(), combined_ar.length(), suf_ar);
-
-    string s;
-
-    for (size_t i = 0; i <len_s1 + len_s2; i++) {
-      if (select_from_first(s1, i_s1, s2, i_s2, suf_ar, len_s1)) {
-        s.push_back(s1[i_s1]);
-        i_s1++;
-      } else {
-        s.push_back(s2[i_s2]);
-        i_s2++;
-      }
-    }
-
-    cout << s << endl;  
-    n--;
-  }
-}
-
-//-----------------------------------------------------------------------------
 bool is_valid(map<char, int>& dict, int limit) {
   if (dict['A'] <= limit && dict['C'] <= limit && dict['G'] <= limit && dict['T'] <= limit) {
     return true;
@@ -919,19 +813,6 @@ void bear_and_steady_gene() {
 }
 
 //-----------------------------------------------------------------------------
-void ashton_and_string() {
-  int t, k;
-  string s;
-
-  cin >> t;
-  cin >> s;
-  cin >> k;
-
-  vector<int> suf_ar;
-  buildSuffixArray(s.c_str(), s.length(), suf_ar);
-}
-
-//-----------------------------------------------------------------------------
 void strange_code() {
   uint64  t;
 
@@ -939,7 +820,7 @@ void strange_code() {
 
   t += 2;
   uint64  k;
-  k = floor(log2(t / 3));
+  k =  floor(log2(t / 3));
 
   //t += 2;
   uint64 ret = 3 * ((uint64) 2 << k) - t;
@@ -995,6 +876,22 @@ void utopian_tree() {
 }
 
 
+
+bool is_smart_number(int num) {
+    int val = num;
+    int count = 1;
+
+    for (int i = 2; i <= val; i++)
+        if (num % i == 0)
+            count++;
+
+    if (count % 2 == 1)
+        return true;
+
+    return false;
+}
+
+
 void birthday_cake_candles();
 void matrix_layer_rotation();
 void birthday_chocolate();
@@ -1040,17 +937,24 @@ void happy_ladybugs();
 
 //implementation
 string encryption(string s);
+void container_of_balls();
+string timeInWords(int h, int m);
+void grid_search();
+void queens_attackii();
+void ema_supercomputer();
     
 // strings
 int minimumNumber(int n, string password);
 void twotwo();
 void circular_palindromes();
 char ashtonString(string s, int k);
+void find_string();
 
 // search
 void ice_cream_parlor();
 void missing_numbers();
 void sherlock_and_array();
+void cut_the_tree();
 
 //gready
 void luck_balance();
@@ -1059,6 +963,8 @@ void decentNumber(int n);
 int toys(vector<int> w);
 void permuting_two_arrays();
 void largest_permutation();
+void beatufil_pairs();
+void goodland_electricity();
 
 //debug
 int main_lucky_dates();
@@ -1085,37 +991,34 @@ void bit_array_start();
 void taumBday();
 void kaprekarNumbers(int p, int q);
 
+//sorting
+void fraudulent_activity();
+void insertionsort_counting();
+void insertionsort_counting_multi_set();
+void insertionsort_counting_merge();
 
-bool is_smart_number(int num) {
-	int val = num;
-	int count = 1;
+// recursion 
+int superDigit(string n, int k);
+void crossword_puzzle();
+void password_cracker_test();
+void stone_devision();
+void test_k_sums();
+void repetitive_k_sums();
 
-	for (int i = 2; i <= val; i++)
-		if (num % i == 0)
-			count++;
-
-	if (count % 2 == 1)
-		return true;
-
-	return false;
-}
-
-
-unsigned long flippingBits(unsigned long n) {
-
-
-	unsigned long ret = n;
-	// Inverting the bits one by one 
-	for (int i = 0; i <= 31; i++) {
-		unsigned long mask = (1 << i);
-		ret = (ret ^ mask);
-	}
-		
-
-	return ret;
-}
+// game_theory
+void test_misereNim();
 
 
+// bit manipulation
+void hamming_distance();
+void hamming_distance2();
+void hamming_distance3();
+int iterateIt(vector<int> a);
+int iterate_it_2(vector<int> a);
+void iterateIt_test();
+void mixing_proteins();
+void test_xorMatrix();
+vector<int> xorSubsequence(vector<long> a);
 
 int main() {
 
@@ -1132,12 +1035,18 @@ int main() {
 	//vector<int> w = { 16, 18, 10, 13, 2, 9, 17, 17, 0, 19 };
 	//toys(w);
 
-    largest_permutation();
-    
     //encryption("chillout");
    // auto ch = ashtonString("dbac", 3);
+        
+    //hamming_distance3();
+    
+    //mixing_proteins();
 
-	//getchar();
+    //test_xorMatrix();
+
+    ema_supercomputer();
+
+	getchar();
 }
 
 

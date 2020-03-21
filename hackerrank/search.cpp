@@ -164,3 +164,97 @@ int minimumAbsoluteDifference(vector<int> arr) {
 
 	return minv;
 }
+
+//-----------------------------------------------------------------------------
+
+typedef long long int int64;
+struct Node {
+	vector<int> children;
+	int value;
+	int64 sum;
+	int64 children_sum;
+
+	bool isLeaf() {
+		return children.size() == 0;
+	}
+};
+
+int64  calculate_sum(int current_node, int parent, vector<Node>& nodes) {
+	
+	if (parent != 0)
+		if (nodes[current_node].children.size() == 1)
+			{
+				nodes[current_node].sum = nodes[current_node].value;
+				return nodes[current_node].sum;
+			}
+
+	int64 sum = 0;
+	for (auto ch : nodes[current_node].children) {
+		if (parent != ch) {
+			int64 tmp = calculate_sum(ch, current_node, nodes);
+			sum += tmp;
+		}		
+	}
+
+	nodes[current_node].children_sum = sum;
+	nodes[current_node].sum = nodes[current_node].value + sum;
+
+	return nodes[current_node].sum;
+}
+
+
+
+void  calculate_cut(int current_node, int parent, vector<Node>& nodes, int64 &min_cut, int64 parent_sum) {
+
+	if (parent != 0)
+		if (nodes[current_node].children.size() == 1)		
+			return;
+	
+	for (auto ch : nodes[current_node].children) {
+		if (parent != ch) {
+			int64 tree1 = nodes[ch].sum;
+			int64 tree2 = nodes[current_node].sum - nodes[ch].sum + parent_sum;
+			int64 new_min = abs(tree1 - tree2);
+
+			if (new_min < min_cut)
+				min_cut = new_min;
+
+			int64 new_sum = parent_sum + nodes[current_node].value;
+			new_sum -= nodes[ch].sum;
+			new_sum += nodes[current_node].children_sum;
+			calculate_cut(ch, current_node, nodes, min_cut, new_sum);
+		}
+	}	
+}
+
+void cut_the_tree() {
+	
+	int n;
+	cin >> n;
+
+	vector<Node> nodes(n + 1);
+
+	for (int i = 0; i < n; i++) {
+		int tmp;
+		cin >> tmp;
+		nodes[i + 1].value = tmp;
+		nodes[i + 1].sum = 0;
+		nodes[i + 1].children_sum = 0;
+	}
+
+	// read the vetices
+	for (int i = 0; i < n - 1; i++) {
+		int n1, n2;
+
+		cin >> n1 >> n2;
+
+		nodes[n1].children.push_back(n2);
+		nodes[n2].children.push_back(n1);
+	}
+
+	calculate_sum(1, 0, nodes);
+
+	int64 min_cut = LLONG_MAX;
+	calculate_cut(1, 0, nodes, min_cut, 0);
+	cout << min_cut;
+}

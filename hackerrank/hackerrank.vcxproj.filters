@@ -440,5 +440,14 @@
     <ClCompile Include="greedy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="recursion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game_theory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="constructive_algorithms.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

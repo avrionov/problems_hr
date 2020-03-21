@@ -341,29 +341,173 @@ void largest_permutation () {
     vector<int> a;
     read_array(a, n);
 
-    map<int, int> ac;
+	vector<int> ac;
+	ac.resize(n+1);
 
     for (int i = 0; i < n; i++) {
         ac[a[i]] = i; // store the position
     }
 
-    auto last = ac.rbegin();
+	int i = 0;
+	int current_number = n;
+	while (k > 0 && i < n) {
+		if (a[i] == current_number) {// don't swap the element is in place
+			i++;
+			current_number--;
+		} else {
+			// find the number in the array and swap it
+			int pos = ac[current_number];
 
-    int first = 0;
+			
+		//		cout << pos << ", " << current_number << endl;
+			
 
-    while (k > 0 && last != ac.rend())  {
+			swap(a[i], a[pos]);
 
-        if (a[first] == last->first) {
-            last++;
-        } else {
-            swap(a[first], a[last->second]);
-            last++;
-            first++;
-            k--;
-        }
-    }
+		
+			// adjust the indexes
+			ac[a[i]] = i;
+			ac[a[pos]] = pos;
+			current_number--;
+			i++;
+			k--;
+		}
+	}
 
-    for (auto i : a) {
-        cout << i << " ";
-    }
+
+	for (auto i : a) {
+		cout << i << " ";
+	}
+}
+
+void beatufil_pairs() {
+
+	int n;
+
+	cin >> n;
+
+	vector<int> a, b;
+	read_array(a, n);
+
+	read_array(b, n);
+
+	map<int, int> map_a, map_b;
+
+	// ordered count of numbers
+	for (int i = 0; i < n; i++) {
+		map_a[a[i]]++;
+		map_b[b[i]]++;
+	}
+
+	int pairs = 0;
+	bool different_counts = false;
+	for (auto i : map_a) {
+
+		auto b_it = map_b.find(i.first);
+
+		if (b_it != map_b.end()) {
+			pairs += min(i.second, b_it->second);
+
+			if (i.second != b_it->second)
+				different_counts = true;
+		} else {
+			different_counts = true;
+		}
+		
+	}
+
+	if (different_counts)
+		cout << pairs + 1;
+	else
+		cout << pairs - 1;
+}
+
+/*
+
+void goodland_electricity() {
+	int n, k;
+	cin >> n >> k;
+
+	vector<int> a;
+
+	read_array(a, n);
+
+	int plants = 0;
+	int start_pos = 0;
+	while (true) {
+		int new_pos;
+
+		if (start_pos == 0)
+			new_pos = start_pos + k ;
+		else
+			new_pos = start_pos + 2* k - 1;
+
+		if (new_pos >= n)
+			new_pos = n - 1;
+
+		while (a[new_pos] == 0 && new_pos >= start_pos) {
+			new_pos--;
+		}
+
+		if (new_pos == start_pos) {
+			cout << -1;
+			return;
+		}
+
+		plants++;
+		start_pos = new_pos;
+
+		if (start_pos + k >= n)
+			break;
+	}
+
+	cout << plants;
+}
+*/
+
+void goodland_electricity() {
+	int n, k;
+	cin >> n >> k;
+
+	vector<int> a;
+
+	a.push_back(0);
+
+	read_array(a, n);
+
+	int plants = 0;
+	int start_pos = 0;
+	bool b_first = true;
+	while (true) {
+		int new_pos;
+
+		if (b_first == true)
+			new_pos = start_pos + k  ;
+		else
+			new_pos = start_pos + 2* k - 1;
+		
+		if (new_pos >= n)
+			new_pos = n - 1;
+
+		int neg_count = 0;
+		while (a[new_pos] == 0 && neg_count <= k) {
+			new_pos--;
+			neg_count++;
+		}
+
+		if (neg_count > k) {
+			cout << -1;
+			return;
+		}
+
+		plants++;
+		start_pos = new_pos;
+		cout << start_pos << " " << a[start_pos] << endl;
+		if (start_pos + k >= n)
+			break;
+
+		b_first = false;
+	}
+
+	cout << plants;
 }

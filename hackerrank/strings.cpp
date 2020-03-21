@@ -618,3 +618,350 @@ char ashtonString(string s, int k) {
     
     return ' ';
 }
+
+struct build_suffix_naive {
+
+
+	// Structure to store information of a suffix 
+	struct suffix
+	{
+		int index;
+		char* suff;
+	};
+
+	// A comparison function used by sort() to compare two suffixes 
+	static int cmp(struct suffix& a, struct suffix& b)
+	{
+		return strcmp(a.suff, b.suff) < 0 ? 1 : 0;
+	}
+
+	// This is the main function that takes a string 'txt' of size n as an 
+	// argument, builds and return the suffix array for the given string 
+	static void buildSuffixArray(const char* txt, int n, vector<int>& suffix_ar)
+	{
+		// A structure to store suffixes and their indexes 
+		//struct suffix suffixes[n];
+
+		vector<struct suffix> suffixes(n);
+
+		// Store suffixes and their indexes in an array of structures. 
+		// The structure is needed to sort the suffixes alphabatically 
+		// and maintain their old indexes while sorting 
+		for (int i = 0; i < n; i++)
+		{
+			suffixes[i].index = i;
+			suffixes[i].suff = const_cast<char*> (txt + i);
+		}
+
+		// Sort the suffixes using the comparison function 
+		// defined above. 
+		//sort(suffixes, suffixes + n, cmp);
+		sort(begin(suffixes), end(suffixes), build_suffix_naive::cmp);
+
+		// Store indexes of all sorted suffixes in the suffix array 
+		
+		suffix_ar.resize(n);
+		for (int i = 0; i < n; i++)
+			suffix_ar[i] = suffixes[i].index;		
+	}
+};
+
+struct build_suffix_logn2 {
+
+	struct suffix {
+		int index;
+		int rank[2];
+	};
+
+	static bool cmp(struct suffix a, struct suffix b) {
+		return ((a.rank[0] < b.rank[0]) || (a.rank[0] == b.rank[0] && a.rank[1] < b.rank[1]));
+	} 
+
+	static int* buildSuffixArray(const char* txt, int n) {
+		int i, k, rank, next_index, prev_rank;
+		int* ind = new int[n];
+		struct suffix* suffixes = new struct suffix[n];
+		for (i = 0; i < n; i++) {
+			suffixes[i].index = i;
+			suffixes[i].rank[0] = txt[i] - 'a';
+			suffixes[i].rank[1] = (i + 1 < n) ? txt[i + 1] - 'a' : -1;
+		}
+		sort(suffixes, suffixes + n, cmp);
+		for (k = 4; k < 2 * n; k *= 2) {
+			rank = 0;
+			prev_rank = suffixes[0].rank[0];
+			suffixes[0].rank[0] = rank;
+			ind[suffixes[0].index] = rank;
+			for (i = 1; i < n; i++) {
+				prev_rank = suffixes[i].rank[0];
+				if (suffixes[i].rank[0] == prev_rank && suffixes[i].rank[1] == suffixes[i - 1].rank[1]) {
+					suffixes[i].rank[0] = rank;
+				}
+				else {
+					suffixes[i].rank[0] = rank + 1;
+					++rank;
+				}
+				ind[suffixes[i].index] = rank;
+			}
+			for (i = 0; i < n; i++) {
+				next_index = suffixes[i].index + k / 2;
+				suffixes[i].rank[1] = (next_index < n) ? ind[next_index] : -1;
+			}
+			sort(suffixes, suffixes + n, cmp);
+		}
+		int* suffixArr = new int[n];
+		for (i = 0; i < n; i++) {
+			suffixArr[i] = suffixes[i].index;
+		}
+		free(ind);
+		free(suffixes);
+		return suffixArr;
+	}
+};
+
+//-----------------------------------------------------------------------------
+struct suffix {
+	int index;
+	int rank[2];
+};
+
+
+int cmp(struct suffix& a, struct suffix& b) {
+	return (a.rank[0] == b.rank[0]) ? (a.rank[1] < b.rank[1] ? 1 : 0) :
+		(a.rank[0] < b.rank[0] ? 1 : 0);
+}
+
+
+void buildSuffixArray(const char* txt, size_t n, vector<int>& suffix_ar) {
+
+	vector<struct suffix> suffixes(n);
+
+	for (size_t i = 0; i < n; i++) {
+		suffixes[i].index = i;
+		suffixes[i].rank[0] = txt[i] - 'a';
+		suffixes[i].rank[1] = ((i + 1) < n) ? (txt[i + 1] - 'a') : -1;
+	}
+
+	sort(begin(suffixes), end(suffixes), cmp);
+
+	vector<int> ind(n);
+
+	for (size_t k = 4; k < 2 * n; k = k * 2) {
+
+		size_t rank = 0;
+		int prev_rank = suffixes[0].rank[0];
+		suffixes[0].rank[0] = rank;
+		ind[suffixes[0].index] = 0;
+
+		for (size_t i = 1; i < n; i++) {
+			if (suffixes[i].rank[0] == prev_rank && suffixes[i].rank[1] == suffixes[i - 1].rank[1]) {
+				prev_rank = suffixes[i].rank[0];
+				suffixes[i].rank[0] = rank;
+			}
+			else {
+				prev_rank = suffixes[i].rank[0];
+				suffixes[i].rank[0] = ++rank;
+			}
+			ind[suffixes[i].index] = i;
+		}
+
+		for (size_t i = 0; i < n; i++) {
+			size_t nextindex = suffixes[i].index + k / 2;
+			suffixes[i].rank[1] = (nextindex < n) ?
+				suffixes[ind[nextindex]].rank[0] : -1;
+		}
+		sort(begin(suffixes), end(suffixes), cmp);
+	}
+
+	suffix_ar.resize(n);
+	for (size_t i = 0; i < n; i++) {
+		suffix_ar[suffixes[i].index] = i;
+	}
+}
+
+
+bool select_from_first(string& A, int indexA, string& B, int indexB, vector<int>& ranks, int len_a) {
+	return (indexB == B.length()) ||
+		((indexA < len_a) && ranks[indexA] < ranks[indexB + 1 + len_a]);
+}
+
+void morgan_and_a_string() {
+	int n;
+
+	cin >> n;
+
+	while (n > 0) {
+		string s1;
+		string s2;
+
+		cin >> s1 >> s2;
+
+		auto len_s1 = s1.length();
+		auto len_s2 = s2.length();
+
+		const char DIV = 'Z' + 1;
+
+		int i_s1 = 0;
+		int i_s2 = 0;
+
+		string combined_ar = s1 + DIV + s2 + DIV;
+
+		vector<int> suf_ar;
+		buildSuffixArray(combined_ar.c_str(), combined_ar.length(), suf_ar);
+
+		string s;
+
+		for (size_t i = 0; i < len_s1 + len_s2; i++) {
+			if (select_from_first(s1, i_s1, s2, i_s2, suf_ar, len_s1)) {
+				s.push_back(s1[i_s1]);
+				i_s1++;
+			}
+			else {
+				s.push_back(s2[i_s2]);
+				i_s2++;
+			}
+		}
+
+		cout << s << endl;
+		n--;
+	}
+}
+
+
+//-----------------------------------------------------------------------------
+void ashton_and_string() {
+	int t, k;
+	string s;
+
+	cin >> t;
+	cin >> s;
+	cin >> k;
+
+	vector<int> suf_ar;
+	buildSuffixArray(s.c_str(), s.length(), suf_ar);
+}
+
+/* To construct and return LCP */
+vector<int> kasai(string txt, vector<int> suffixArr) {
+	int n = suffixArr.size();
+
+	// To store LCP array 
+	vector<int> lcp(n, 0);
+
+	// An auxiliary array to store inverse of suffix array 
+	// elements. For example if suffixArr[0] is 5, the 
+	// invSuff[5] would store 0.  This is used to get next 
+	// suffix string from suffix array. 
+	vector<int> invSuff(n, 0);
+
+	// Fill values in invSuff[] 
+	for (int i = 0; i < n; i++)
+		invSuff[suffixArr[i]] = i;
+
+	// Initialize length of previous LCP 
+	int k = 0;
+
+	// Process all suffixes one by one starting from 
+	// first suffix in txt[] 
+	for (int i = 0; i < n; i++)
+	{
+		/* If the current suffix is at n-1, then we don’t
+		   have next substring to consider. So lcp is not
+		   defined for this substring, we put zero. */
+		if (invSuff[i] == n - 1)
+		{
+			k = 0;
+			continue;
+		}
+
+		/* j contains index of the next substring to
+		   be considered  to compare with the present
+		   substring, i.e., next string in suffix array */
+		int j = suffixArr[invSuff[i] + 1];
+
+		// Directly start matching from k'th index as 
+		// at-least k-1 characters will match 
+		while (i + k < n && j + k < n && txt[i + k] == txt[j + k])
+			k++;
+
+		lcp[invSuff[i]] = k; // lcp for the present suffix. 
+
+		// Deleting the starting character from the string. 
+		if (k > 0)
+			k--;
+	}
+
+	// return the constructed lcp array 
+	return lcp;
+}
+
+
+//-----------------------------------------------------------------------------
+void find_string() {
+
+	int n;
+	cin >> n;
+
+	vector<string> strs;
+
+	for (int i = 0; i < n; i++) {
+		string tmp;
+		cin >> tmp;
+
+		strs.push_back(tmp);
+	}
+
+	set<string> uniques;
+
+	// generate all strings
+
+	for (auto str : strs) {
+		for (int i = 0; i < str.size(); i++) {
+			string tmp;
+
+			tmp.reserve(2000);
+			for (int j = i; j < str.size(); j++) {
+				tmp = tmp + str[j];
+				uniques.insert(tmp);
+				//uniques.insert(str.substr(i, j));
+			}
+			
+		}
+
+		// test suffix array
+
+		vector<int>suffixArr;
+		buildSuffixArray(str.c_str(), str.length(), suffixArr);
+		int n = suffixArr.size();
+
+		vector<int>suffixArr2;
+		build_suffix_naive::buildSuffixArray(str.c_str(), str.length(), suffixArr2);
+
+		int* suffixArr3 = build_suffix_logn2::buildSuffixArray(str.c_str(), str.length());
+		//cout << "Suffix Array : \n";
+		//printArr(suffixArr, n);
+
+		vector<int>lcp = kasai(str, suffixArr);
+		vector<int>lcp2 = kasai(str, suffixArr2);
+	}
+
+	int q;
+
+	cin >> q;
+
+	for (int k = 0; k < q; k++) {
+		int tmp;
+
+		cin >> tmp;
+
+		tmp--;
+
+		if (tmp > uniques.size()) {
+			cout << "INVALID" << endl;
+		}
+		else {
+			auto it = next(uniques.begin(), tmp);
+			cout << *it << endl;
+		}
+	}
+}

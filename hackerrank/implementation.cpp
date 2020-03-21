@@ -12,11 +12,33 @@
 #include <functional>
 #include <cstdlib>
 #include <cmath>
+#include <iterator>
 
 #include "bigint.h"
 
 
 using namespace std;
+
+void read_array(vector<int>& ar, int n);
+void read_array(vector<long long int>& ar, int n);
+
+//-----------------------------------------------------------------------------
+
+void read_array(vector<int>& ar, int n) {
+  for (int i = 0; i < n; i++) {
+    int tmp;
+    cin >> tmp;
+    ar.push_back(tmp);
+  }
+}
+
+void read_array(vector<long long int>& ar, int n) {
+  for (int i = 0; i < n; i++) {
+    long long int tmp;
+    cin >> tmp;
+    ar.push_back(tmp);
+  }
+}
 
 //-----------------------------------------------------------------------------
 void grading_students() {
@@ -505,15 +527,6 @@ void counting_valleys() {
   
   cout << valleys;
 
-}
-//-----------------------------------------------------------------------------
-
-void read_array(vector<int>& ar, int n) {
-  for (int i = 0; i < n; i++) {
-    int tmp;
-    cin >> tmp;
-    ar.push_back(tmp);    
-  }
 }
 
 //-----------------------------------------------------------------------------
@@ -1895,7 +1908,8 @@ string encryption(string s) {
 	return ret;
 }
 
-//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------|
 long marcsCakewalk(vector<int> calorie) {
 	
 	sort(begin(calorie), end(calorie), greater<int>());
@@ -1932,4 +1946,536 @@ string biggerIsGreater(string w) {
     std::reverse(w.begin() +i, w.end());
     
     return w;
+}
+
+//-----------------------------------------------------------------------------
+void container_of_balls() {
+
+    int q;
+
+    cin >> q;
+
+    for (int l = 0; l < q; l++) {
+
+        int n;
+
+        cin >> n;
+
+        vector <vector < int>> a;
+
+        for (int i = 0; i < n; i++) {
+            vector <int> tmp;
+            read_array(tmp, n);
+            a.push_back(tmp);
+        }
+
+         vector <long long int> slots_ar, missing_ar;
+        
+        for (int i = 0; i < n; i++) {
+            long long int slots = 0;
+            long long int missing = 0;
+            for (int j = 0; j < n; j++) {
+                // if (i != j)
+                {
+                    slots += (long long int) a[i][j];
+                    missing += (long long int) a[j][i];
+                }
+            }
+
+            slots_ar.push_back(slots);
+            missing_ar.push_back(missing);
+        }
+
+        sort(begin(slots_ar), end(slots_ar));
+        sort(begin(missing_ar), end(missing_ar));
+
+        bool possible = true;
+        for (int i = 0; i  < n; i++)
+            if (slots_ar[i] != missing_ar[i]) {
+                possible = false;
+                break;
+            }
+
+        if (possible)
+            cout << "Possible" << endl;
+        else
+            cout << "Impossible" << endl;
+    }
+}
+
+//-----------------------------------------------------------------------------
+string timeInWords(int h, int m) {
+    string numbers[] = {
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "eleven",
+        "twelve",
+        "thirteen",
+        "fourteen",
+        "quarter",
+        "sixteen",
+        "seventeen",
+        "eighteen",
+        "nineteen",
+        "twenty",
+        "twenty one",
+        "twenty two",
+        "twenty three",
+        "twenty four",
+        "twenty five",
+        "twenty six",
+        "twenty seven",
+        "twenty eight",
+        "twenty nine",
+        "half"
+    };
+
+     if (m == 0) {
+         return  numbers[h - 1] + " o' clock";
+     }
+
+     if (m >= 1 && m <= 30) {
+         if (m == 15)
+            return numbers[m - 1] + string(" past ") + numbers[h - 1];
+
+         if (m == 30)
+             return numbers[m - 1] + string(" past ") + numbers[h - 1];
+         
+         if (m == 1)
+            return numbers[m - 1] + string(" minute past ") + numbers[h - 1];
+
+         return numbers[m - 1] + string(" minutes past ") + numbers[h - 1];
+     }
+     
+     int remaining_minutes = 60 - m;
+
+     if (remaining_minutes == 15)
+         return numbers[remaining_minutes - 1] + string(" to ") + numbers[h];
+     
+     if (remaining_minutes == 1)
+        return numbers[remaining_minutes - 1] + string(" minute to ") + numbers[h];
+
+     return numbers[remaining_minutes - 1] + string(" minutes to ") + numbers[h ];
+}
+
+void test_time_in_words() {
+    string result;
+
+    result = timeInWords(5, 47);
+    cout << result << endl;
+
+    result = timeInWords(3, 0);
+    cout << result << endl;
+
+    result = timeInWords(7, 15);
+    cout << result << endl;
+
+    result = timeInWords(7, 10);
+    cout << result << endl;
+
+
+    result = timeInWords(7, 29);
+    cout << result << endl;
+
+    result = timeInWords(5, 45);
+    cout << result << endl;
+
+    result = timeInWords(1, 1);
+    cout << result << endl;
+}
+
+//-----------------------------------------------------------------------------
+string gridSearch(vector<string> G, vector<string> P) {
+    
+    int pattern_len = P.size();
+
+    for (int i = 0; i <= G.size() - pattern_len; i++) {
+        size_t pos = G[i].find(P[0]);
+
+        if (pos == std::string::npos) // the pattern is not found, moved to the next line
+            continue;
+
+        while (pos != std::string::npos) {
+            bool found = true;
+            for (int j = 1; j < pattern_len; j++) {
+                size_t pos2 = G[i + j].find(P[j], pos);
+                if (pos != pos2) {
+                    found = false;
+                    break;
+                }
+            }
+
+            if (found)
+                return "YES";
+
+            pos = G[i].find(P[0], pos + 1);
+        }
+     }
+     
+    return "NO";
+}
+
+void grid_search() {
+
+    int t;
+    cin >> t;
+
+    for (int l = 0; l < t; l++) {
+        int R, C;
+        cin >> R >> C;
+
+        vector<string> G;
+
+        for (int i = 0; i < R; i++) {
+            string tmp;
+            cin >> tmp;
+            G.push_back(tmp);
+        }
+
+        int r, c;
+        cin >> r >> c;
+        vector<string> P;
+
+        for (int i = 0; i < r; i++) {
+            string tmp;
+            cin >> tmp;
+            P.push_back(tmp);
+        }
+
+        string result = gridSearch(G, P);
+
+        cout << result << endl;
+    }
+}
+
+
+//-----------------------------------------------------------------------------
+int surfaceArea(vector<vector<int>> A) {
+
+    int H = A.size();
+    int W = A[0].size();
+
+    int sum = 0;
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            int cub_sum = 0;
+            int top = 1;
+            int bottom = 1;
+            
+            // west, north, east, south walls;
+
+            int west = 0;
+            if (j == 0)
+                west = A[i][j];
+            else
+                if (A[i][j] > A[i][j - 1])
+                    west = A[i][j] - A[i][j - 1];
+
+            int east = 0;
+            if (j == W - 1)
+                east = A[i][j];
+            else
+                if (A[i][j] > A[i][j + 1])
+                    east = A[i][j] - A[i][j + 1];
+
+            int north = 0;
+            if (i == 0)
+                north = A[i][j];
+            else
+                if (A[i][j] > A[i - 1][j])
+                    north = A[i][j] - A[i - 1][j];
+
+            int south = 0;
+
+            if (i == H - 1)
+                south = A[i][j];
+            else
+                if (A[i][j] > A[i + 1][j])
+                    south = A[i][j] - A[i + 1][j];
+
+            cub_sum = top + bottom + west + east + north + south;
+
+            sum += cub_sum;
+        }
+    }
+
+    return sum;
+}
+
+//-----------------------------------------------------------------------------
+int twoPluses(vector<string> grid) {
+
+    int n = grid.size();
+    int m = grid[0].size();
+    int max_area = 0;
+
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++) {
+            if (grid[i][j] == 'B')
+                continue;
+
+           // int max_grid_size = min (j, m - j - 1)
+        }
+
+    return max_area;
+}
+
+//-----------------------------------------------------------------------------
+typedef unsigned long long int uint64;
+
+
+uint64 make_uint(int r, int c) {
+    const uint64 mult = 1000000L;
+
+    return r* mult + c;
+}
+
+uint64 check_direction(int rq, int cq, int dr, int dc, int n, set<uint64> onbstacles) {
+
+    int r = rq + dr;
+    int c = cq + dc;
+
+    uint64 count = 0;
+
+    while (true) {
+
+        if (r <= 0)
+            break;
+
+        if (c <= 0)
+            break;
+
+        if (r > n)
+            break;
+
+        if (c > n)
+            break;
+
+        uint64 pos = make_uint(r, c);
+
+        if (onbstacles.find(pos) != onbstacles.end())
+            break;
+
+        count++;
+
+        r += dr;
+        c += dc;
+    }
+
+    return count;
+}
+
+void queens_attackii () {
+    int n, k;
+
+    cin >> n >> k;
+
+    int rq, cq;
+
+    cin >> rq >> cq;
+
+    set<uint64> onbstacles;
+
+
+    for (int i = 0; i < k; i++) {
+        int r, c;
+
+        cin >> r >> c;
+
+        onbstacles.insert(make_uint(r, c));
+    }
+
+    uint64 count = 0;
+        
+    // check left
+    count += check_direction(rq, cq, 0, -1, n, onbstacles);
+
+    // check right
+    count += check_direction(rq, cq, 0, 1, n, onbstacles);
+
+    // check  up
+    count += check_direction(rq, cq, 1, 0, n, onbstacles);
+
+    // check  down
+    count += check_direction(rq, cq, -1, 0, n, onbstacles);
+
+    // check  up-left
+    count += check_direction(rq, cq, 1, -1, n, onbstacles);
+
+    // check up-right
+    count += check_direction(rq, cq, 1, 1, n, onbstacles);
+
+    // check down-left
+    count += check_direction(rq, cq, -1, -1, n, onbstacles);
+
+    // check down-right
+    count += check_direction(rq, cq, -1, 1, n, onbstacles);
+
+    cout << count;
+}
+
+
+struct plus_struct{
+    int  x, y, size, area;
+    set<tuple<int, int>> coords;
+
+    bool overlap(plus_struct& s1) {
+        std::vector<tuple<int, int>> intersect;
+
+        auto ov = set_intersection(coords.begin(), coords.end(),
+            s1.coords.begin(), s1.coords.end(),
+            back_inserter(intersect));
+
+        if (intersect.size() != 0)
+            return true;
+
+        return false;
+    }
+
+    bool overlap1(plus_struct& s1) {
+
+        if (size > s1.size)
+            return s1.overlap1(*this);
+
+        int x1 = x - size;
+        int x2 = x + size;
+        
+        int y1 = y - size;
+        int y2 = y + size;
+
+        int sx1 = s1.x - s1.size;
+        int sx2 = s1.x + s1.size;
+
+        int sy1 = s1.y - s1.size;
+        int sy2 = s1.y + s1.size;
+
+        // top left corner of r1 inside r2
+        if (x1 >= sx1 && x1 <= sx2 &&
+            y1 >= sy1 && y1 <= sy2)
+            return true;
+
+        // bottom right corner of r1 inside r2
+        if (x2 >= sx1 && x2 <= sx2 &&
+            y2 >= sy1 && y2 <= sy2)
+            return true;
+
+        // top right corner of r1 inside r2
+        if (x2 >= sx1 && x2 <= sx2 &&
+            y1 >= sy1 && y1 <= sy2)
+            return true;
+
+        // bottom left corner of r1 inside r2
+        if (x1 >= sx1 && x1 <= sx2 &&
+            y2 >= sy1 && y2 <= sy2)
+            return true;
+
+        return false;
+    }    
+};
+
+
+void ema_supercomputer() {
+
+    int n, m;
+
+    cin >> n >> m;
+
+    vector<string> grid;
+
+    for (int i = 0; i < n; i++) {
+        string tmp;
+        cin >> tmp;
+
+        grid.push_back(tmp);
+    }
+
+    vector <plus_struct> pluses;
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++) {
+
+            if (grid[i][j] == 'B') continue;
+            
+
+            //int prev_size = 0;
+            int size = 0;
+            
+            set<tuple<int,int>> coords;
+
+            while (true) {
+
+                if (i - size < 0)
+                    break;
+
+                if (grid[i - size][j] == 'B')
+                    break;
+
+                coords.insert(make_tuple(j, i - size));
+                
+                if (i + size >= n)
+                    break;
+
+
+                if (grid[i + size][j] == 'B')
+                    break;
+
+                coords.insert(make_tuple(j, i + size));
+
+                if (j - size < 0)
+                    break;
+
+                if (grid[i][j - size] == 'B')
+                    break;
+
+                coords.insert(make_tuple(j-size, i));
+
+                if (j + size >= m)
+                    break;
+
+                if (grid[i][j + size] == 'B')
+                    break;
+
+                coords.insert(make_tuple(j + size, i));
+
+                //cout << i << " " << j << " " << size << endl;
+                //if (prev_size == 0)
+                //    continue;
+
+                plus_struct plus;
+                plus.y = i;
+                plus.x = j;
+                plus.size = size;
+                plus.area = size * 4 + 1;
+                plus.coords = coords;
+
+                if (size)
+                    cout << plus.x << " " << plus.y << " " << plus.area << endl;
+                pluses.push_back(plus);
+
+                size++;
+            }
+
+            
+            
+        }    
+
+    int max_area = 0;
+
+    for (int i = 0; i < pluses.size(); i++)
+        for (int j = i + 1; j < pluses.size(); j++)
+            if (!pluses[i].overlap(pluses[j])) {
+                int area = pluses[i].area * pluses[j].area;
+                max_area = max(area, max_area);
+            }
+
+    cout << max_area;
 }
