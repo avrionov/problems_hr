@@ -9,9 +9,7 @@
 #include <set>
 #include <map>
 
-using namespace std;
-
-void read_array(vector<int>& ar, int n);
+#include "Utils.h"
 
 //-----------------------------------------------------------------------------
 string nimGame(vector<int> pile) {

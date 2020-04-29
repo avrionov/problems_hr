@@ -9,9 +9,7 @@
 #include <set>
 #include <map>
 
-using namespace std;
-void read_array(vector<int>& ar, int n);
-void read_array(vector<long long int>& ar, int n);
+#include "utils.h"
 
 //-----------------------------------------------------------------------------
 int flippingMatrix(vector<vector<int>> matrix) {

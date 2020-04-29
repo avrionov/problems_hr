@@ -10,9 +10,7 @@
 #include <map>
 #include <sstream>
 
-using namespace std;
-
-void read_array(vector<int>& ar, int n);
+#include "Utils.h"
 
 //-----------------------------------------------------------------------------
 string gridChallenge(vector<string> grid) {

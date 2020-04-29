@@ -99,6 +99,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -217,10 +218,15 @@
     <Text Include="test_data\strings\circular-palindromes-1.txt" />
     <Text Include="test_data\strings\circular-palindromes.txt" />
     <Text Include="test_data\strings\common-child.txt" />
+    <Text Include="test_data\strings\find_string-1.txt" />
+    <Text Include="test_data\strings\find_string-2.txt" />
+    <Text Include="test_data\strings\find_string.txt" />
     <Text Include="test_data\strings\funny-string.txt" />
     <Text Include="test_data\strings\game-of-thrones-1.txt" />
     <Text Include="test_data\strings\game-of-thrones.txt" />
     <Text Include="test_data\strings\gem-stones.txt" />
+    <Text Include="test_data\strings\how-many-substrings-1.txt" />
+    <Text Include="test_data\strings\how-many-substrings.txt" />
     <Text Include="test_data\strings\making-anagrams.txt" />
     <Text Include="test_data\strings\mars-exploration.txt" />
     <Text Include="test_data\strings\morgan-and-a-string.txt" />
@@ -258,6 +264,7 @@
     <ClInclude Include="bigint.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bigint.cpp">
@@ -319,6 +326,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="LeetCode.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="linear_suffix_array.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="recursion.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -342,6 +357,10 @@
     </ClCompile>
     <ClCompile Include="strings.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>

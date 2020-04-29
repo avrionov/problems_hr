@@ -10,12 +10,9 @@
 #include <set>
 #include <map>
 #include <sstream>
-
 #include <fstream>
 
-using namespace std;
-
-typedef unsigned long long int uint64;
+#include "Utils.h"
 
 //-----------------------------------------------------------------------------
 void reduced_string() {
@@ -949,12 +946,17 @@ void twotwo();
 void circular_palindromes();
 char ashtonString(string s, int k);
 void find_string();
+void how_many_substrings();
+void maximum_palindromes();
 
 // search
 void ice_cream_parlor();
 void missing_numbers();
 void sherlock_and_array();
 void cut_the_tree();
+void gridland_metro();
+void minimum_loss();
+void connected_cells();
 
 //gready
 void luck_balance();
@@ -1020,6 +1022,10 @@ void mixing_proteins();
 void test_xorMatrix();
 vector<int> xorSubsequence(vector<long> a);
 
+
+// leetcode
+void test_single_number();
+
 int main() {
 
 #ifdef __APPLE__
@@ -1037,14 +1043,9 @@ int main() {
 
     //encryption("chillout");
    // auto ch = ashtonString("dbac", 3);
-        
-    //hamming_distance3();
-    
-    //mixing_proteins();
-
-    //test_xorMatrix();
-
-    ema_supercomputer();
+    //circular_palindromes();
+    //how_many_substrings();
+    maximum_palindromes();
 
 	getchar();
 }

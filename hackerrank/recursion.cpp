@@ -8,14 +8,11 @@
 #include <list>
 #include <set>
 #include <map>
-
 #include <chrono> 
+
+#include "Utils.h"
+
 using namespace std::chrono;
-
-
-using namespace std;
-void read_array(vector<int>& ar, int n);
-void read_array(vector<long long int>& ar, int n);
 
 //-----------------------------------------------------------------------------
 int superDigit(unsigned long long int n) {
@@ -419,25 +416,6 @@ void test_k_sums() {
 
 	//findNDigitNums(n, sum);
 }
-
-class timethis {
-	public:
-		timethis(string s) {
-			_s = s;
-			_start = high_resolution_clock::now();
-
-		}
-
-		~timethis() {
-			auto stop = high_resolution_clock::now();
-			auto duration = duration_cast<microseconds>(stop - _start);
-
-			//cout << "Time taken by " << _s << ": " << duration.count() << " microseconds" << endl;
-		}
-
-	string _s;
-	steady_clock::time_point _start;
-};
 
 void repetitive_k_sums() {
 	

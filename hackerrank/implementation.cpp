@@ -16,29 +16,7 @@
 
 #include "bigint.h"
 
-
-using namespace std;
-
-void read_array(vector<int>& ar, int n);
-void read_array(vector<long long int>& ar, int n);
-
-//-----------------------------------------------------------------------------
-
-void read_array(vector<int>& ar, int n) {
-  for (int i = 0; i < n; i++) {
-    int tmp;
-    cin >> tmp;
-    ar.push_back(tmp);
-  }
-}
-
-void read_array(vector<long long int>& ar, int n) {
-  for (int i = 0; i < n; i++) {
-    long long int tmp;
-    cin >> tmp;
-    ar.push_back(tmp);
-  }
-}
+#include "Utils.h"
 
 //-----------------------------------------------------------------------------
 void grading_students() {
@@ -2381,7 +2359,6 @@ struct plus_struct{
         return false;
     }    
 };
-
 
 void ema_supercomputer() {
 

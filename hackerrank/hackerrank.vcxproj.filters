@@ -382,6 +382,21 @@
     <Text Include="test_data\strings\twotwo2.txt">
       <Filter>test_files\strings</Filter>
     </Text>
+    <Text Include="test_data\strings\how-many-substrings-1.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\how-many-substrings.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\find_string-2.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\find_string-1.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
+    <Text Include="test_data\strings\find_string.txt">
+      <Filter>test_files\strings</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -391,6 +406,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bigint.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -447,6 +465,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="constructive_algorithms.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LeetCode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="linear_suffix_array.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

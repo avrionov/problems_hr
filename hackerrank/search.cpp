@@ -8,8 +8,10 @@
 #include <list>
 #include <set>
 #include <map>
+#include <bitset>
 
-using namespace std;
+#include "Utils.h"
+
 
 //-----------------------------------------------------------------------------
 void find_indexes(int n, int m, vector <int>& ar) {
@@ -168,6 +170,7 @@ int minimumAbsoluteDifference(vector<int> arr) {
 //-----------------------------------------------------------------------------
 
 typedef long long int int64;
+
 struct Node {
 	vector<int> children;
 	int value;
@@ -257,4 +260,261 @@ void cut_the_tree() {
 	int64 min_cut = LLONG_MAX;
 	calculate_cut(1, 0, nodes, min_cut, 0);
 	cout << min_cut;
+}
+
+//-----------------------------------------------------------------------------
+void hacker_radio_transmitters() {
+	int n, k;
+	cin >> n >> k;
+
+	vector<int> a;
+
+	//a.push_back(0);
+
+	read_array(a, n);
+
+	sort(a.begin(), a.end());
+
+	int transmitters = 0;
+	int start_pos = 0;
+	
+	int i = 0;
+
+	while (i < n) {
+		transmitters++;
+		int right_end = a[i] + k;
+
+		while ((i < n) && (a[i] <= right_end))
+			i++;
+
+		// position of the transmitter 
+		i--;
+
+		right_end = a[i] + k;
+
+		while ((i < n) && (a[i] <= right_end))
+			i++;
+	}
+
+	cout << transmitters;
+}
+
+//-----------------------------------------------------------------------------
+typedef long long int int64;
+
+void gridland_metro() {
+	int64 n, m, k;
+
+	cin >> n >> m >> k;
+		
+	map<int64, vector<pair<int64, int64>>> rows;
+
+	for (int64 l = 0; l < k; l++) {
+	
+		int64 r, c1, c2;
+
+		cin >> r >> c1 >> c2;
+	
+		auto& row = rows[r];
+
+		vector<pair<int, int>> b;
+
+		bool add_new_track = true;
+
+		for (int i = 0; i < row.size(); i++) {
+		  // the new track is entirely inside an existing track
+			if (row[i].first <= c1 && row[i].second >= c2) {
+
+				for (int j = i; j < row.size(); j++)
+					b.push_back(row[j]);
+
+				add_new_track = false;
+				break;
+			}
+			
+			// track i is entirely in the new track, remove track i;
+			if (row[i].first >= c1 && row[i].second <= c2) {				
+			} else {
+				b.push_back(row[i]);
+
+				if (row[i].first <= c1 && c1 <= row[i].second) 
+					c1 = row[i].second+1;
+				
+				if (row[i].first <= c2 && c2 <= row[i].second)
+					c2 = row[i].first-1;
+				
+			}
+		}
+
+		if (add_new_track)
+			b.push_back({ c1, c2 });
+
+		row.assign(b.begin(), b.end());
+	}
+
+	int64 count = 0;
+	for (auto a : rows) {
+		int64 row_count = m;
+		for (auto j = 0; j < a.second.size(); j++)
+			row_count -= a.second[j].second - a.second[j].first+1;
+
+		count += row_count;
+	}
+
+	count += (n - rows.size()) * m;
+
+	cout << count;
+}
+
+
+//-----------------------------------------------------------------------------
+typedef long long int int64;
+
+struct num_index {
+	int64 num, index;
+	bool operator < (const num_index& b) const {
+		return num < b.num;
+	}
+};
+
+
+void minimum_loss() {
+	int64 n;
+
+	cin >> n;
+
+	vector<num_index> a;
+
+	for (int i = 0; i < n; i++) {
+		num_index tmp;
+		cin >> tmp.num;
+		tmp.index = i + 1;
+
+		a.push_back(tmp);
+	}
+	
+	sort(a.begin(), a.end());
+		
+	int64 min_price = LLONG_MAX;
+	for (int i = 1; i < n; i++)
+		if (a[i].index < a[i-1].index)
+			//if (a[i].num > a[i - 1].num)
+				min_price = min(min_price, a[i].num - a[i-1].num);
+
+	cout << min_price;
+}
+
+//-----------------------------------------------------------------------------
+void pairs() {
+	int64 n, k;
+
+	cin >> n >> k;
+
+	set<int64> a;
+
+	for (int i = 0; i < n; i++) {
+		int64 tmp;
+		cin >> tmp;
+
+		a.insert(tmp);
+	}
+
+	int count = 0;
+
+	for (auto it: a) {
+		auto fnd = a.find(it + k);
+		if (fnd != a.end())
+			count++;
+	}
+
+	cout << count;
+}
+
+
+//-----------------------------------------------------------------------------
+void count_region(int i, int j, vector<vector<int>>& matrix, int n, int m, int& count) {
+	
+	if (i < 0)  return;
+	if (i >= n) return;
+
+	if (j < 0) return;
+	if (j >= m) return;
+
+	if (matrix[i][j] != 1) return;
+
+	count++;
+
+	matrix[i][j] = 2; // mark as visited;
+
+	// top
+	count_region(i-1, j-1, matrix, n, m, count);
+	count_region(i-1, j, matrix, n, m, count);
+	count_region(i-1, j+1, matrix, n, m, count);
+
+	// bottom
+	count_region(i+1, j-1, matrix, n, m, count);
+	count_region(i+1, j, matrix, n, m, count);
+	count_region(i+1, j+1, matrix, n, m, count);
+
+	// left, right
+	count_region(i, j - 1, matrix, n, m, count);
+	count_region(i, j + 1, matrix, n, m, count);
+}
+
+void connected_cells() {
+
+	int n;
+	cin >> n;
+	
+
+	int m;
+	cin >> m;
+	
+	vector<vector<int>> matrix(n);
+	for (int i = 0; i < n; i++) {
+		matrix[i].resize(m);
+
+		for (int j = 0; j < m; j++) {
+			cin >> matrix[i][j];
+		}
+	}
+
+	int count = 0;
+	for (int i = 0; i < n; i++) 
+		for (int j = 0; j < m; j++) 
+			if (matrix[i][j] == 1) {
+				int tmp_count = 0;
+				count_region(i, j, matrix, n, m, tmp_count);
+				count = max(tmp_count, count);
+			}
+
+	cout << count;
+}
+
+//-----------------------------------------------------------------------------
+void short_palindrome() {
+	string s;
+	uint64 div = 1000000007L;
+	cin >> s;
+
+	uint64 sums[26][26][4] = { 0 };
+
+	for (auto a : s) {
+		int i = a - 'a';
+		for (int j = 0; j < 26; j++) {
+
+			sums[i][j][3] += sums[i][j][2] % div;
+			sums[j][i][2] += sums[j][i][1] % div;
+			sums[j][i][1] += sums[j][i][0] % div;
+			sums[i][j][0]++;
+		}
+	}
+
+	uint64 sum = 0;
+
+	for (int i = 0; i < 26; i++) 
+		for (int j = 0; j < 26; j++)
+			sum += sums[i][j][3];
+
+	cout << sum / div;
 }

@@ -13,6 +13,8 @@
 #include <fstream>
 
 #include <chrono> 
+#include "utils.h"
+
 using namespace std::chrono;
 
 
@@ -20,14 +22,6 @@ using namespace std::chrono;
 #  include <intrin.h>
 #  define __builtin_popcount __popcnt
 #endif
-
-
-using namespace std;
-
-typedef unsigned long long int uint64;
-
-
-void read_array(vector<int>& ar, int n);
 
 
 //-----------------------------------------------------------------------------
@@ -190,44 +184,6 @@ void xor_and_sum() {
     vector<int> a(na % 4 + 1, 0), b(nb % 4 + 1, 0);
 
 }
-
-class timethis {
-public:
-    timethis(string s) {
-        _s = s;
-        _start = high_resolution_clock::now();
-
-    }
-
-    ~timethis() {
-        auto stop = high_resolution_clock::now();
-        auto duration = duration_cast<microseconds>(stop - _start);
-
-        _counts[_s]++;
-        _durs[_s] += duration;
-
-        cout << "Time taken by " << _s << ": " << duration.count() << " microseconds" << endl;
-    }
-
-    static void print_stats() {
-
-        for (auto a : _durs) {
-            long long int count = _counts[a.first];
-
-            cout << a.first<< ": " << a.second.count()<< ", " << (double) a.second.count()  / count << endl;
-        }
-    }
-
-    string _s;
-    steady_clock::time_point _start;
-
-    static map<string, std::chrono::microseconds> _durs;
-    static map<string, long long int> _counts;
-};
-
-map<string, std::chrono::microseconds> timethis::_durs;
-map<string, long long int> timethis::_counts;
-
 
 //-----------------------------------------------------------------------------
 void hamming_distance() {
