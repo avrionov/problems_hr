@@ -9,6 +9,8 @@
 #include <set>
 #include <map>
 #include <bitset>
+#include <queue>
+#include <iterator>  
 
 #include "Utils.h"
 
@@ -517,4 +519,281 @@ void short_palindrome() {
 			sum += sums[i][j][3];
 
 	cout << sum / div;
+}
+
+//-----------------------------------------------------------------------------
+
+const int BOARD_SIZE = 25;
+
+int board[BOARD_SIZE][BOARD_SIZE];
+
+void clear_board(int n) {
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < n; j++)
+			board[i][j] = -1;
+}
+
+void knightl(int x, int y, int a, int b, int n, int num) {
+
+	if (x < 0) return;
+	if (y < 0) return;
+
+	if (x > (n - 1)) return;
+
+	if (y > (n - 1)) return;
+
+	if (board[x][y] != -1) {
+		if (board[x][y] <= num)
+			return;
+	}
+
+	board[x][y] = num;
+
+	int xm[8] = { a, -a, -a,  a, b, -b, -b,  b };
+	int ym[8] = { b,  b, -b, -b, a,  a, -a, -a };
+
+	for (int i = 0; i < 8; i++)
+		knightl(x + xm[i], y + ym[i], a, b, n, num+1);
+}
+
+void knightl_on_chessboard() {
+	int n;
+
+	cin >> n;
+
+	for (int i = 1; i < n; i++) {
+		for (int j = 1; j < n; j++) {
+			clear_board(n);
+			knightl(n - 1, n - 1, i, j, n, 0);
+			cout << board[0][0] << " ";
+		}
+		cout << endl;
+	}
+}
+
+//-----------------------------------------------------------------------------
+const int RED_BOARD_SIZE = 201;
+
+struct path_struct {
+	int distance;
+	int x, y;
+	string path_str;
+};
+
+
+void red_knight() {
+	int n;
+
+	cin >> n;
+
+	int xs, ys, xe, ye;
+
+	cin >> xs >> ys >> xe >> ye;
+	queue <path_struct> qu;
+
+	qu.push({ 0, xs, ys, "" });
+
+	bool visited[RED_BOARD_SIZE][RED_BOARD_SIZE] = { false };
+
+	visited[xs][ys] = true;
+	int xm[6] = { -2, -2,  0, 2,  2,  0};
+	int ym[6] = { -1,  1,  2, 1, -1, -2};
+	string dirs[6] = { "UL", "UR", "R", "LR", "LL", "L" };
+
+	while (!qu.empty()) {
+
+		auto  p = qu.front(); 
+		qu.pop();
+
+		if (p.x == xe && p.y == ye) {
+			cout << p.distance << endl;
+			cout << p.path_str << endl;
+			return;
+		}
+
+		for (int i = 0; i < 6; i++) {
+			int xn = p.x + xm[i];
+			int yn = p.y + ym[i];
+
+			if ((xn >= 0) && (xn < n) && (yn >= 0) && (yn < n)) {
+				if (visited[xn][yn] == false) {
+					visited[xn][yn] = true;
+					qu.push({ p.distance + 1, xn, yn, p.path_str + dirs[i] + " " });
+				}
+			}
+		}
+	}
+
+	cout << "Impossible\n";
+}
+
+//-----------------------------------------------------------------------------
+const int GRID_SIZE = 101;
+typedef char grid_type[GRID_SIZE][GRID_SIZE];
+
+struct grid_info {
+	grid_type grid;
+	int n, m;
+	int xe, ye;
+	int guess;
+};
+
+grid_info grid;
+int xm[4] = { -1, 1,  0, 0 };
+int ym[4] = { 0, 0, -1, 1 };
+
+void count_moves(int xs, int ys, int changes) {
+	int num_moves = 0;
+
+	if (xs == grid.xe && ys == grid.ye)
+		if (changes == grid.guess)
+			cout << "Impressed" << endl;
+		else
+			cout << "Oops!" << endl;
+
+	grid.grid[ys][xs] = 'X';
+
+	for (int i = 0; i < 4; i++) {
+		int xn = xs + xm[i];
+		int yn = ys + ym[i];
+
+		if ((xn >= 0) && (xn < grid.m) && (yn >= 0) && (yn < grid.n) && grid.grid[yn][xn] != 'X')
+			num_moves++;
+	}
+			
+	if (num_moves > 1)
+		changes++;
+
+	for (int i = 0; i < 4; i++) {
+		int xn = xs + xm[i];
+		int yn = ys + ym[i];
+
+		if ((xn >= 0) && (xn < grid.m) && (yn >= 0) && (yn < grid.n) && grid.grid[yn][xn] != 'X')
+			count_moves(xn, yn, changes);
+	}
+}
+
+void count_luck() {
+	
+	int t;
+	cin >> t;		
+
+	for (int q = 0; q < t; q++) {
+		
+		cin >> grid.n >> grid.m;
+
+		int xs, ys;// start position
+		
+		for (int i = 0; i < grid.n; i++) {
+			for (int j = 0; j < grid.m; j++) {
+				cin >> grid.grid[i][j];
+				if (grid.grid[i][j] == 'M') {
+					xs = j;
+					ys = i;
+				}
+
+				if (grid.grid[i][j] == '*') {
+					grid.xe = j;
+					grid.ye = i;
+				}
+			}				
+		}	
+				
+		cin >> grid.guess;
+
+		int changes = 0;
+		bool found = false;
+
+		count_moves(xs, ys, changes);		
+
+	}
+}
+
+//-----------------------------------------------------------------------------
+void beautiful_quadruples() {
+	int a[4];
+
+	cin >> a[0] >> a[1] >> a[2] >> a[3];
+	
+	sort(a, a+4);
+
+	long long int count = 0;
+
+	int max_num = pow(2, ceil(log2(a[3] + 1)));
+	long long all_count = 0;
+
+	vector<long long int> inner(max_num);
+	for (int ic = 1; ic <= a[2]; ic++)		
+		for (int id = ic; id <= a[3]; id++) {
+			inner[ic ^ id] +=1;
+			all_count +=1;
+		}
+
+	for (int ib = 1; ib <= a[1]; ib++) {
+		for (int ia = 1; ia <= min(a[0], ib); ia++) {
+			count += all_count - inner[ia ^ ib];
+		}
+
+		for (int id = ib; id <= a[3]; id++) {
+			inner[ib ^ id] -= 1;
+			all_count -= 1;
+		}		
+	}
+		
+	cout << count;
+}
+
+//-----------------------------------------------------------------------------
+void gena_hanoi() {
+
+	int n;
+	cin >> n;
+
+	for (int i = 0; i < n; i++) {
+		int disk;
+		cin >> disk;
+	}
+}
+
+//-----------------------------------------------------------------------------
+void maximum_subarray_sum() {
+	int q;
+
+	cin >> q;
+
+	while (q--) {
+		int n, m;
+
+		cin >> n >> m;
+
+		vector<int> ar;
+		read_array(ar, n);
+
+		int sum = 0;
+		int max_sum = 0;
+
+		for (int i = 0; i < n; i++) {
+			sum = (ar[i] + sum) % m;
+			ar[i] = sum;
+			max_sum = max(sum, max_sum);
+		}
+
+		if (max_sum == m - 1) {
+			cout << max_sum << endl;
+			continue;
+		} 
+
+		set<int> sorted;
+		int min_mod = m+1;
+
+		for (int i = 0; i < n; i++) {
+			auto it = sorted.insert(ar[i]);
+			it.first++;
+
+			if (it.first != sorted.end())
+				min_mod = min(*it.first - ar[i], min_mod);
+		}
+
+		cout << max(max_sum, m - min_mod) << endl;
+	}
 }

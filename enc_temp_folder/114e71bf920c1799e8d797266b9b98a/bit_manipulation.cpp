@@ -1952,3 +1952,47 @@ void minimax_problem() {
     cout << min_value << endl;
 }
 
+#define lli long long int
+
+void minimax_problem2() {
+    int n;
+    cin >> n;
+    
+    vector<long long int> a;
+    read_array(a, n);
+
+    //lli a[n];
+
+    //for (int i = 0; i < n; i++)
+    //    cin >> a[i];
+
+    //sort(a, a + n);
+
+    vector<bitset<31>> b;
+
+    for (int i = 0; i < n; i++)
+        b.push_back(a[i]);
+
+    int lp, up, flag = 0;
+    for (int i = 30; i >= 0; i--) {
+        for (int j = 0; j < n - 1; j++)
+            if (b[j][i] != b[j + 1][i]) {
+                flag = 1;
+                lp = j;
+                up = j + 1;
+                break;
+            }
+
+        if (flag == 1)
+            break;
+    }
+
+    lli mini = 10000000000;
+    for (int i = up; i < n; i++)
+    {
+        for (int j = 0; j <= lp; j++)
+            mini = min(mini, a[i] ^ a[j]);
+    }
+
+    cout << mini << "\n";
+}

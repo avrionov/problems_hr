@@ -1,6 +1,7 @@
 #include "Utils.h"
 #include <cstdio>
 #include <iostream>
+#include <algorithm>
 
 
 map<string, std::chrono::microseconds> timethis::_durs;
@@ -48,3 +49,14 @@ void read_array(vector<long long int>& ar, int n) {
         ar.push_back(tmp);
     }
 }
+
+
+void read_array(vector<long >& ar, int n) {
+    for (int i = 0; i < n; i++) {
+        long tmp;
+        cin >> tmp;
+        ar.push_back(tmp);
+    }
+}
+
+

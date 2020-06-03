@@ -14,6 +14,7 @@ typedef long long int int64;
 
 void read_array(vector<int>& ar, int n);
 void read_array(vector<int64>& ar, int n);
+void read_array(vector<long>& ar, int n);
 
 
 class timethis {

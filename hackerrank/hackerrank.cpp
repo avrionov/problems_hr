@@ -944,10 +944,10 @@ void ema_supercomputer();
 int minimumNumber(int n, string password);
 void twotwo();
 void circular_palindromes();
-char ashtonString(string s, int k);
 void find_string();
 void how_many_substrings();
 void maximum_palindromes();
+void test_ashton_string();
 
 // search
 void ice_cream_parlor();
@@ -957,6 +957,8 @@ void cut_the_tree();
 void gridland_metro();
 void minimum_loss();
 void connected_cells();
+void count_luck();
+void beautiful_quadruples();
 
 //gready
 void luck_balance();
@@ -967,6 +969,8 @@ void permuting_two_arrays();
 void largest_permutation();
 void beatufil_pairs();
 void goodland_electricity();
+void greedy_florist();
+void candies();
 
 //debug
 int main_lucky_dates();
@@ -1009,6 +1013,7 @@ void repetitive_k_sums();
 
 // game_theory
 void test_misereNim();
+void stones_game();
 
 
 // bit manipulation
@@ -1020,8 +1025,21 @@ int iterate_it_2(vector<int> a);
 void iterateIt_test();
 void mixing_proteins();
 void test_xorMatrix();
-vector<int> xorSubsequence(vector<long> a);
+void xor_subsequence_test();
+void xor_subsequence_test2();
+void xor_key();
+void sansa_xor();
+void a_or_b();
+void whats_next();
+void cipher();
+void winning_lottery_ticket();
+void and_product();
+void minimax_problem();
+void minimax_problem2();
 
+void pass_one(const size_t& max_len, std::string& A, std::string& B, std::string& C, int& k);
+
+void lpad_zero(std::string& A, const size_t& max_len);
 
 // leetcode
 void test_single_number();
@@ -1043,9 +1061,9 @@ int main() {
 
     //encryption("chillout");
    // auto ch = ashtonString("dbac", 3);
-    //circular_palindromes();
-    //how_many_substrings();
-    maximum_palindromes();
+    //xor_subsequence_test2();
+    //xor_key();
+    minimax_problem();
 
 	getchar();
 }

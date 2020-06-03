@@ -9,6 +9,7 @@
 #include <set>
 #include <map>
 #include <sstream>
+#include <numeric>
 
 #include "Utils.h"
 
@@ -508,4 +509,91 @@ void goodland_electricity() {
 	}
 
 	cout << plants;
+}
+
+//-----------------------------------------------------------------------------
+void greedy_florist() {
+
+	int num_friends, num_flowers;
+
+	cin >>  num_flowers >> num_friends;
+
+	vector<int> flowers (num_flowers);
+
+	for (int i = 0; i < num_flowers; i++) {
+		cin >> flowers[i];
+	}
+
+	sort(flowers.begin(), flowers.end(), greater<int>());
+
+	long long int sum = 0;
+
+	for (int i = 0; i < num_flowers; i++) {
+		sum += (1 + i / num_friends) * flowers[i];
+	}
+
+	cout << sum;
+}
+
+//-----------------------------------------------------------------------------
+void candies() {
+	int n;
+
+	cin >> n;
+
+	vector<int> scores(n);
+
+	for (int i = 0; i < n; i++) {
+		cin >> scores[i];
+	}
+
+	vector<long long int> candies(n);
+
+	long long int candy = 1;
+	candies[0] = candy;
+
+	for (int i = 1; i < n; i++) {
+		if (scores[i - 1] < scores[i])
+			candy++;
+		else
+			candy = 1;
+		candies[i] = candy;	
+	}
+	candy = 1;
+	long long int sum = candies[n - 1];
+
+	for (int i = n-2; i >= 0; i--) {
+		if (scores[i] > scores[i + 1]) 
+			candy++;
+		else 
+			if (scores[i] <= scores[i + 1]) candy = 1;
+
+		candies[i] = max(candy, candies[i]);
+		sum += candies[i];
+	}
+
+	cout << sum;
+}
+
+void max_min() {
+
+	int n, k;
+	
+	cin >> n >> k;
+
+	vector<int> ar(n);
+
+	for (int i = 0; i < n; i++) {
+		cin >> ar[i];
+	}
+
+	sort(ar.begin(), ar.end());
+
+	int fair_sum = INT_MAX;
+
+	for (int i = 0; i < n-k; i++) {
+		fair_sum = min(fair_sum, ar[i + k -1 ] - ar[i]);
+	}
+
+	cout << fair_sum;
 }

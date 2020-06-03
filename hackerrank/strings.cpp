@@ -558,67 +558,6 @@ void circular_palindromes() {
 }
 
 
-//-----------------------------------------------------------------------------
-char ashtonString(string s, int k) {
-    
-    vector<string> substrings;
-    int sum = 0;
-    k--;
-    
-    for (char ch = 'a'; ch <='z'; ch++) {
-        for (int i = 0; i < s.length(); i++) {
-            if (ch == s[i]) {
-                string sub = s.substr(i, s.length()-1);
-                substrings.push_back(sub);
-            }
-                
-               /* for (int j = 1; j < s.length() - i+1; j++) {
-                    string sub = s.substr(i, j);
-                    substrings.push_back(sub);
-                }*/
-        }
-        
-        sort (begin(substrings), end(substrings));
-        substrings.erase( unique( substrings.begin(), substrings.end() ), substrings.end() );
-        
-        for (auto str: substrings) {
-            auto len = str.length();
-            if ((sum + len) > k ) {
-                k -= sum;
-                return str[k];
-            }
-            sum += len;
-        }
-        
-        substrings.clear();
-    }
-    
-    /*
-    for (int i = 0; i < s.length(); i++) {
-        for (int j = 1; j < s.length() - i+1; j++) {
-            string sub = s.substr(i, j);
-            substrings.push_back(sub);
-        }
-    }
-
-    sort (begin(substrings), end(substrings));
-    substrings.erase( unique( substrings.begin(), substrings.end() ), substrings.end() );
-    
-    int sum = 0;
-    k--;
-    for (auto str: substrings) {
-        auto len = str.length();
-        if ((sum + len) > k ) {
-            k -= sum;
-            return str[k];
-        }
-        sum += len;
-    }
-    */
-    
-    
-    return ' ';
-}
 
 struct build_suffix_naive {
 
@@ -989,7 +928,7 @@ void maximum_palindromes_old() {
 
 //-----------------------------------------------------------------------------
 
-const int MAX_LEN = 10000 + 2;
+const int MAX_LEN = 100000 + 2;
 const int MAX_CHAR = 26;
 
 int cnt[MAX_LEN][MAX_CHAR] = { 0 };
@@ -1322,4 +1261,194 @@ void how_many_substrings() {
 	}
 
 	//timethis::print_stats();
+}
+
+// A Suffix Trie (A Trie of all suffixes) Node 
+class SuffixTrieNode
+{
+public:
+	SuffixTrieNode* children[MAX_CHAR];
+	SuffixTrieNode() // Constructor 
+	{
+		// Initialize all child pointers as NULL 
+		for (int i = 0; i < MAX_CHAR; i++)
+			children[i] = NULL;
+	}
+
+	// A recursive function to insert a suffix of the s 
+	// in subtree rooted with this node 
+	void insertSuffix(string suffix);
+};
+
+// A Trie of all suffixes 
+class SuffixTrie
+{
+	SuffixTrieNode* root;
+	int _countNodesInTrie(SuffixTrieNode*);
+public:
+	// Constructor (Builds a trie of suffies of the given text) 
+	SuffixTrie(string s)
+	{
+		root = new SuffixTrieNode();
+
+		// Consider all suffixes of given string and insert 
+		// them into the Suffix Trie using recursive function 
+		// insertSuffix() in SuffixTrieNode class 
+		for (int i = 0; i < s.length(); i++)
+			root->insertSuffix(s.substr(i));
+	}
+
+	//  method to count total nodes in suffix trie 
+	int countNodesInTrie() { return _countNodesInTrie(root); }
+};
+
+// A recursive function to insert a suffix of the s in 
+// subtree rooted with this node 
+void SuffixTrieNode::insertSuffix(string s)
+{
+	// If string has more characters 
+	if (s.length() > 0)
+	{
+		// Find the first character and convert it 
+		// into 0-25 range. 
+		char cIndex = s.at(0) - 'a';
+
+		// If there is no edge for this character, 
+		// add a new edge 
+		if (children[cIndex] == NULL)
+			children[cIndex] = new SuffixTrieNode();
+
+		// Recur for next suffix 
+		children[cIndex]->insertSuffix(s.substr(1));
+	}
+}
+
+// A recursive function to count nodes in trie 
+int SuffixTrie::_countNodesInTrie(SuffixTrieNode* node)
+{
+	// If all characters of pattern have been processed, 
+	if (node == NULL)
+		return 0;
+
+	int count = 0;
+	for (int i = 0; i < MAX_CHAR; i++)
+	{
+		// if children is not NULL then find count 
+		// of all nodes in this subtrie 
+		if (node->children[i] != NULL)
+			count += _countNodesInTrie(node->children[i]);
+	}
+
+	// return count of nodes of subtrie and plus 
+	// 1 because of node's own count 
+	return (1 + count);
+}
+
+//void SuffixTrie::_find_k_char()
+
+//void SuffixTrie::find_k_char(int) {
+//
+//}
+
+
+
+//-----------------------------------------------------------------------------
+char ashtonString(string s, int k) {
+
+
+	vector<string> substrings;
+#if 0	
+	k--;
+	set <string> substr_set;
+
+	int sum = 0;
+	for (char ch = 'a'; ch <= 'z'; ch++) {
+		for (int i = 0; i < s.length(); i++) {
+			if (ch == s[i]) {
+				string sub = s.substr(i, s.length() - i);
+				//substrings.push_back(sub);
+				substr_set.insert(sub);
+			}			
+		}
+				
+		for (auto str : substr_set) {
+			auto len = str.length(); 
+			if ((sum + len) > k) {
+				//k -= sum;
+				return str[k-sum];
+			}
+			sum += len;
+		}
+
+		substr_set.clear();
+	}
+
+#endif
+
+	set <string> substr_set;
+
+	for (int i = 0; i < s.length(); i++) {
+		for (int j = 1; j < s.length() - i + 1; j++) {
+			string sub = s.substr(i, j);
+			substr_set.insert(sub);
+		//	substrings.push_back(sub);
+		}
+	}
+
+	vector<int> suffix_ar;
+	auto begin_str = s.c_str();
+
+	build_suffix_arrray(begin_str, s.length(), suffix_ar);
+	vector<int>lcp = kasai(s, suffix_ar);
+	int len = s.length();
+
+	uint64 result = len - suffix_ar[0];
+
+	for (int j = 1; j < lcp.size(); j++)
+		result += (len - suffix_ar[j]) - lcp[j - 1];
+
+	// Construct a Trie of all suffixes 
+	SuffixTrie sTrie(s);
+
+	// Return count of nodes in Trie of Suffixes 
+	int count_str =  sTrie.countNodesInTrie();
+
+	//sort(begin(substrings), end(substrings));
+	//substrings.erase(unique(substrings.begin(), substrings.end()), substrings.end());
+
+	int sum = 0;
+	k--;
+	for (auto str : substr_set) {
+	//for (auto str : substrings) {
+		auto len = str.length();
+		if ((sum + len) > k) {
+			k -= sum;
+			return str[k];
+		}
+		sum += len;
+	}
+
+
+
+	return ' ';
+}
+
+void test_ashton_string() {
+	int t;
+	cin >> t;
+
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+	for (int t_itr = 0; t_itr < t; t_itr++) {
+		string s;
+		getline(cin, s);
+
+		int k;
+		cin >> k;
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		char res = ashtonString(s, k);
+
+		cout << res << "\n";
+	}
 }
