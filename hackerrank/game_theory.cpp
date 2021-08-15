@@ -254,3 +254,164 @@ void chocolate_in_box() {
 
 	cout << count;
 }
+
+//-----------------------------------------------------------------------------
+void alice_and_bob_game() {
+	int t;
+
+	cin >> t;
+
+	int* prime_numbers = new int[100005]; // 10^5 + buffer
+
+	prime_numbers[0] = 0;
+	prime_numbers[1] = 0;
+
+	for (int i = 2; i < 100001; i++)
+		prime_numbers[i] = 1;
+
+
+	for (int i = 2; i < 100001; i++) {
+		for (int j = i * 2; j < 100001; j += i) {
+			prime_numbers[j] = 0;
+		}
+	}
+
+
+	while (t--) {
+		int n;  // set size
+		cin >> n;
+
+		if (n == 1) {
+			cout << "Bob" << endl;
+			continue;
+		}
+
+		int count = 0;
+		for (int i = 0; i <= n; i++) {
+			if (prime_numbers[i]) count ++;
+		}
+
+		if (count % 2)
+			cout << "Alice" << endl;
+		else
+			cout << "Bob" << endl;		
+	}
+}
+
+//-----------------------------------------------------------------------------
+void kitty_and_katty() {
+
+	int t;
+	cin >> t;
+
+	while (t--) {
+
+		int n;
+
+		cin >> n;
+
+		if (n % 2 == 0 || n == 1)
+			cout << "Kitty" << endl;
+		else
+			cout << "Katty" << endl;
+	}	
+}
+
+//-----------------------------------------------------------------------------
+bool increased_seq(const vector<int>& v, int mask) {
+	int last = INT_MAX; 
+	
+	for (int i = v.size() - 1; i >= 0; i--) {
+		if (mask & (1 << i)) {
+			if (v[i] >= last) {
+				return false;
+			}
+			last = v[i];
+		}
+	}
+	return true;
+}
+
+bool first_wins(const vector<int>& perm, int mask, bool first_win, vector<short>& masks) {
+
+	if (masks[mask] == -1)
+		masks[mask] = increased_seq(perm, mask);
+	else if (masks[mask] == 0)
+		return first_win; 
+
+	if (masks[mask] == 1)
+		return !first_win;
+
+	int copy = mask;
+
+	while (copy) {
+		int last_bit = copy & (~(copy - 1));
+		copy ^= last_bit; 
+		int newmask = mask ^ last_bit;
+		if (first_win == first_wins(perm, newmask, !first_win, masks)) {
+			masks[newmask] = true;
+			return first_win; 
+		}
+	}
+
+	masks[mask] = false;
+	return !first_win;
+}
+
+void permutation_game() {
+	
+	int t;
+	cin >> t;
+
+	while (t--) {
+		int n;
+		cin >> n;
+		vector<int> perm(n);
+		for (int i = 0; i < n; i++)
+			cin >> perm[i];
+
+		int total = pow(2, n);
+		vector<short> masks(total, -1);
+
+		int mask = (1 << n) - 1;
+
+		if (first_wins(perm, mask, true, masks))
+			cout << "Alice" << endl;
+		else
+			cout << "Bob" << endl;
+
+	}
+}
+
+//-----------------------------------------------------------------------------
+void new_year_game() {
+	int t;
+	cin >> t;
+
+	while (t--) {
+		int n;
+		cin >> n;
+		int arr[2001];
+
+		int mod_1 = 0;
+		int mod_2 = 0;
+		for (int i = 0; i < n; i++) {
+			//scanf("%d", arr[i]); // scanf is faster
+			cin >> arr[i];
+
+			int mod = arr[i] % 3;
+
+			if (mod == 1)
+				mod_1++;
+
+			if (mod == 2)
+				mod_2 ++;
+		}
+			
+		if ((mod_1 % 2) || (mod_2 % 2))
+			cout << "Balsa" << endl;
+		else
+			cout << "Koca" << endl;		
+
+	}
+}

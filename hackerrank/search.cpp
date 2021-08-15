@@ -744,15 +744,72 @@ void beautiful_quadruples() {
 }
 
 //-----------------------------------------------------------------------------
+void moves_from_here(int mask, vector<int>& moves, map<int, bool>& states) {
+	int poles[4] = { -1, -1, -1, -1 };
+
+	// unpack mask and put the largest disk per pole
+	for (int i = 0; i < 10; i++) {
+		int disk = mask >> (i << 1);
+
+		if (poles[3 & disk] == -1)
+			poles[3 & disk] = i;
+	}
+
+	for (int i = 0; i < 4; i++) {
+
+		if (poles[i] == -1) continue;
+		
+		for (int j = 0; j < 4; j++) {
+			if (poles[j] == -1 || poles[i] < poles[j]) {
+				int tmp = mask;
+				tmp = tmp & (~(3 << (poles[i] << 1)));
+				tmp |= (j << (poles[i] << 1));
+				if (!states[tmp]) {
+					states[tmp] = true;
+					moves.push_back(tmp);
+				}
+			}
+		}		
+	}
+}
+
+long long int search_solutions(int state, map<int, bool>& states) {
+	long long int ret = 0;
+	vector<int> moves;
+	moves.push_back(state);
+			
+	while (true) {
+
+		ret++;
+		vector<int> next;
+		for (auto x : moves)
+			moves_from_here(x, next, states);
+
+		if (states[0])
+			return ret;
+
+		moves = next;
+	}
+}
+
 void gena_hanoi() {
 
 	int n;
 	cin >> n;
 
+	int state = 0;
+
 	for (int i = 0; i < n; i++) {
 		int disk;
 		cin >> disk;
+		disk--;
+		state |= disk << (i << 1);
 	}
+
+	map<int, bool> states;
+	states[state] = true;
+	long long int ret = search_solutions(state, states);
+	cout << ret;
 }
 
 //-----------------------------------------------------------------------------

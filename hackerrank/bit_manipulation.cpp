@@ -1952,3 +1952,38 @@ void minimax_problem() {
     cout << min_value << endl;
 }
 
+//-----------------------------------------------------------------------------
+
+void xoringNinja() {
+    
+    int t;
+
+    cin >> t;
+
+    const int div = 1000000007;
+
+
+    while (t > 0) {
+        int n;
+
+        cin >> n;
+        
+        int  ret = 0;
+        int  pw = 1;
+
+        for (int i = 0; i < n; i++) {
+            int k;
+            cin >> k;
+            ret |= k;
+            ret %= div;
+            if (i)
+                pw <<= 1;
+            pw %= div;
+        }
+
+        long long int res = ret * pw;
+        cout << res % div << endl;
+        t--;
+    }
+   
+}

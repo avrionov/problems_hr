@@ -421,7 +421,7 @@ void beatufil_pairs() {
 		cout << pairs - 1;
 }
 
-/*
+
 
 void goodland_electricity() {
 	int n, k;
@@ -430,41 +430,56 @@ void goodland_electricity() {
 	vector<int> a;
 
 	read_array(a, n);
-
 	int plants = 0;
+
 	int start_pos = 0;
-	while (true) {
-		int new_pos;
+	int new_pos = 0;
+	while (start_pos < n) {
+		
+		new_pos = min(start_pos + k-1, n - 1);
 
-		if (start_pos == 0)
-			new_pos = start_pos + k ;
-		else
-			new_pos = start_pos + 2* k - 1;
-
-		if (new_pos >= n)
-			new_pos = n - 1;
-
-		while (a[new_pos] == 0 && new_pos >= start_pos) {
+		while ( (start_pos - k + 1) <= new_pos && a[new_pos] == 0) {
 			new_pos--;
 		}
 
-		if (new_pos == start_pos) {
+		if (new_pos < start_pos - k + 1) {
 			cout << -1;
 			return;
 		}
 
 		plants++;
-		start_pos = new_pos;
-
-		if (start_pos + k >= n)
-			break;
+		start_pos = new_pos + k;		
 	}
 
 	cout << plants;
 }
-*/
 
-void goodland_electricity() {
+void goodland_electricity3() {
+	int k, n, x;
+	cin >> n >> k;
+	int start_pos, new_pos, ans = 0;
+
+	vector<int> a;
+
+	read_array(a, n);
+
+	start_pos = 0;
+	while (start_pos < n) {
+		ans++;
+		new_pos = min(n - 1, start_pos + k - 1);
+
+		while (start_pos - k + 1 <= new_pos && a[new_pos] == 0) new_pos--;
+
+		if (new_pos < start_pos - k + 1) {
+			cout << -1;
+			return ;
+		}
+		else start_pos = new_pos + k;
+	}
+	cout << ans;
+}
+
+void goodland_electricity1() {
 	int n, k;
 	cin >> n >> k;
 
@@ -475,7 +490,7 @@ void goodland_electricity() {
 	read_array(a, n);
 
 	int plants = 0;
-	int start_pos = 0;
+	int start_pos = -1;
 	bool b_first = true;
 	while (true) {
 		int new_pos;
@@ -575,6 +590,7 @@ void candies() {
 	cout << sum;
 }
 
+//-----------------------------------------------------------------------------
 void max_min() {
 
 	int n, k;
@@ -596,4 +612,162 @@ void max_min() {
 	}
 
 	cout << fair_sum;
+}
+
+//-----------------------------------------------------------------------------
+const int maxn = 1e5 + 5;
+
+const int no_cloud = -5;
+const int two_or_more_clouds = -4;
+
+typedef long cloudtype;
+
+struct town {
+	cloudtype loc, population, covered, cloud;
+
+	bool operator < (const town& t) {
+		return loc < t.loc;
+	}
+
+};
+
+town towns[maxn];
+
+bool operator < (town const& ms, cloudtype const i)
+{
+	return ms.loc < i;
+}
+
+struct cloud {
+	cloudtype left, right;
+	bool operator < (const cloud& t) {
+		return left < t.left;
+	}
+
+	bool remove;
+};
+
+
+void cloudy_day() {
+
+	int n;
+	cin >> n;
+
+	vector<town> towns (n);
+
+	for (int i = 0; i < n; i++) {
+		cloudtype tmp;
+		cin >> tmp;	
+		towns[i].population = tmp;
+		towns[i].covered = 0;		
+		towns[i].cloud = no_cloud;
+	}
+
+	for (int i = 0; i < n; i++) {
+		cloudtype tmp;
+		cin >> tmp;
+		towns[i].loc = tmp;		
+	}
+
+	sort(towns.begin(), towns.end());
+
+	int dup_count = 0;
+	for (int i = 0; i < n - 1; i++) {
+		if (towns[i].loc == towns[i + 1].loc)
+			dup_count++;
+	}
+
+	int m;
+	cin >> m;
+		
+	vector<cloud> clouds(m);
+
+	for (int i = 0; i < m; i++) {
+		cloudtype tmp;
+		cin >> tmp;		
+		clouds[i].left = tmp;
+		clouds[i].right =tmp;		
+	}
+
+	int big_clouds = 0;	
+	for (int i = 0; i < m; i++) {
+		cloudtype tmp;
+		cin >> tmp;
+		clouds[i].left = min(1L, clouds[i].left - tmp);
+		clouds[i].right += tmp;		
+	}
+
+	//sort(clouds.begin(), clouds.end());
+	//sort(clouds, clouds+m);
+
+	int covered_by_two = 0;
+	for (int i = 0; i < m; i++) {
+
+		cloudtype& rb = clouds[i].left, re = clouds[i].right;
+
+		vector<town>::iterator it;
+
+		if (rb <= towns[0].loc)
+			it = towns.begin();
+		else {
+				it = lower_bound(towns.begin(), towns.end(), rb);
+				if (it == towns.end())
+					continue;
+		}
+			
+		while (it != towns.end() && it->loc >= rb && it->loc <= re) {
+			//it->covered++ ;
+			if (it->cloud == no_cloud)
+				it->cloud = i;
+			else
+				if (it->cloud >= 0) {
+					it->cloud = two_or_more_clouds;
+					covered_by_two++;
+					if (covered_by_two == n) {
+						cout << 0 << endl;
+						return;
+					}
+				}
+			it++;
+		}
+	}
+
+	vector<town> towns2;
+
+	long long int pop_sun = 0;
+	for (int i = 0; i < n; i++) {
+	/*	if (towns[i].covered == 0)
+			pop_sun += towns[i].population;
+		if (towns[i].covered == 1)
+			towns2.push_back(towns[i]);*/
+		if (towns[i].cloud == no_cloud)
+			pop_sun += towns[i].population;
+		else 
+			if (towns[i].cloud  >= 0)
+				towns2.push_back(towns[i]); 
+	}
+					
+	long long int max_pop_sun = pop_sun;
+
+	if (towns2.size())
+		for (int i = 0; i < m; i++) {
+
+			long long rb = clouds[i].left, re = clouds[i].right;
+
+			long long int cloud_count = 0;
+			
+			auto it = lower_bound(towns2.begin(), towns2.end(), rb);
+			if (it == towns2.end()) continue;
+				
+			while (it != towns2.end() && it->loc >= rb && it->loc <= re) {
+				if (towns[i].cloud >= 0)
+					cloud_count += it->population;
+			
+				it++;
+			}
+
+			max_pop_sun = max(max_pop_sun, pop_sun + cloud_count);
+		}
+
+	cout << max_pop_sun << endl;
 }

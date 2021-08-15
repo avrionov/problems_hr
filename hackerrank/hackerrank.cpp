@@ -948,6 +948,8 @@ void find_string();
 void how_many_substrings();
 void maximum_palindromes();
 void test_ashton_string();
+void letter_islands();
+void gena_hanoi();
 
 // search
 void ice_cream_parlor();
@@ -1014,7 +1016,9 @@ void repetitive_k_sums();
 // game_theory
 void test_misereNim();
 void stones_game();
-
+void alice_and_bob_game();
+void permutation_game();
+void new_year_game();
 
 // bit manipulation
 void hamming_distance();
@@ -1037,12 +1041,25 @@ void and_product();
 void minimax_problem();
 void minimax_problem2();
 
+// graph theory
+void rust_murder();
+void cloudy_day();
+void roads_and_libraries();
+void journey_to_the_moon();
+
 void pass_one(const size_t& max_len, std::string& A, std::string& B, std::string& C, int& k);
 
 void lpad_zero(std::string& A, const size_t& max_len);
 
 // leetcode
 void test_single_number();
+
+// data_structures
+void dynamic_array();
+
+// dynamic programming
+void travel_around_the_world();
+void coin_change_prroblem();
 
 int main() {
 
@@ -1063,7 +1080,9 @@ int main() {
    // auto ch = ashtonString("dbac", 3);
     //xor_subsequence_test2();
     //xor_key();
-    minimax_problem();
+    //cloudy_day();
+
+    journey_to_the_moon();
 
 	getchar();
 }

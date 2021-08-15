@@ -10,6 +10,7 @@ using namespace std;
 using namespace std::chrono;
 
 typedef unsigned long long int uint64;
+
 typedef long long int int64;
 
 void read_array(vector<int>& ar, int n);

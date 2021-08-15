@@ -1452,3 +1452,43 @@ void test_ashton_string() {
 		cout << res << "\n";
 	}
 }
+
+//-----------------------------------------------------------------------------
+void save_humanity() {
+	int n;
+
+	cin >> n;
+
+	string p, v;
+
+	while (n--) {
+		cin >> p >> v;
+
+		int lp = p.length();
+		int lv = v.length();
+
+		for (int i = 0; i <= (lp - lv); i++) {
+
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+void letter_islands() {
+	string s;
+	cin >> s;
+
+	int k;
+	cin >> k;
+
+	vector<int> suf_ar;
+	build_suffix_arrray(s.c_str(), s.length(), suf_ar);
+
+	for (int i = 0; i < suf_ar.size(); i++) {
+		for (int j = suf_ar[i]; j < s.length(); j++)
+			cout << s[j];
+
+		cout << endl;
+	}
+		
+}
